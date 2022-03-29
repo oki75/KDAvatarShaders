@@ -6,7 +6,7 @@ KINAKODOUHU avatar shader
 - Non-photorealistic rendering, NPR shader aimed at expressing brushed illustrations as lightly as possible
 - It is designed to blend in with the colors of the VRC world (under a light bake environment).
 - The influence of ambient light can be adjusted.
-- The mobile version is set to be unaffected by real-time lights.
+- set to be unaffected by real-time lights.
 
 - Built-in Render Pipeline (BRP)
 - Node-based development with AmplifyShaderEditer
