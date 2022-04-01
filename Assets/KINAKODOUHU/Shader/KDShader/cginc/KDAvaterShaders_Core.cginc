@@ -2,7 +2,6 @@
 //KDShader
 //KDAvaterShaders ver.1.1
 //v.1.1.00
-//https://github.com/oki75/KDAvaterShaders          
 
 
              //#pragma multi_compile_fog 

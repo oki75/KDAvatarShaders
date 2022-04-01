@@ -161,7 +161,7 @@ Material:
     - _BaseShade_Feather: 0.296
     - _BlendAddEyeBase: 1
     - _BlendMode: 0
-    - _BlendShadowColor: 0
+    - _BlendShadowColor: 1
     - _BlurLevel: 8.165618
     - _BumpScale: 1
     - _BumpScale1: 0
@@ -236,13 +236,13 @@ Material:
     - _Offset_X_Axis_BLD: -0.282
     - _Offset_Y_Axis_BLD: -0.425
     - _Offset_Z_Axis_BLD: 0
-    - _OutlineTexToggle: 0
+    - _OutlineTexToggle: 1
     - _OutlineWidth: 0.1
     - _Outline_Width: 27.1
     - _Parallax: 0.02
     - _ParallaxScale: 0.059
     - _ParallaxToggle: 1
-    - _RenderMode: 0
+    - _RenderMode: 3
     - _RimLightNormal: 1
     - _RimLightToggle: 1
     - _RimLight_Power: 0.793
@@ -253,8 +253,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StencilComp: 8
-    - _StencilPassOp: 0
-    - _StencilRef: 0
+    - _StencilPassOp: 2
+    - _StencilRef: 2
     - _StencilReference: 2
     - _StencilZFailOp: 0
     - _SystemShadeonoff: 0

@@ -1,6 +1,6 @@
-﻿//KDAvaterShadersInspector.cs for KDAvaterShaders v.1.0.10
-//https://github.com/oki75/KDShader           
-
+﻿//KDAvaterShadersInspector.cs for KDAvaterShaders v.1.1.00
+//https://github.com/oki75/KDAvaterShaders          
+         
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -41,8 +41,8 @@ namespace KD
         //setting
 
        static float _kdsVerX = 1;
-       static float _kdsVerY = 0;
-       static float _kdsVerZ = 10;
+       static float _kdsVerY = 1;
+       static float _kdsVerZ = 00;
 
         static int _StencilRefReference_Setting;
 

@@ -9,15 +9,16 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 3dcm_Mobile_Clipping_StensiMaskOut
   m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
-  m_ShaderKeywords: _ _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
-    _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
-    _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON
-    _UVSEC_UV1
+  m_ShaderKeywords: _ _ALPHATEST_ON _EMISSION _IS_CLIPPING_MODE _IS_OUTLINE_CLIPPING_YES
+    _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
+    _METALLICGLOSSMAP _NORMALMAP _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON
+    _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -161,7 +162,7 @@ Material:
     - _BaseShade_Feather: 0.296
     - _BlendAddEyeBase: 1
     - _BlendMode: 0
-    - _BlendShadowColor: 0
+    - _BlendShadowColor: 1
     - _BlurLevel: 8.165618
     - _BumpScale: 1
     - _BumpScale1: 0
@@ -242,7 +243,7 @@ Material:
     - _Parallax: 0.02
     - _ParallaxScale: 0.059
     - _ParallaxToggle: 1
-    - _RenderMode: 0
+    - _RenderMode: 4
     - _RimLightNormal: 1
     - _RimLightToggle: 1
     - _RimLight_Power: 0.793
@@ -252,9 +253,9 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StencilComp: 8
+    - _StencilComp: 6
     - _StencilPassOp: 0
-    - _StencilRef: 0
+    - _StencilRef: 2
     - _StencilReference: 2
     - _StencilZFailOp: 0
     - _SystemShadeonoff: 0
