@@ -213,6 +213,7 @@ Material:
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
+    - _KDASType: 0
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -266,7 +267,7 @@ Material:
     - _Tweak_Matcap_Emission_Level: 0
     - _Tweak_RimLightMaskLevel: 0.423
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 1
+    - _Tweak_transparency: 0.306
     - _UVSec: 0
     - _Unlit_Intensity: 1.04
     - _UseBaseAs1st: 0

@@ -8,17 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 3dcm_Mobile_NoOutline_TransClipping
-  m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
-  m_ShaderKeywords: _ _ALPHABLEND_ON _EMISSION _IS_CLIPPING_TRANSMODE _IS_OUTLINE_CLIPPING_YES
-    _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
-    _METALLICGLOSSMAP _NORMALMAP _OUTLINETEXTOGGLE_ON _PARALLAX_ON _RIMLIGHTNORMAL_ON
-    _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
+  m_Shader: {fileID: 4800000, guid: a11a381f433c19147ae73551a210d710, type: 3}
+  m_ShaderKeywords: _ _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
+    _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
+    _OUTLINETEXTOGGLE_ON _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP
+    _USEBASEAS2ND_ON _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -167,7 +166,7 @@ Material:
     - _BumpScale: 1
     - _BumpScale1: 0
     - _BumpScale2: 1
-    - _Clipping_Level: 0.196
+    - _Clipping_Level: 0
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
@@ -175,7 +174,7 @@ Material:
     - _DetailBlend: 0
     - _DetailNormalMapScale: 1
     - _Detail_Parallax: 0
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _DubleHighColor_Toggle: 1
     - _EmissionScaleUI: 0
     - _EyeHi2AdjustMirror: 0
@@ -200,20 +199,21 @@ Material:
     - _Glossiness: 0.4
     - _GlossyReflections: 1
     - _HighColorBlurShadow: 0
-    - _HighColorHue: 0.06228113
+    - _HighColorHue: 0.466
     - _HighColorMask_UVSet2_Toggle: 0
     - _HighColorMask__UVSet2_Toggle: 0
     - _HighColorNormal: 0
     - _HighColorParallax: 0
     - _HighColorSaturation: -0.1953587
     - _HighColor_Power: 0.684
-    - _HighColor_Ratio: 0.5697438
+    - _HighColor_Ratio: 1
     - _Inverse_Clipping: 0
     - _Is_BLD: 0
     - _Is_LightColor_Outline: 1
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
+    - _KDASType: 0
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -231,7 +231,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NormalMap2_UVSet2_Toggle: 0
-    - _NormalMapParallax: 0
+    - _NormalMapParallax: 1
     - _NormalMap_UVSet2_Toggle: 0
     - _OcclusionStrength: 1
     - _Offset_X_Axis_BLD: 0.124
@@ -241,9 +241,9 @@ Material:
     - _OutlineWidth: 0.1
     - _Outline_Width: 8.73
     - _Parallax: 0.02
-    - _ParallaxScale: 0.051
+    - _ParallaxScale: 0.319
     - _ParallaxToggle: 1
-    - _RenderMode: 2
+    - _RenderMode: 0
     - _RimLightNormal: 1
     - _RimLightToggle: 1
     - _RimLight_Power: 0.538
@@ -252,10 +252,10 @@ Material:
     - _Shininess: 0.137
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 5
+    - _SrcBlend: 1
     - _StencilComp: 8
     - _StencilPassOp: 0
-    - _StencilRef: 0
+    - _StencilRef: 2
     - _StencilReference: 2
     - _StencilZFailOp: 0
     - _SystemShadeonoff: 0
@@ -267,7 +267,7 @@ Material:
     - _Tweak_Matcap_Emission_Level: 0.647
     - _Tweak_RimLightMaskLevel: 0.423
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 0.497
+    - _Tweak_transparency: 0
     - _UVSec: 0
     - _Unlit_Intensity: 1.04
     - _UseBaseAs1st: 0
@@ -277,7 +277,7 @@ Material:
     - _Use_BaseAs2nd: 1
     - _Use_BaseAsFix: 1
     - _Use_Decal_alpha: 0
-    - _ZWrite: 0
+    - _ZWrite: 1
     - _aniso_offset: -0.351
     - _outlinetextogle: 0
     - _simpleUI: 0
@@ -285,7 +285,7 @@ Material:
     m_Colors:
     - _1st_ShadeColor: {r: 0.6846129, g: 0.6509434, b: 0.8679245, a: 1}
     - _2nd_ShadeColor: {r: 0.6650944, g: 0.8848762, b: 1, a: 1}
-    - _BaseColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}

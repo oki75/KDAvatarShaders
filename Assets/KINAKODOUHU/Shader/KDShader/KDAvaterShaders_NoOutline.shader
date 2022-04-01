@@ -3,7 +3,7 @@
 //v.1.1.00
 //https://github.com/oki75/KDAvaterShaders          
 
-Shader "KDShader/KDAvaterShaders"
+Shader "Hidden/KDShader/KDAvaterShaders_NoOutline"
 {
 	Properties
 	{
@@ -207,7 +207,7 @@ Shader "KDShader/KDAvaterShaders"
 				   
 				  UsePass "Hidden/KDShader/KDAvaterShaders_Core_Pass/FORWARD"
 
-				  UsePass "Hidden/KDShader/KDAvaterShaders_Outline_Pass/OUTLINE"
+				  
 
 				  UsePass "Hidden/KDShader/KDAvaterShaders_SC_Pass/SHADOWCASTER"
 

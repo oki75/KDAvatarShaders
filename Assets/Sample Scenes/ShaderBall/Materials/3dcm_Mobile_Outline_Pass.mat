@@ -11,8 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
   m_ShaderKeywords: _ _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
     _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
-    _OUTLINETEXTOGGLE_ON _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP
-    _USEBASEAS2ND_ON _UVSEC_UV1
+    _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON
+    _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -213,6 +213,7 @@ Material:
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
+    - _KDASType: 1
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -236,9 +237,9 @@ Material:
     - _Offset_X_Axis_BLD: 0.124
     - _Offset_Y_Axis_BLD: -0.425
     - _Offset_Z_Axis_BLD: -0.096
-    - _OutlineTexToggle: 1
+    - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
-    - _Outline_Width: 0
+    - _Outline_Width: 32.2
     - _Parallax: 0.02
     - _ParallaxScale: 0.051
     - _ParallaxToggle: 1

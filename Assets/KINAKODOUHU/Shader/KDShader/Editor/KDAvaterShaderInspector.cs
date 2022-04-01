@@ -61,6 +61,13 @@ namespace KD
         static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
         static bool _AdvancedSettings_Foldout = false;
+
+        // -----------------------------------------------------
+        //Change Shader
+         static Shader KDAvaterShaders = Shader.Find("KDShader/KDAvaterShaders");
+         static Shader KDAvaterShaders_NoOutline = Shader.Find("Hidden/KDShader/KDAvaterShaders_NoOutline");
+         
+
         // -----------------------------------------------------
         //USE_UI
         #region Material Properties
@@ -179,6 +186,7 @@ namespace KD
         MaterialProperty AmbientMinimum = null;
 
         MaterialProperty renderMode = null;
+        MaterialProperty KDASType =null;
        
         #endregion
 
@@ -191,6 +199,8 @@ namespace KD
         {
             //false=defaultOFF
             
+            KDASType =           FindProperty("_KDASType",props, false);
+
             renderMode =         FindProperty("_RenderMode",props);
 
             clippingMask =       FindProperty("_ClippingMask", props, false);
@@ -782,8 +792,8 @@ namespace KD
 
             EditorGUILayout.Space();
 
-            if (material.HasProperty("_Outline_Color"))
-            {
+          
+            
                 _Outline_Foldout = Foldout(_Outline_Foldout, "Outline Settings");
                 if (_Outline_Foldout)
                 {
@@ -793,7 +803,7 @@ namespace KD
                     EditorGUI.indentLevel--;
                 }
                 EditorGUILayout.Space();
-            }
+            
             // Advanced Settings
             _AdvancedSettings_Foldout = Foldout(_AdvancedSettings_Foldout, "Advanced Settings");
             if (_AdvancedSettings_Foldout)
@@ -1285,6 +1295,33 @@ namespace KD
         void GUI_Outline(Material material)
         {
 
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Outline");
+
+            if (material.GetFloat("_KDASType") == 0)
+            {
+                if (GUILayout.Button("Off", shortButtonStyle))
+                {
+                    material.SetFloat("_KDASType", 1); 
+                    m_MaterialEditor.SetShader(KDAvaterShaders);
+
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", shortButtonStyle))
+                {
+                    material.SetFloat("_KDASType", 0);
+                    m_MaterialEditor.SetShader(KDAvaterShaders_NoOutline);
+                    
+                    
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (material.GetFloat("_KDASType") == 1)
+            {
+
             m_MaterialEditor.FloatProperty(outline_Width, "Outline Width");
             m_MaterialEditor.ColorProperty(outline_Color, "Outline Color");
 
@@ -1347,6 +1384,7 @@ namespace KD
                 }
                 EditorGUILayout.EndHorizontal();
                 m_MaterialEditor.TexturePropertySingleLine(Styles.outlineTexText, outlineTex);
+            }
             }
 
 
@@ -1493,8 +1531,21 @@ namespace KD
     {
         base.AssignNewShaderToMaterial(material, oldShader, newShader);
 
-        // Material BlendMode resetting
-        SetBlendMode(material, (BlendMode) material.GetFloat("_RenderMode"));
+        if(oldShader != newShader)
+        {
+              if (oldShader == null )
+            {
+                  // Material BlendMode resetting
+                 SetBlendMode(material, (BlendMode) material.GetFloat("_RenderMode"));
+                 return;
+            }
+             if( oldShader.name == "KDShader/KDAvaterShaders" || 
+                 oldShader.name == "KDShader/KDAvaterShaders_Outline" )
+            {
+                return;
+            }
+        }
+
     }
     
 
