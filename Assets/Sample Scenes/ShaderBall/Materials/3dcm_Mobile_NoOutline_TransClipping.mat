@@ -150,7 +150,7 @@ Material:
     m_Floats:
     - _1st2nd_Shades_Feather: 0.165
     - _AlphaTestRef: 0.5
-    - _AmbientMax: 0.8301814
+    - _AmbientMax: 1
     - _AmbientMinimum: 0
     - _Anisotropic_TangentNormal_Toggle: 0
     - _Anisotropic_highlight_Toggle: 0
@@ -167,7 +167,7 @@ Material:
     - _BumpScale: 1
     - _BumpScale1: 0
     - _BumpScale2: 1
-    - _Clipping_Level: 0.201
+    - _Clipping_Level: 0.134
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
@@ -270,7 +270,7 @@ Material:
     - _Tweak_SystemShadowsLevel1: 0.726
     - _Tweak_transparency: 0.68
     - _UVSec: 0
-    - _Unlit_Intensity: 1.04
+    - _Unlit_Intensity: 1
     - _UseBaseAs1st: 0
     - _UseBaseAs2nd: 1
     - _UseBlendBaseColor: 0

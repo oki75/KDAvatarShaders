@@ -2,11 +2,11 @@
 //KDShader
 //KDAvaterShaders ver.1.1
 //v.1.1.00
-
-
+//https://github.com/oki75/KDAvaterShaders 
+ 
+ 
              //#pragma multi_compile_fog 
              //#pragma multi_compile_local _IS_CLIPPING_OFF 
-			 //#pragma shader_feature_local _CONVERTTEXTUREMODE_ON 
 			 //#pragma shader_feature_local _PARALLAX_ON 
 			 //#pragma shader_feature_local _DETAILBLEND_ON 
 			 //#pragma shader_feature_local _EYEHIANDLIMBUS_ON
@@ -237,9 +237,11 @@
 			{
 				
 				v2f o;
+
 				UNITY_SETUP_INSTANCE_ID ( v );
 				UNITY_INITIALIZE_OUTPUT(v2f, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO ( o );
+
 				o.texcoord.xy = v.texcoord.xy;
 				o.texcoord.zw = 0;
 				float3 ase_worldTangent = UnityObjectToWorldDir(v.ase_tangent);

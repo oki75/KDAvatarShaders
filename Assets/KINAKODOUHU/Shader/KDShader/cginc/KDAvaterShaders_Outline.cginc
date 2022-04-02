@@ -7,7 +7,6 @@
 
              //#pragma multi_compile_fog
              //#pragma multi_compile_local _IS_CLIPPING_OFF 
-			 //#pragma shader_feature_local _CONVERTTEXTUREMODE_ON 
 			 //#pragma shader_feature_local _PARALLAX_ON 
 			 //#pragma shader_feature_local _DETAILBLEND_ON 
 			 //#pragma shader_feature_local _EYEHIANDLIMBUS_ON

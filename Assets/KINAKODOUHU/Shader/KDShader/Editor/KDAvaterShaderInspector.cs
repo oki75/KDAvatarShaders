@@ -183,6 +183,7 @@ namespace KD
         MaterialProperty offset_Y_Axis_BLD = null;
         MaterialProperty offset_Z_Axis_BLD = null;
         MaterialProperty CullMode = null;
+        MaterialProperty AmbientMax = null;
         MaterialProperty AmbientMinimum = null;
 
         MaterialProperty renderMode = null;
@@ -312,6 +313,7 @@ namespace KD
             offset_Y_Axis_BLD = FindProperty("_Offset_Y_Axis_BLD", props, false);
             offset_Z_Axis_BLD = FindProperty("_Offset_Z_Axis_BLD", props, false);
             CullMode = FindProperty("_CullMode", props);
+            AmbientMax = FindProperty("_AmbientMax", props);
             AmbientMinimum = FindProperty("_AmbientMinimum", props);
 
            
@@ -841,9 +843,12 @@ namespace KD
                 }
                 EditorGUILayout.Space();
                 m_MaterialEditor.ShaderProperty(unlit_Intensity, "Unlit_Intensity");
+                m_MaterialEditor.ShaderProperty(AmbientMax, "AmbientMix");
                 m_MaterialEditor.ShaderProperty(AmbientMinimum, "AmbientMinimum");
                 EditorGUILayout.Space();
-                m_MaterialEditor.ShaderProperty(CullMode, "CullMode");                
+                m_MaterialEditor.ShaderProperty(CullMode, "CullMode");
+              
+
                 EditorGUI.indentLevel--;
                
             }

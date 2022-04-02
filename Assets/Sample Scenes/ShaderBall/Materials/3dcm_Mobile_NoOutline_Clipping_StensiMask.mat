@@ -11,8 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
   m_ShaderKeywords: _ _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
     _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
-    _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON
-    _UVSEC_UV1
+    _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -159,7 +158,7 @@ Material:
     - _BaseColor_Step: 0.453
     - _BaseParallax: 0
     - _BaseShade_Feather: 0
-    - _BlendAddEyeBase: 1
+    - _BlendAddEyeBase: 0
     - _BlendMode: 0
     - _BlendShadowColor: 1
     - _BlurLevel: 8.165618
@@ -240,8 +239,8 @@ Material:
     - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
     - _Outline_Width: 27.1
-    - _Parallax: 0.02
-    - _ParallaxScale: 0.059
+    - _Parallax: 0
+    - _ParallaxScale: 0.162
     - _ParallaxToggle: 0
     - _RenderMode: 3
     - _RimLightNormal: 1

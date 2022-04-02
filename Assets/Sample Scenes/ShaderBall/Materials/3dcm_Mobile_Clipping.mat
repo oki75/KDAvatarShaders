@@ -168,7 +168,7 @@ Material:
     - _BumpScale: 0.414
     - _BumpScale1: 0
     - _BumpScale2: 0
-    - _Clipping_Level: 0.435
+    - _Clipping_Level: 0.418
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
@@ -215,6 +215,7 @@ Material:
     - _Is_NormalMapToHighColor: 0
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 0
+    - _KDASType: 0
     - _KDSTechnique: 0
     - _KDSType: 0
     - _KDSVersion: 1
@@ -267,7 +268,7 @@ Material:
     - _Tweak_Matcap_Emission_Level: 0
     - _Tweak_RimLightMaskLevel: 1
     - _Tweak_SystemShadowsLevel1: 0
-    - _Tweak_transparency: 0.321
+    - _Tweak_transparency: 0.342
     - _UVSec: 0
     - _Unlit_Intensity: 1
     - _UseBaseAs1st: 0
