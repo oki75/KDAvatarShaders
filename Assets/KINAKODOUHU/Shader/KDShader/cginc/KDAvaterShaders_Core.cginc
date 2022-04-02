@@ -4,7 +4,7 @@
 //v.1.1.00
 //https://github.com/oki75/KDAvaterShaders 
  
- 
+
              //#pragma multi_compile_fog 
              //#pragma multi_compile_local _IS_CLIPPING_OFF 
 			 //#pragma shader_feature_local _PARALLAX_ON 
@@ -396,10 +396,10 @@
 				float2( 2,2 ) ) , (( _Detail_Parallax )?( parallaxtogle281 ):( 0.0 )));
 //
  #ifdef _DETAILBLEND_ON
-				float3 staticSwitch451 = BlendNormals( UnpackScaleNormal( float4( UnpackNormal( SAMPLE_TEXTURE2D( _NormalMap, sampler_NormalMap, lerpResult437 ) ) , 0.0 ), _BumpScale ) , 
-				UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap2, sampler_NormalMap2, lerpResult445 ), _BumpScale2 ) );
+				float3 staticSwitch451 = BlendNormals( UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap, sampler_NormalMap, lerpResult437 ), _BumpScale ) , 
+				                                       UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap2, sampler_NormalMap2, lerpResult445 ), _BumpScale2 ) );
  #else
-				float3 staticSwitch451 = UnpackScaleNormal( float4( UnpackNormal( SAMPLE_TEXTURE2D( _NormalMap, sampler_NormalMap, lerpResult437 ) ) , 0.0 ), _BumpScale );
+				float3 staticSwitch451 = UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap, sampler_NormalMap, lerpResult437 ), _BumpScale );
 #endif
 				float3 normalizeResult204 = normalize( staticSwitch451 );
 			    float3 Normalmap202 = normalizeResult204;

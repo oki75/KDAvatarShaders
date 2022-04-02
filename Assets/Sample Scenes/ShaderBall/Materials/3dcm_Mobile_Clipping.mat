@@ -165,7 +165,7 @@ Material:
     - _BlendMode: 0
     - _BlendShadowColor: 1
     - _BlurLevel: 8.165618
-    - _BumpScale: 0.414
+    - _BumpScale: 0.502
     - _BumpScale1: 0
     - _BumpScale2: 0
     - _Clipping_Level: 0.418
@@ -212,7 +212,7 @@ Material:
     - _Inverse_Clipping: 0
     - _Is_BLD: 0
     - _Is_LightColor_Outline: 1
-    - _Is_NormalMapToHighColor: 0
+    - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 0
     - _KDASType: 0
@@ -250,7 +250,7 @@ Material:
     - _RimLightToggle: 1
     - _RimLight_Power: 0.291
     - _ShadeColor_Step: 0
-    - _ShadeNormal: 1
+    - _ShadeNormal: 0
     - _Shininess: 0.043
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

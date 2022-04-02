@@ -9,10 +9,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 3dcm_Mobile_NoOutline_Clipping
   m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
-  m_ShaderKeywords: _ _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
-    _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
-    _OUTLINETEXTOGGLE_ON _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP
-    _USEBASEAS2ND_ON _UVSEC_UV1
+  m_ShaderKeywords: _ _EMISSION _EYEHIANDLIMBUS_ON _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
+    _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
+    _METALLICGLOSSMAP _NORMALMAP _OUTLINETEXTOGGLE_ON _PARALLAX_ON _RIMLIGHTNORMAL_ON
+    _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -159,7 +159,7 @@ Material:
     - _BaseColor_Step: 0.494
     - _BaseParallax: 0
     - _BaseShade_Feather: 0.369
-    - _BlendAddEyeBase: 1
+    - _BlendAddEyeBase: 0
     - _BlendMode: 0
     - _BlendShadowColor: 1
     - _BlurLevel: 8.165618
@@ -185,7 +185,7 @@ Material:
     - _EyeHi2_BlurStep: 0.7508348
     - _EyeHi2_Scale: 1
     - _EyeHiAdjustMirror: 0.00738687
-    - _EyeHiAndLimbus: 0
+    - _EyeHiAndLimbus: 1
     - _EyeHiAndLimbusMirrorON: 1
     - _EyeHiOffsetX: 0.03070339
     - _EyeHiOffsetY: 0
@@ -213,6 +213,7 @@ Material:
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
+    - _KDASType: 0
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -222,11 +223,11 @@ Material:
     - _LightDirection_MaskOn: 1
     - _Lightmapping: 1
     - _LimbusAdjustMirror: -0.4239556
-    - _LimbusOffsetX: 0.1913488
+    - _LimbusOffsetX: -0.136
     - _LimbusOffsetY: -0.1267346
     - _Limbus_BlurFeather: 0.3461028
     - _Limbus_BlurStep: 0.3467462
-    - _Limbus_Scale: 1
+    - _Limbus_Scale: 3.19
     - _Metallic: 0
     - _Mode: 0
     - _NormalMap2_UVSet2_Toggle: 0

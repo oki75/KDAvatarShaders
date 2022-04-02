@@ -463,6 +463,7 @@
 				    float3 worldSpaceLightDir = UnityWorldSpaceLightDir(ase_worldPos);
 				    float4 transform53_g332 = mul(unity_ObjectToWorld,float4( ( ( float3(1,0,0) * ( _Offset_X_Axis_BLD * 10.0 ) ) + ( float3(0,1,0) * ( _Offset_Y_Axis_BLD * 10.0 ) ) + ( float3(0,0,-1) * ( 1.0 - _Offset_Z_Axis_BLD ) ) ) , 0.0 ));
 				    float4 normalizeResult44_g332 = normalize( transform53_g332 );
+			 //NormalBlend	  
 				    float2 uv_NormalMap = i.texcoord.xy * _NormalMap_ST.xy + _NormalMap_ST.zw;
 				    float2 uv2_NormalMap = i.texcoord.zw * _NormalMap_ST.xy + _NormalMap_ST.zw;
 
@@ -470,11 +471,13 @@
 				    float2 uv_NormalMap2 = i.texcoord.xy * _NormalMap2_ST.xy + _NormalMap2_ST.zw;
 				    float2 uv2_NormalMap2 = i.texcoord.zw * _NormalMap2_ST.xy + _NormalMap2_ST.zw;
 				    float2 lerpResult445 = lerp( (( _NormalMap2_UVSet2_Toggle )?( uv2_NormalMap2 ):( uv_NormalMap2 )) , ( ( (( _NormalMap2_UVSet2_Toggle )?( uv2_NormalMap2 ):( uv_NormalMap2 )) + Parallaxoffset275 ) / float2( 2,2 ) ) , (( _Detail_Parallax )?( parallaxtogle281 ):( 0.0 )));
-				    #ifdef _DETAILBLEND_ON
-				    float3 staticSwitch451 = BlendNormals( UnpackScaleNormal( float4( UnpackNormal( SAMPLE_TEXTURE2D( _NormalMap, sampler_NormalMap, lerpResult437 ) ) , 0.0 ), _BumpScale ) , UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap2, sampler_NormalMap2, lerpResult445 ), _BumpScale2 ) );
-				    #else
-				    float3 staticSwitch451 = UnpackScaleNormal( float4( UnpackNormal( SAMPLE_TEXTURE2D( _NormalMap, sampler_NormalMap, lerpResult437 ) ) , 0.0 ), _BumpScale );
-				    #endif
+//
+#ifdef _DETAILBLEND_ON
+				float3 staticSwitch451 = BlendNormals( UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap, sampler_NormalMap, lerpResult437 ), _BumpScale ) , 
+				                                       UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap2, sampler_NormalMap2, lerpResult445 ), _BumpScale2 ) );
+ #else
+				float3 staticSwitch451 = UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap, sampler_NormalMap, lerpResult437 ), _BumpScale );
+#endif
 				    float3 normalizeResult204 = normalize( staticSwitch451 );
 				    float3 Normalmap202 = normalizeResult204;
 
