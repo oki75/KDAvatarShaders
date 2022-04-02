@@ -161,12 +161,12 @@ Material:
     - _BaseShade_Feather: 0
     - _BlendAddEyeBase: 1
     - _BlendMode: 0
-    - _BlendShadowColor: 0
+    - _BlendShadowColor: 1
     - _BlurLevel: 8.165618
     - _BumpScale: 0
     - _BumpScale1: 0
     - _BumpScale2: 0
-    - _Clipping_Level: 0.584
+    - _Clipping_Level: 0.415
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
@@ -213,6 +213,7 @@ Material:
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
+    - _KDASType: 1
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -242,7 +243,7 @@ Material:
     - _Parallax: 0.02
     - _ParallaxScale: 0.059
     - _ParallaxToggle: 0
-    - _RenderMode: 0
+    - _RenderMode: 3
     - _RimLightNormal: 1
     - _RimLightToggle: 1
     - _RimLight_Power: 0.793
@@ -253,7 +254,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StencilComp: 8
-    - _StencilPassOp: 0
+    - _StencilPassOp: 2
     - _StencilRef: 0
     - _StencilReference: 2
     - _StencilZFailOp: 0
@@ -266,7 +267,7 @@ Material:
     - _Tweak_Matcap_Emission_Level: 0
     - _Tweak_RimLightMaskLevel: 0.423
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 0.691
+    - _Tweak_transparency: 0.732
     - _UVSec: 0
     - _Unlit_Intensity: 1.04
     - _UseBaseAs1st: 0

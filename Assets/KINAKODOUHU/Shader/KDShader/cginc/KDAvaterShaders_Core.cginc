@@ -674,6 +674,6 @@
 //_Mobile
                 myColorVar = appendResult2213_g1;
 #endif
-				UNITY_APPLY_FOG(i.fogCoord,  myColorVar);
+				UNITY_APPLY_FOG(i.fogCoord, myColorVar);
 				return myColorVar;
 			}

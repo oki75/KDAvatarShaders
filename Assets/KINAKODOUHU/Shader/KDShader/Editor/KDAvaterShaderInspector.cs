@@ -856,7 +856,7 @@ namespace KD
             GUILayout.FlexibleSpace();
         //Var
         
-            GUILayout.Label("KD AvaterShaders"+" v."+_kdsVerX +"." + _kdsVerY+"."+_kdsVerZ+" beta"  , EditorStyles.boldLabel);
+            GUILayout.Label("KD AvaterShaders"+" v."+_kdsVerX +"." + _kdsVerY+"."+_kdsVerZ  , EditorStyles.boldLabel);
             EditorGUILayout.EndHorizontal();
 
         }// End of OnGUI()

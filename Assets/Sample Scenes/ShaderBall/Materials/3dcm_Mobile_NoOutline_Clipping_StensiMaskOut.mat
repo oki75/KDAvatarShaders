@@ -161,12 +161,12 @@ Material:
     - _BaseShade_Feather: 0.296
     - _BlendAddEyeBase: 1
     - _BlendMode: 0
-    - _BlendShadowColor: 0
+    - _BlendShadowColor: 1
     - _BlurLevel: 8.165618
     - _BumpScale: 1
     - _BumpScale1: 0
     - _BumpScale2: 1
-    - _Clipping_Level: 0
+    - _Clipping_Level: 0.497
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
@@ -213,6 +213,7 @@ Material:
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
+    - _KDASType: 1
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -238,7 +239,7 @@ Material:
     - _Offset_Z_Axis_BLD: 0
     - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
-    - _Outline_Width: 27.1
+    - _Outline_Width: 10
     - _Parallax: 0.02
     - _ParallaxScale: 0.059
     - _ParallaxToggle: 1
@@ -266,7 +267,7 @@ Material:
     - _Tweak_Matcap_Emission_Level: 0
     - _Tweak_RimLightMaskLevel: 0.423
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 1
+    - _Tweak_transparency: 0.753
     - _UVSec: 0
     - _Unlit_Intensity: 1.04
     - _UseBaseAs1st: 0
