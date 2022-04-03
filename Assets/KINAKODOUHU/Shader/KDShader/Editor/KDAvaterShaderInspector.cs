@@ -1297,8 +1297,7 @@ namespace KD
         {
 
             
-            EditorGUILayout.EndHorizontal();
-
+           
             
 
             m_MaterialEditor.FloatProperty(outline_Width, "Outline Width");
