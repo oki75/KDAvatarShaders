@@ -248,6 +248,7 @@
 			      {
 				    v2f o;
 				    UNITY_SETUP_INSTANCE_ID ( v );
+					UNITY_INITIALIZE_OUTPUT(v2f, o);
 				    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO ( o );
 				    o.texcoord.xy = v.texcoord.xy;
 				    o.texcoord.zw = 0;
@@ -258,15 +259,19 @@
 				    float Bmask142 = tex2DNode146.b;
 				    float OutLineSampler145 = Bmask142;
 				    
-				    float3 ase_worldTangent = UnityObjectToWorldDir(v.ase_tangent);
-				    o.ase_texcoord1.xyz = ase_worldTangent;
-				    float3 ase_worldNormal = UnityObjectToWorldNormal(v.normal);
-				    o.ase_texcoord2.xyz = ase_worldNormal;
-				    float ase_vertexTangentSign = v.ase_tangent.w * unity_WorldTransformParams.w;
-				    float3 ase_worldBitangent = cross( ase_worldNormal, ase_worldTangent ) * ase_vertexTangentSign;
-				    o.ase_texcoord3.xyz = ase_worldBitangent;
 				    float3 ase_worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
-				    o.ase_texcoord4.xyz = ase_worldPos;
+				    o.ase_texcoord1.xyz = ase_worldPos;
+
+				    float3 ase_worldTangent = UnityObjectToWorldDir(v.ase_tangent);
+				    o.ase_texcoord2.xyz = ase_worldTangent;
+
+				    float3 ase_worldNormal = UnityObjectToWorldNormal(v.normal);
+				    o.ase_texcoord3.xyz = ase_worldNormal;
+				    float ase_vertexTangentSign = v.ase_tangent.w * unity_WorldTransformParams.w;
+
+				    float3 ase_worldBitangent = cross( ase_worldNormal, ase_worldTangent ) * ase_vertexTangentSign;
+				    o.ase_texcoord4.xyz = ase_worldBitangent;
+				    
 				    
 				    o.texcoord.zw = v.ase_texcoord1.xy;
 				    

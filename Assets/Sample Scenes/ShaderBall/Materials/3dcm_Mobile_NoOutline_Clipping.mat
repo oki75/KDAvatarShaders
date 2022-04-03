@@ -8,11 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 3dcm_Mobile_NoOutline_Clipping
-  m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
-  m_ShaderKeywords: _ _EMISSION _EYEHIANDLIMBUS_ON _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
-    _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
-    _METALLICGLOSSMAP _NORMALMAP _OUTLINETEXTOGGLE_ON _PARALLAX_ON _RIMLIGHTNORMAL_ON
-    _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
+  m_Shader: {fileID: 4800000, guid: 0968fb7778b533748af387570aa5edfc, type: 3}
+  m_ShaderKeywords: _ _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
+    _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
+    _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -123,7 +122,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 47a411395769d2a47b61dea667a51fce, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RGB_mask:
@@ -149,20 +148,20 @@ Material:
     m_Floats:
     - _1st2nd_Shades_Feather: 0.165
     - _AlphaTestRef: 0.5
-    - _AmbientMax: 0.8301814
+    - _AmbientMax: 1
     - _AmbientMinimum: 0
     - _Anisotropic_TangentNormal_Toggle: 0
     - _Anisotropic_highlight_Toggle: 0
     - _BLD_Toggle: 0
     - _BLD_X: 0
     - _BLD_Y: 0
-    - _BaseColor_Step: 0.494
+    - _BaseColor_Step: 0.324
     - _BaseParallax: 0
     - _BaseShade_Feather: 0.369
     - _BlendAddEyeBase: 0
     - _BlendMode: 0
     - _BlendShadowColor: 1
-    - _BlurLevel: 8.165618
+    - _BlurLevel: 5.84
     - _BumpScale: 1
     - _BumpScale1: 0
     - _BumpScale2: 1
@@ -185,7 +184,7 @@ Material:
     - _EyeHi2_BlurStep: 0.7508348
     - _EyeHi2_Scale: 1
     - _EyeHiAdjustMirror: 0.00738687
-    - _EyeHiAndLimbus: 1
+    - _EyeHiAndLimbus: 0
     - _EyeHiAndLimbusMirrorON: 1
     - _EyeHiOffsetX: 0.03070339
     - _EyeHiOffsetY: 0
@@ -199,14 +198,14 @@ Material:
     - _Glossiness: 0.4
     - _GlossyReflections: 1
     - _HighColorBlurShadow: 0
-    - _HighColorHue: 0.06228113
+    - _HighColorHue: 0.399
     - _HighColorMask_UVSet2_Toggle: 0
     - _HighColorMask__UVSet2_Toggle: 0
     - _HighColorNormal: 0
     - _HighColorParallax: 0
     - _HighColorSaturation: -0.1953587
     - _HighColor_Power: 0.684
-    - _HighColor_Ratio: 0.5697438
+    - _HighColor_Ratio: 0.459
     - _Inverse_Clipping: 0
     - _Is_BLD: 0
     - _Is_LightColor_Outline: 1
@@ -237,16 +236,16 @@ Material:
     - _Offset_X_Axis_BLD: 0.124
     - _Offset_Y_Axis_BLD: -0.425
     - _Offset_Z_Axis_BLD: -0.096
-    - _OutlineTexToggle: 1
+    - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
-    - _Outline_Width: 8.73
-    - _Parallax: 0.02
-    - _ParallaxScale: 0.051
+    - _Outline_Width: 0
+    - _Parallax: 0
+    - _ParallaxScale: 0
     - _ParallaxToggle: 1
     - _RenderMode: 0
     - _RimLightNormal: 1
     - _RimLightToggle: 1
-    - _RimLight_Power: 0.538
+    - _RimLight_Power: 0.409
     - _ShadeColor_Step: 0.289
     - _ShadeNormal: 1
     - _Shininess: 0.2917107
@@ -260,16 +259,16 @@ Material:
     - _StencilZFailOp: 0
     - _SystemShadeonoff: 0
     - _SystemShadeonoff1: 0
-    - _Tweak_FixShadeMapLevel: 1.34
-    - _Tweak_HighColorBlurShadowLevel: 0.4329458
+    - _Tweak_FixShadeMapLevel: 1.167
+    - _Tweak_HighColorBlurShadowLevel: 0.625
     - _Tweak_HighColorMaskLevel: 0.385
     - _Tweak_MatcapMaskLevel: 1
     - _Tweak_Matcap_Emission_Level: 0.647
-    - _Tweak_RimLightMaskLevel: 0.423
+    - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel1: 0.726
     - _Tweak_transparency: 0.717
     - _UVSec: 0
-    - _Unlit_Intensity: 1.04
+    - _Unlit_Intensity: 1
     - _UseBaseAs1st: 0
     - _UseBaseAs2nd: 1
     - _UseBlendBaseColor: 0

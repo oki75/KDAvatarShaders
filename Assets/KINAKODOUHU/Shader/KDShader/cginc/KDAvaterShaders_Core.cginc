@@ -41,14 +41,13 @@
 			{
 				float4 vertex : SV_POSITION;
 				float4 texcoord : TEXCOORD0;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 				float4 ase_texcoord1 : TEXCOORD1;
 				float4 ase_texcoord2 : TEXCOORD2;
 				float4 ase_texcoord3 : TEXCOORD3;
 				float4 ase_texcoord4 : TEXCOORD4;
 		//Fog		
-			    UNITY_FOG_COORDS(5)
+	          UNITY_FOG_COORDS(5)
 				
 			};
 			
@@ -249,8 +248,10 @@
 				float3 ase_worldNormal = UnityObjectToWorldNormal(v.ase_normal);
 				o.ase_texcoord2.xyz = ase_worldNormal;
 				float ase_vertexTangentSign = v.ase_tangent.w * unity_WorldTransformParams.w;
+
 				float3 ase_worldBitangent = cross( ase_worldNormal, ase_worldTangent ) * ase_vertexTangentSign;
 				o.ase_texcoord3.xyz = ase_worldBitangent;
+
 				float3 ase_worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				o.ase_texcoord4.xyz = ase_worldPos;
 				
@@ -262,6 +263,7 @@
 				o.ase_texcoord3.w = 0;
 				o.ase_texcoord4.w = 0;
 				v.vertex.xyz +=  float3( 0,0,0 ) ;
+				
 				o.vertex = UnityObjectToClipPos ( v.vertex );
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
