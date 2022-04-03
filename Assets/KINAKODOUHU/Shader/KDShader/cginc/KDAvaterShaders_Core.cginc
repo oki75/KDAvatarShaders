@@ -14,8 +14,6 @@
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
             #include "AutoLIght.cginc"
-            #include "UnityStandardUtils.cginc"
-            #include "UnityShaderVariables.cginc"
 
 			#include "KDShader_Function.cginc"
 
@@ -273,30 +271,34 @@
 			{
 				fixed4 myColorVar;
              
-			
 			    float3 ase_worldPos = i.ase_texcoord4.xyz;
 				float3 ase_worldViewDir = UnityWorldSpaceViewDir(ase_worldPos);
 				ase_worldViewDir = normalize(ase_worldViewDir);
 			    float3 worldSpaceLightDir = UnityWorldSpaceLightDir(ase_worldPos);
 
-			 //BLD
-				float4 transform2434_g1 = mul(unity_ObjectToWorld,float4( ( ( float3(1,0,0) * ( _Offset_X_Axis_BLD * 10.0 ) ) + 
-				    ( float3(0,1,0) * ( _Offset_Y_Axis_BLD * 10.0 ) ) + ( float3(0,0,-1) * ( 1.0 - _Offset_Z_Axis_BLD ) ) ) , 0.0 ));
-				float4 BLD2460_g1 = normalize( transform2434_g1 );
-			    float4 WSLD = (( _Is_BLD )?( BLD2460_g1 ):( float4( worldSpaceLightDir , 0.0 ) ));
+			//BLD
 
-				//Lighting
+				float4 transform2434 = mul(unity_ObjectToWorld,float4( ( ( float3(1,0,0) * ( _Offset_X_Axis_BLD * 10.0 ) ) + 
+				    ( float3(0,1,0) * ( _Offset_Y_Axis_BLD * 10.0 ) ) + ( float3(0,0,-1) * ( 1.0 - _Offset_Z_Axis_BLD ) ) ) , 0.0 ));
+				float4 BLD2460 = normalize( transform2434 );
+			    float4 WSLD = (( _Is_BLD )?( BLD2460 ):( float4( worldSpaceLightDir , 0.0 ) ));
+
+			//Lighting
+
 				UNITY_LIGHT_ATTENUATION(ase_atten, i, ase_worldPos)
-				float3 SH9 = ShadeSH9(half4(0,0,0,1));
-				float3 SH9_2 = ShadeSH9(half4(0,-1,0,1));
+				float3 SH9 =  Function_ShadeSH9();
+				float3 SH9_2 = Function_ShadeSH9_2();
 				float3 defaultLC = saturate( max( ( half3(0.05,0.05,0.05) * _Unlit_Intensity ) , ( max( SH9 , SH9_2 ) * _Unlit_Intensity ) ) );
 
-#if defined(LIGHTMAP_ON) && ( UNITY_VERSION < 560 || ( defined(LIGHTMAP_SHADOW_MIXING) && !defined(SHADOWS_SHADOWMASK) && defined(SHADOWS_SCREEN) ) )//aselc
+ #if defined(LIGHTMAP_ON) && ( UNITY_VERSION < 560 || ( defined(LIGHTMAP_SHADOW_MIXING) && !defined(SHADOWS_SHADOWMASK) && defined(SHADOWS_SCREEN) ) )//aselc
+
 				float4 ase_lightColor = 0;
 #else //aselc
 				float4 ase_lightColor = _LightColor0;
 #endif //aselc
-			  //Filter_LightColor
+
+			//Filter_LightColor
+
 				float3 FLC_lerpR = lerp( max( defaultLC , ase_lightColor.rgb ) , max( defaultLC , saturate( ase_lightColor.rgb ) ) , 1.0);
 				float3 NoDL = 0;
 				if( _WorldSpaceLightPos0.w > 0.0 )
@@ -308,12 +310,13 @@
 				
 				float3 temp_cast_23 = (_AmbientMinimum).xxx;
 				float3 temp_cast_24 = (_AmbientMax).xxx;
+
 				float3 clampResult27_g332 = clamp( NoDL , temp_cast_23 , temp_cast_24 );
 				half3 Lighting28_g332 = clampResult27_g332;
 				float3 Lighting82 = Lighting28_g332;
 
+            //uv2
 
-			 //uv2
 				float2 uv_NormalMap = i.texcoord.xy * _NormalMap_ST.xy + _NormalMap_ST.zw;
 				float2 uv2_NormalMap = i.texcoord.zw * _NormalMap_ST.xy + _NormalMap_ST.zw;
 
@@ -337,8 +340,6 @@
 				float2 uv2_Set_HighColorMask = i.texcoord.zw * _Set_HighColorMask_ST.xy + _Set_HighColorMask_ST.zw;
 
 				float2 uv_Emissive_Tex = i.texcoord.xy * _Emissive_Tex_ST.xy + _Emissive_Tex_ST.zw;
-	
-		   
 							
             //Parallax R=hight G=Mask
 				
@@ -349,24 +350,28 @@
 				float3 ase_worldNormal = i.ase_texcoord2.xyz;
 				float3 ase_worldBitangent = i.ase_texcoord3.xyz;
 
-				float3 tanToWorld0 = float3( ase_worldTangent.x, ase_worldBitangent.x, ase_worldNormal.x );
+				float3 tanToWorld = float3( ase_worldTangent.x, ase_worldBitangent.x, ase_worldNormal.x );
 				float3 tanToWorld1 = float3( ase_worldTangent.y, ase_worldBitangent.y, ase_worldNormal.y );
 				float3 tanToWorld2 = float3( ase_worldTangent.z, ase_worldBitangent.z, ase_worldNormal.z );
 
 				
 
-				float3 ase_tanViewDir =  tanToWorld0 * ase_worldViewDir.x + tanToWorld1 * ase_worldViewDir.y  + tanToWorld2 * ase_worldViewDir.z;
+				float3 ase_tanViewDir =  tanToWorld * ase_worldViewDir.x + tanToWorld1 * ase_worldViewDir.y  + tanToWorld2 * ase_worldViewDir.z;
 				ase_tanViewDir = normalize(ase_tanViewDir);
 
 				float2 Offset2402_g1 = ( ( parallaxMap.r - 1 ) * ase_tanViewDir.xy * _ParallaxScale ) + uv_ParallaxMap;
 				float2 Offset2364_g1 = ( ( SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, Offset2402_g1 ).r - 1 ) * ase_tanViewDir.xy * 0.0 ) + Offset2402_g1;
 				float2 Offset2335_g1 = ( ( SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, Offset2364_g1 ).r - 1 ) * ase_tanViewDir.xy * 0.0 ) + Offset2364_g1;
 				float2 Offset2358_g1 = ( ( SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, Offset2335_g1 ).r - 1 ) * ase_tanViewDir.xy * 0.0 ) + Offset2335_g1;
+
 #ifdef _PARALLAX_ON
+
 				float2 staticSwitch418 = Offset2358_g1;
 #else
+
 				float2 staticSwitch418 = uv_ParallaxMap;
 #endif
+
 				float2 Parallaxoffset275 = staticSwitch418;
 				float parallaxtogle281 = parallaxMap.g;
 
@@ -414,52 +419,55 @@
 				                                       UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap2, sampler_NormalMap2, lerpResult445 ), _BumpScale2 ) );
  #else
 				float3 staticSwitch451 = UnpackScaleNormal( SAMPLE_TEXTURE2D( _NormalMap, sampler_NormalMap, lerpResult437 ), _BumpScale );
-#endif
-				float3 normalizeResult204 = normalize( staticSwitch451 );
-			    float3 Normalmap202 = normalizeResult204;
-              //NHighColor
+ #endif
+				float3 Normalmap202 = normalize( staticSwitch451 );
+
+            //NHighColor
+
 				float3 NHighColor = (( _Is_NormalMapToHighColor )?( Normalmap202 ):( float3( 0,0,1 ) ));
 
-				float3 worldNormal19_g486 = float3(dot(tanToWorld0,NHighColor), dot(tanToWorld1,NHighColor), dot(tanToWorld2,NHighColor));
+				float3 worldNormal251 = float3(dot(tanToWorld,NHighColor), dot(tanToWorld1,NHighColor), dot(tanToWorld2,NHighColor));
 
             //EyeLens
                     
-                    float time22 = 0.0;
-					float2 voronoiSmoothId22 = 0;
-					float2 id22 = 0;
-				    float2 uv22 = 0;
+                float time22 = 0.0;
+				float2 voronoiSmoothId22 = 0;
+				float2 id22 = 0;
+				float2 uv22 = 0;
+
             //Limbus
-					float clampResult56_g455 = clamp( _Limbus_Scale , 0.0 , ( 1.0 / _Limbus_Scale ) );
-					float2 temp_cast_1 = (clampResult56_g455).xx;
-                    float2 LimbusOffset = (float2(_LimbusOffsetX , _LimbusOffsetY));
-			        float2 LimbusUV = i.texcoord.xy * _LimbusTilling + LimbusOffset;
-					float2 LimbusAdjustMirrorR = (float2(( -_LimbusAdjustMirror + ( 1.0 - LimbusUV.x ) ) , LimbusUV.y));
-					float ClampR = clamp( _Limbus_Scale , 0.0 , ( 1.0 / _Limbus_Scale ) );
-					float2 clampResult102 = clamp( LimbusAdjustMirrorR , float2( 0,0 ) , temp_cast_1 );
-					float2 V01_UV = clampResult102 * _Limbus_Scale;
 
-					float voroiR01_Mirror = voronoi01( V01_UV, time22, id22, uv22, 0, voronoiSmoothId22 );
-					float BlurStepR01 = ( _Limbus_BlurStep * 0.1 );
-					float BlurFeatherR01 = ( BlurStepR01 + ( _Limbus_BlurFeather * 0.1 ) );
+				float clampResult56_g455 = clamp( _Limbus_Scale , 0.0 , ( 1.0 / _Limbus_Scale ) );
+				float2 temp_cast_1 = (clampResult56_g455).xx;
+                float2 LimbusOffset = (float2(_LimbusOffsetX , _LimbusOffsetY));
+			    float2 LimbusUV = i.texcoord.xy * _LimbusTilling + LimbusOffset;
+				float2 LimbusAdjustMirrorR = (float2(( -_LimbusAdjustMirror + ( 1.0 - LimbusUV.x ) ) , LimbusUV.y));
+				float ClampR = clamp( _Limbus_Scale , 0.0 , ( 1.0 / _Limbus_Scale ) );
+				float2 clampResult102 = clamp( LimbusAdjustMirrorR , float2( 0,0 ) , temp_cast_1 );
+				float2 V01_UV = clampResult102 * _Limbus_Scale;
 
-					float MaskR01 = saturate( (-10.0 + (voroiR01_Mirror - BlurStepR01) * (1.0 - -10.0) / (BlurFeatherR01 - BlurStepR01)) );
-					float LimbusR01 = ( saturate( (1.0 + (voroiR01_Mirror - BlurStepR01) * (0.0 - 1.0) / (BlurFeatherR01 - BlurStepR01)) ) + MaskR01 );
-					float2 clampResult45 = clamp( LimbusUV , float2( 0,0 ) , temp_cast_1 );
-					float2 coords22 = clampResult45 * _Limbus_Scale;
+				float voroiR01_Mirror = voronoi01( V01_UV, time22, id22, uv22, 0, voronoiSmoothId22 );
+				float BlurStepR01 = ( _Limbus_BlurStep * 0.1 );
+				float BlurFeatherR01 = ( BlurStepR01 + ( _Limbus_BlurFeather * 0.1 ) );
 
-					float voroi22 = voronoi01( coords22, time22, id22, uv22, 0, voronoiSmoothId22 );
-					float temp_output_154 = saturate( (-10.0 + (voroi22 - BlurStepR01) * (1.0 - -10.0) / (BlurFeatherR01 - BlurStepR01)) );
-					float Limbus476 = lerp( LimbusR01 , ( LimbusR01 * ( saturate( (1.0 + (voroi22 - BlurStepR01) * (0.0 - 1.0) / 
+				float MaskR01 = saturate( (-10.0 + (voroiR01_Mirror - BlurStepR01) * (1.0 - -10.0) / (BlurFeatherR01 - BlurStepR01)) );
+				float LimbusR01 = ( saturate( (1.0 + (voroiR01_Mirror - BlurStepR01) * (0.0 - 1.0) / (BlurFeatherR01 - BlurStepR01)) ) + MaskR01 );
+				float2 clampResult45 = clamp( LimbusUV , float2( 0,0 ) , temp_cast_1 );
+				float2 coords22 = clampResult45 * _Limbus_Scale;
+
+				float voroi22 = voronoi01( coords22, time22, id22, uv22, 0, voronoiSmoothId22 );
+				float temp_output_154 = saturate( (-10.0 + (voroi22 - BlurStepR01) * (1.0 - -10.0) / (BlurFeatherR01 - BlurStepR01)) );
+				float Limbus476 = lerp( LimbusR01 , ( LimbusR01 * ( saturate( (1.0 + (voroi22 - BlurStepR01) * (0.0 - 1.0) / 
 					                      (BlurFeatherR01 - BlurStepR01)) ) + temp_output_154 ) ) , (( _EyeHiAndLimbusMirrorON )?( 1.0 ):( 0.0 )));
 		
-					float4 lerpResult565 = lerp( _LimbusColor , mainTex453 , Limbus476);
-				    float4 tex2DNode517 = SAMPLE_TEXTURE2D( _EyeBase, sampler_EyeBase, ( LimbusUV * _Limbus_Scale ) );
-				    float4 lerpResult518 = lerp( _LimbusColor , tex2DNode517 , Limbus476);
+				float4 lerpResult565 = lerp( _LimbusColor , mainTex453 , Limbus476);
+				float4 tex2DNode517 = SAMPLE_TEXTURE2D( _EyeBase, sampler_EyeBase, ( LimbusUV * _Limbus_Scale ) );
+				float4 lerpResult518 = lerp( _LimbusColor , tex2DNode517 , Limbus476);
 
-					float lerpResult647 = lerp( MaskR01 , ( MaskR01 * temp_output_154 ) , (( _EyeHiAndLimbusMirrorON )?( 1.0 ):( 0.0 )));
+				float lerpResult647 = lerp( MaskR01 , ( MaskR01 * temp_output_154 ) , (( _EyeHiAndLimbusMirrorON )?( 1.0 ):( 0.0 )));
                  
-				    float4 lerpResult530 = lerp( lerpResult518 , mainTex453 , lerpResult647);
-				    float4 lerpResult689 = lerp( lerpResult565 , lerpResult530 , (( _BlendAddEyeBase )?( 1.0 ):( 0.0 )));
+				float4 lerpResult530 = lerp( lerpResult518 , mainTex453 , lerpResult647);
+				float4 lerpResult689 = lerp( lerpResult565 , lerpResult530 , (( _BlendAddEyeBase )?( 1.0 ):( 0.0 )));
 				
 				//EyeHi
 				    
@@ -536,19 +544,21 @@
 				    float4 eye_base605 = staticSwitch948;			
 			
             //Blin-Phong reflection
+
 				float4 BlinPhV = normalize( ( float4( ase_worldViewDir , 0.0 ) + WSLD ) );
-				float BlinPhRef = dot( float4( worldNormal19_g486 , 0.0 ) , BlinPhV );
+				float BlinPhRef = dot( float4( worldNormal251 , 0.0 ) , BlinPhV );
 				
 				
 				float Shininess128 = ( _Shininess * 128.0 );
-				float3 normalizeResult25_g486 = normalize( ( ase_worldViewDir + float3( 0,2,0 ) ) );
+				float3 normalizeResult25 = normalize( ( ase_worldViewDir + float3( 0,2,0 ) ) );
 				
-				float dotResult32_g486 = dot( float4( worldNormal19_g486 , 0.0 ) , (( _Anisotropic_TangentNormal_Toggle )?( 
-				float4( normalizeResult25_g486 , 0.0 ) ):( BlinPhV )) );
+				float dotResult32 = dot( float4( worldNormal251 , 0.0 ) , (( _Anisotropic_TangentNormal_Toggle )?( 
+				float4( normalizeResult25 , 0.0 ) ):( BlinPhV )) );
 
 				float AnisotropicMask239 = SAMPLE_TEXTURE2D( _Set_AnisotropicMask, sampler_Set_AnisotropicMask, lerpResult426 ).r;
-				float lerpResult18_g486 = lerp( pow( max( BlinPhRef , 0.0 ) , Shininess128 ) , pow( max( 0.0 , sin( radians( ( 
-					( dotResult32_g486 + _aniso_offset ) * 180.0 ) ) ) ) , Shininess128 ) , (( _Anisotropic_highlight_Toggle )?( AnisotropicMask239 ):( 0.0 )));
+
+				float lerpResult18_g486 = lerp( pow( saturate( BlinPhRef ) , Shininess128 ) , pow( saturate( sin( radians( ( 
+					( dotResult32 + _aniso_offset ) * 180.0 ) ) ) ) , Shininess128 ) , (( _Anisotropic_highlight_Toggle )?( AnisotropicMask239 ):( 0.0 )));
 				
 				
 				float lerpResult101_g486 = lerp( lerpResult18_g486 , grayscale81_g4 , _HighColor_Ratio);
@@ -559,35 +569,39 @@
 
 
             //NormalToRim
-				float3 tanNormal4_g485 = (( _Is_NormalMapToRimLight )?( Normalmap202 ):( float3( 0,0,1 ) ));
 
-                float3 worldNormal4_g485 = float3(dot(tanToWorld0,tanNormal4_g485), dot(tanToWorld1,tanNormal4_g485), dot(tanToWorld2,tanNormal4_g485));
-				float dotResult23_g485 = dot( worldNormal4_g485 , ase_worldViewDir );
+				float3 tanNormal = (( _Is_NormalMapToRimLight )?( Normalmap202 ):( float3( 0,0,1 ) ));
 
-				float temp_output_7_0_g485 = ( 1.0 - saturate( dotResult23_g485 ) );
+                float3 worldNormal4_g485 = float3(dot(tanToWorld,tanNormal), dot(tanToWorld1,tanNormal), dot(tanToWorld2,tanNormal));
+				float wndotwvd = dot( worldNormal4_g485 , ase_worldViewDir );
 
-				float lerpResult5_g485 = lerp( temp_output_7_0_g485 , pow( temp_output_7_0_g485 , 5.0 ) , ( 1.0 - _RimLight_Power ));
-				float4 RimLightColor238 = _RimLightColor;
+				float RimLightR = ( 1.0 - saturate( wndotwvd ) );
 
-			//RGB_mask	
-				float4 tex2DNode146 = SAMPLE_TEXTURE2D( _RGB_mask, sampler_RGB_mask, uv_RGB_mask );
-				float Rmask140 = tex2DNode146.r;
-				float set_RimLightMask143 = Rmask140;
+				float lerpResult5_g485 = lerp( RimLightR , pow( RimLightR , 5.0 ) , ( 1.0 - _RimLight_Power ));
+			
+        	//RGB_mask	
+
+				float4 RGB_maskR = SAMPLE_TEXTURE2D( _RGB_mask, sampler_RGB_mask, uv_RGB_mask );
+
+				float Rmask140 = RGB_maskR.r;
 				
-				float4 lerpResult9_g485 = lerp( float4( 0,0,0,0 ) , ( lerpResult5_g485 * RimLightColor238 ) , set_RimLightMask143);
+				float4 lerpResult9_g485 = lerp( float4( 0,0,0,0 ) , ( lerpResult5_g485 * _RimLightColor ) , Rmask140);
+
 				float4 lerpResult11_g485 = lerp( float4( 0,0,0,0 ) , lerpResult9_g485 , _Tweak_RimLightMaskLevel);
+
 				float4 lerpResult13_g485 = lerp( float4( 0,0,0,0 ) , lerpResult11_g485 , _RimLightToggle);
 
-				float3 tanNormal45_g332 = (( _ShadeNormal )?( Normalmap202 ):( float3( 0,0,1 ) ));
+				float3 tanNormal45 = (( _ShadeNormal )?( Normalmap202 ):( float3( 0,0,1 ) ));
 
-				float3 worldNormal45_g332 = normalize( 
-				float3(dot(tanToWorld0,tanNormal45_g332), dot(tanToWorld1,tanNormal45_g332), dot(tanToWorld2,tanNormal45_g332)) );
+				float3 worldNormal45 = normalize( float3(dot(tanToWorld,tanNormal45), dot(tanToWorld1,tanNormal45), dot(tanToWorld2,tanNormal45)) );
 				
 			//HalfLambert	
 
-                float dotResult2135_g1 = dot( (( _Is_BLD )?( BLD2460_g1 ):( float4(  worldSpaceLightDir , 0.0 ) )) , float4( worldNormal45_g332 , 0.0 ) );
+                float dotResult2135_g1 = dot( (( _Is_BLD )?( BLD2460 ):( float4(  worldSpaceLightDir , 0.0 ) )) , float4( worldNormal45 , 0.0 ) );
 				float HalfLambert84 = ( dotResult2135_g1 * 0.5 );
 				float4 lerpResult2089_g1 = lerp( float4( 0,0,0,0 ) , lerpResult13_g485 , HalfLambert84);
+
+
 				float4 RimLightF289 = saturate( (( _LightDirection_MaskOn )?( lerpResult2089_g1 ):( lerpResult13_g485 )) );
 
 			//Decal	
@@ -641,30 +655,30 @@
             	
 
 				float3 tanNormal8_g484 = Normalmap202;
-				float3 worldNormal8_g484 = float3(dot(tanToWorld0,tanNormal8_g484), dot(tanToWorld1,tanNormal8_g484), dot(tanToWorld2,tanNormal8_g484));	
+				float3 worldNormal8_g484 = float3(dot(tanToWorld,tanNormal8_g484), dot(tanToWorld1,tanNormal8_g484), dot(tanToWorld2,tanNormal8_g484));	
 				float4 matCap_Sampler462 = SAMPLE_TEXTURE2D( _MatCap_Sampler, sampler_MatCap_Sampler, ( ( (mul( float4( worldNormal8_g484 , 0.0 ), UNITY_MATRIX_V ).xyz).xy * 0.5 ) + 0.5 ) );
-				float Gmask141 = tex2DNode146.g;
+				float Gmask141 = RGB_maskR.g;
 				float set_MatcapMask144 = Gmask141;
 				float4 lerpResult266 = lerp( float4( 0,0,0,0 ) , ( matCap_Sampler462 * _MatCapColor ) , set_MatcapMask144);
 				float4 lerpResult268 = lerp( float4( 0,0,0,0 ) , lerpResult266 , _Tweak_MatcapMaskLevel);
 				float4 Matcap271 = saturate( lerpResult268 );
-				float4 lerpResult97 = lerp( Matcap271 , float4( 0,0,0,0 ) , _Tweak_Matcap_Emission_Level);
+				float4 MatcapF = lerp( Matcap271 , float4( 0,0,0,0 ) , _Tweak_Matcap_Emission_Level);
 			
 			//Emission
 				
                 float4 emissive_Tex464 = SAMPLE_TEXTURE2D( _Emissive_Tex, sampler_Emissive_Tex, lerpResult378 );
                 float4 Emission272 = saturate( ( emissive_Tex464 * _Emissive_Color ) );
 			
-				float4 lerpResult93 = lerp( float4( 0,0,0,0 ) , Matcap271 , _Tweak_Matcap_Emission_Level);
+				float4 MatcapE = lerp( float4( 0,0,0,0 ) , Matcap271 , _Tweak_Matcap_Emission_Level);
 			//Final	
-				float4 break102 = saturate( ( ( saturate( ( HighColorF243 + RimLightF289 + shade103 + lerpResult97 ) ) * 
-				float4( Lighting82 , 0.0 ) ) + Emission272 + lerpResult93 ) );
+				float4 break102 = saturate( ( ( saturate( ( HighColorF243 + RimLightF289 + shade103 + MatcapF ) ) * 
+				float4( Lighting82 , 0.0 ) ) + Emission272 + MatcapE ) );
 				
-				float4 appendResult2213_g1 = (float4(break102.r , break102.g , break102.b , 1.0));
+				float4 FinalComp = (float4(break102.r , break102.g , break102.b , 1.0));
 //
 #ifdef _IS_CLIPPING_MODE
 //_Mobile_Clipping
-				float4 break37 = appendResult2213_g1;
+				float4 break37 = FinalComp;
 				float2 uv_ClippingMask = i.texcoord.xy * _ClippingMask_ST.xy + _ClippingMask_ST.zw;
 				float Clipping_Mask1980_g1 = SAMPLE_TEXTURE2D( _ClippingMask, sampler_ClippingMask, uv_ClippingMask ).r;
 				float temp_output_71_2181 = saturate( (0.0 + ((( _Inverse_Clipping )?( ( 1.0 - (( _Use_Decal_alpha )?( ( Clipping_Mask1980_g1 + Decal_RGBA.a ) ):( Clipping_Mask1980_g1 )) ) ):( 
@@ -678,7 +692,7 @@
 
 #elif _IS_CLIPPING_TRANSMODE
 //_Mobile_TransClipping
-                float4 break37 = appendResult2213_g1;
+                float4 break37 = FinalComp;
 				float2 uv_ClippingMask = i.texcoord.xy * _ClippingMask_ST.xy + _ClippingMask_ST.zw;
 				float Clipping_Mask1980_g1 = SAMPLE_TEXTURE2D( _ClippingMask, sampler_ClippingMask, uv_ClippingMask ).r;
 				float temp_output_71_2181 = saturate( (0.0 + ((( _Inverse_Clipping )?( ( 1.0 - (( _Use_Decal_alpha )?( ( Clipping_Mask1980_g1 + Decal_RGBA.a ) ):( Clipping_Mask1980_g1 )) ) ):( 
@@ -689,7 +703,7 @@
            
 #elif _IS_CLIPPING_OFF
 //_Mobile
-                myColorVar = appendResult2213_g1;
+                myColorVar = FinalComp;
 #endif
 				UNITY_APPLY_FOG(i.fogCoord, myColorVar);
 				return myColorVar;

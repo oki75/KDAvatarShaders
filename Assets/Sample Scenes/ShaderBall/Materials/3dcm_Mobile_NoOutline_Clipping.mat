@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 3dcm_Mobile_NoOutline_Clipping
-  m_Shader: {fileID: 4800000, guid: 0968fb7778b533748af387570aa5edfc, type: 3}
+  m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
   m_ShaderKeywords: _ _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
     _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
     _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
@@ -248,7 +248,7 @@ Material:
     - _RimLight_Power: 0.409
     - _ShadeColor_Step: 0.289
     - _ShadeNormal: 1
-    - _Shininess: 0.2917107
+    - _Shininess: 0.01
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -261,7 +261,7 @@ Material:
     - _SystemShadeonoff1: 0
     - _Tweak_FixShadeMapLevel: 1.167
     - _Tweak_HighColorBlurShadowLevel: 0.625
-    - _Tweak_HighColorMaskLevel: 0.385
+    - _Tweak_HighColorMaskLevel: 0.407
     - _Tweak_MatcapMaskLevel: 1
     - _Tweak_Matcap_Emission_Level: 0.647
     - _Tweak_RimLightMaskLevel: 0
