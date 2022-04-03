@@ -65,6 +65,7 @@ namespace KD
         // -----------------------------------------------------
         //Change Shader
          static Shader KDAvaterShaders = Shader.Find("KDShader/KDAvaterShaders");
+      
          static Shader KDAvaterShaders_NoOutline = Shader.Find("Hidden/KDShader/KDAvaterShaders_NoOutline");
          
 

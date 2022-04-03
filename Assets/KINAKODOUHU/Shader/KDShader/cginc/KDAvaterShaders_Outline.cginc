@@ -497,16 +497,28 @@
 				    float4 lerpResult104 = lerp( shadow2173 , lerpResult94 , RampShader181);
 
 				    float2 uv_Set_HighColorMask = i.texcoord.xy * _Set_HighColorMask_ST.xy + _Set_HighColorMask_ST.zw;
-				    float4 HighLightMipMapBlur918 = SAMPLE_TEXTURE2D_LOD( _Set_HighColorMask, sampler_Set_HighColorMask, uv_Set_HighColorMask, _BlurLevel );
 				    float2 uv2_Set_HighColorMask = i.texcoord.zw * _Set_HighColorMask_ST.xy + _Set_HighColorMask_ST.zw;
 
 				    float2 lerpResult426 = lerp( (( _HighColorMask_UVSet2_Toggle )?( uv2_Set_HighColorMask ):( uv_Set_HighColorMask )) , ( ( Parallaxoffset275 + (( _HighColorMask_UVSet2_Toggle )?( uv2_Set_HighColorMask ):( uv_Set_HighColorMask )) ) / float2( 2,2 ) ) , (( _HighColorParallax )?( parallaxtogle281 ):( 0.0 )));
-				    float4 HighColorMask242 = SAMPLE_TEXTURE2D( _Set_HighColorMask, sampler_Set_HighColorMask, lerpResult426 );
-				    float4 lerpResult922 = lerp( HighLightMipMapBlur918 , float4( 1,1,1,0 ) , HighColorMask242);
-				    float grayscale917 = Luminance(lerpResult922.rgb);
-				    float lerpResult920 = lerp( 1.0 , grayscale917 , _Tweak_HighColorBlurShadowLevel);
-				    float lerpResult96 = lerp( 1.0 , ( set_FixshadeMask222 * (( _HighColorBlurShadow )?( lerpResult920 ):( 1.0 )) ) , _Tweak_FixShadeMapLevel);
-				    float4 lerpResult105 = lerp( Fix_Shade176 , lerpResult104 , lerpResult96);
+
+					float4 HighColorMask242 = SAMPLE_TEXTURE2D( _Set_HighColorMask, sampler_Set_HighColorMask, lerpResult426 );
+
+                 //MipMapBlur
+				 
+				    float4 HighColorMipMapBlur = SAMPLE_TEXTURE2D_LOD( _Set_HighColorMask, sampler_Set_HighColorMask, lerpResult426, _BlurLevel );
+	           
+			         float grayscale953 = Luminance(HighColorMipMapBlur.rgb);
+				     float grayscale917 = Luminance(HighColorMask242.rgb);
+
+				     float lerpResult955 = lerp( 1.0 , 0.0 , ( grayscale953 - grayscale917 ));
+
+				     float lerpResult920 = lerp( 1.0 , lerpResult955 , _Tweak_HighColorBlurShadowLevel);
+
+				    
+					float lerpResult96 = lerp( 1.0 , ( set_FixshadeMask222 * (( _HighColorBlurShadow )?( lerpResult920 ):( 1.0 )) ) , _Tweak_FixShadeMapLevel);
+				    
+					float4 lerpResult105 = lerp( Fix_Shade176 , lerpResult104 , lerpResult96);
+
 				    float4 shade103 = lerpResult105;
 
 				    float3 localFunction_ShadeSH920_g332 = ShadeSH9(half4(0,0,0,1));

@@ -175,7 +175,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _Detail_Parallax: 0
     - _DstBlend: 0
-    - _DubleHighColor_Toggle: 1
+    - _DubleHighColor_Toggle: 0
     - _EmissionScaleUI: 0
     - _EyeHi2AdjustMirror: 0
     - _EyeHi2OffsetX: 0.03070339
@@ -206,7 +206,7 @@ Material:
     - _HighColorParallax: 0
     - _HighColorSaturation: -0.1953587
     - _HighColor_Power: 0.553
-    - _HighColor_Ratio: 0.395
+    - _HighColor_Ratio: 0.168
     - _Inverse_Clipping: 0
     - _Is_BLD: 0
     - _Is_LightColor_Outline: 1
