@@ -3,7 +3,7 @@
 //v.1.1.00
 //https://github.com/oki75/KDAvaterShaders          
 
-Shader "Hidden/KDShader/KDAvaterShaders_NoOutline"
+Shader "KDShader/KDAvaterShaders_NoOutline"
 {
 	Properties
 	{

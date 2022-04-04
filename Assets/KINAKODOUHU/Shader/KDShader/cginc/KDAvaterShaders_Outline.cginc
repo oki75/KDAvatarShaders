@@ -233,6 +233,7 @@
 			
 			float4       _Emissive_Color;
 
+#ifdef _IS_OUTLINE_CLIPPING_YES
 //_Clipping
              UNITY_DECLARE_TEX2D_NOSAMPLER(_ClippingMask);
              SamplerState sampler_ClippingMask;  float4 _ClippingMask_ST;
@@ -241,7 +242,9 @@
 			 fixed   _Use_Decal_alpha;
 			 float  _Tweak_transparency;
 
-			   
+#elif _IS_OUTLINE_CLIPPING_NO
+//Default
+#endif			   
 
 			        v2f vert ( appdata v  )
 			      {

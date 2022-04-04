@@ -219,7 +219,10 @@
             float4       _Emissive_Tex_ST;
 			
 			float4       _Emissive_Color;
-//_Clipping
+
+#ifdef _IS_CLIPPING_MODE			
+//_Clipping 
+
              UNITY_DECLARE_TEX2D_NOSAMPLER(_ClippingMask);
              SamplerState sampler_ClippingMask;  float4 _ClippingMask_ST;
 			 float   _Clipping_Level;
@@ -227,7 +230,18 @@
 			 fixed   _Use_Decal_alpha;
 			 float  _Tweak_transparency;
 
-            
+#elif _IS_CLIPPING_TRANSMODE
+//_TransClipping
+             UNITY_DECLARE_TEX2D_NOSAMPLER(_ClippingMask);
+             SamplerState sampler_ClippingMask;  float4 _ClippingMask_ST;
+			 float   _Clipping_Level;
+			 fixed   _Inverse_Clipping;
+			 fixed   _Use_Decal_alpha;
+			 float  _Tweak_transparency;
+
+#elif _IS_CLIPPING_OFF			 
+//Default 
+#endif          
           
 
 			v2f vert ( appdata v )

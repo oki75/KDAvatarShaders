@@ -13,9 +13,12 @@ Shader "Hidden/KDShader/KDAvaterShaders_SC_Pass"
 				    Tags { "LightMode"="ShadowCaster" }
 
                       Name "ShadowCaster"
+                      
+					  ZWrite On ZTest LEqual
 
 		              Offset 1, 1
-                      Cull Off
+
+                      
 
 		              CGPROGRAM
 

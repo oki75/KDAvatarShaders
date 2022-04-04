@@ -13,7 +13,7 @@ namespace KD
     
     public class KDAvaterShadersInspector : ShaderGUI
     {
-        public enum _KDS_Technique
+        public enum _KDS_Type
         {
             MultiPassUnlit, NoOutline
         }
@@ -66,7 +66,7 @@ namespace KD
         //Change Shader
          static Shader KDAvaterShaders = Shader.Find("KDShader/KDAvaterShaders");
       
-         static Shader KDAvaterShaders_NoOutline = Shader.Find("Hidden/KDShader/KDAvaterShaders_NoOutline");
+         static Shader KDAvaterShaders_NoOutline = Shader.Find("KDShader/KDAvaterShaders_NoOutline");
 
         // -----------------------------------------------------
         //USE_UI
@@ -424,7 +424,7 @@ namespace KD
 
             EditorGUILayout.Space();
 
-            if (material.HasProperty("_ClippingMask"))
+            if (material.GetFloat("_KDASType") > 0)
             {
                 _Clipping_Foldout = Foldout(_Clipping_Foldout, "Clipping Settings");
                 if (_Clipping_Foldout)
@@ -432,7 +432,7 @@ namespace KD
                     EditorGUI.indentLevel++;
                     EditorGUILayout.Space();
 
-                    if (material.HasProperty("_StencilRef"))
+                    if (material.GetFloat("_KDASType") == 2)
                     {
                         GUI_SetStencilNo(material);
                     }
@@ -1300,32 +1300,6 @@ namespace KD
         void GUI_Outline(Material material)
         {
 
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Outline");
-
-            if (material.GetFloat("_KDASType") == 0)
-            {
-                if (GUILayout.Button("Off", shortButtonStyle))
-                {
-                    material.SetFloat("_KDASType", 1); 
-                    m_MaterialEditor.SetShader(KDAvaterShaders);
-
-                }
-            }
-            else
-            {
-                if (GUILayout.Button("Active", shortButtonStyle))
-                {
-                    material.SetFloat("_KDASType", 0);
-                    m_MaterialEditor.SetShader(KDAvaterShaders_NoOutline);
-                    
-                    
-                }
-            }
-            EditorGUILayout.EndHorizontal();
-
-            if (material.GetFloat("_KDASType") == 1)
-            {
 
             m_MaterialEditor.FloatProperty(outline_Width, "Outline Width");
             m_MaterialEditor.ColorProperty(outline_Color, "Outline Color");
@@ -1390,7 +1364,7 @@ namespace KD
                 EditorGUILayout.EndHorizontal();
                 m_MaterialEditor.TexturePropertySingleLine(Styles.outlineTexText, outlineTex);
             }
-            }
+            
 
 
         }
@@ -1405,6 +1379,7 @@ namespace KD
                 material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
                 material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
                 material.SetInt("_ZWrite", 1);
+                material.SetFloat("_KDASType", 0);
 
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.DisableKeyword("_ALPHABLEND_ON");
@@ -1429,6 +1404,7 @@ namespace KD
                 material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
                 material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
                 material.SetInt("_ZWrite", 1);
+                material.SetFloat("_KDASType", 1);
 
                 material.EnableKeyword("_ALPHATEST_ON");
                 material.DisableKeyword("_ALPHABLEND_ON");
@@ -1455,6 +1431,7 @@ namespace KD
                 material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.SrcAlpha);
                 material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
                 material.SetInt("_ZWrite", 0);
+                material.SetFloat("_KDASType", 1);
 
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.EnableKeyword("_ALPHABLEND_ON");
@@ -1480,6 +1457,7 @@ namespace KD
                 material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
                 material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
                 material.SetInt("_ZWrite", 1);
+                material.SetFloat("_KDASType", 2);
 
                 material.DisableKeyword("_ALPHATEST_ON");
                 material.DisableKeyword("_ALPHABLEND_ON");
@@ -1505,6 +1483,7 @@ namespace KD
                 material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
                 material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
                 material.SetInt("_ZWrite", 1);
+                material.SetFloat("_KDASType", 2);
 
                 material.EnableKeyword("_ALPHATEST_ON");
                 material.DisableKeyword("_ALPHABLEND_ON");
@@ -1545,14 +1524,14 @@ namespace KD
                  return;
             }
              if( oldShader.name == "KDShader/KDAvaterShaders" || 
-                 oldShader.name == "Hidden/KDShader/KDAvaterShaders_NoOutline" )
+                 oldShader.name == "KDShader/KDAvaterShaders_NoOutline" )
             {
                 return;
             }
         }
 
     }
-    
+    // m_MaterialEditor.SetShader(KDAvaterShaders);
 
     } //End of KDAvaterShadersInspector
 }//End of namespace KD
