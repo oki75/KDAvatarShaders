@@ -37,7 +37,7 @@ Shader "Hidden/KDShader/KDAvaterShaders_Outline_Pass"
 			     #pragma fragment frag
 				 #pragma target 4.0 
                  #pragma multi_compile_fog
-				 #pragma multi_compile_local _IS_OUTLINE_CLIPPING_YES _IS_OUTLINE_CLIPPING_NO
+				 #pragma multi_compile _IS_OUTLINE_CLIPPING_YES _IS_OUTLINE_CLIPPING_NO
 		         
 		         #include "./cginc/KDAvaterShaders_Outline.cginc"
 

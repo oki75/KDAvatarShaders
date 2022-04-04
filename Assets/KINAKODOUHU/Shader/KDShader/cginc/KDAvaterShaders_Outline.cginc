@@ -14,8 +14,7 @@
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
             #include "AutoLIght.cginc"
-            #include "UnityStandardUtils.cginc"
-            #include "UnityShaderVariables.cginc"
+           
 
 			#include "KDShader_Function.cginc"
 

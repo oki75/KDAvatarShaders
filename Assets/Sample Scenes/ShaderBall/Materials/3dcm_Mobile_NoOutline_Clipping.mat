@@ -198,14 +198,14 @@ Material:
     - _Glossiness: 0.4
     - _GlossyReflections: 1
     - _HighColorBlurShadow: 0
-    - _HighColorHue: 0.399
+    - _HighColorHue: 0.435
     - _HighColorMask_UVSet2_Toggle: 0
     - _HighColorMask__UVSet2_Toggle: 0
     - _HighColorNormal: 0
     - _HighColorParallax: 0
-    - _HighColorSaturation: -0.1953587
+    - _HighColorSaturation: -0.131
     - _HighColor_Power: 0.684
-    - _HighColor_Ratio: 0.459
+    - _HighColor_Ratio: 0.435
     - _Inverse_Clipping: 0
     - _Is_BLD: 0
     - _Is_LightColor_Outline: 1
@@ -238,7 +238,7 @@ Material:
     - _Offset_Z_Axis_BLD: -0.096
     - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
-    - _Outline_Width: 0
+    - _Outline_Width: 14.9
     - _Parallax: 0
     - _ParallaxScale: 0
     - _ParallaxToggle: 1
@@ -261,9 +261,9 @@ Material:
     - _SystemShadeonoff1: 0
     - _Tweak_FixShadeMapLevel: 1.167
     - _Tweak_HighColorBlurShadowLevel: 0.625
-    - _Tweak_HighColorMaskLevel: 0.407
+    - _Tweak_HighColorMaskLevel: 0.425
     - _Tweak_MatcapMaskLevel: 1
-    - _Tweak_Matcap_Emission_Level: 0.647
+    - _Tweak_Matcap_Emission_Level: 1
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_SystemShadowsLevel1: 0.726
     - _Tweak_transparency: 0.717
@@ -300,7 +300,7 @@ Material:
     - _LimbusColor: {r: 0.3584906, g: 0.245194, b: 0.245194, a: 1}
     - _LimbusTilling: {r: 1, g: 1, b: 0, a: 0}
     - _MainBodyColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MatCapColor: {r: 0.5, g: 0, b: 0, a: 1}
+    - _MatCapColor: {r: 0.41509432, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _Outline_Color: {r: 0, g: 1, b: 0.5821352, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}

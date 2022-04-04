@@ -200,14 +200,14 @@ Material:
     - _Glossiness: 0.4
     - _GlossyReflections: 1
     - _HighColorBlurShadow: 0
-    - _HighColorHue: 0.06228113
+    - _HighColorHue: 0.268
     - _HighColorMask_UVSet2_Toggle: 0
     - _HighColorMask__UVSet2_Toggle: 0
     - _HighColorNormal: 0
     - _HighColorParallax: 0
-    - _HighColorSaturation: -0.1953587
+    - _HighColorSaturation: -0.296
     - _HighColor_Power: 0.553
-    - _HighColor_Ratio: 0.5697438
+    - _HighColor_Ratio: 0.399
     - _Inverse_Clipping: 0
     - _Is_BLD: 0
     - _Is_LightColor_Outline: 1
@@ -240,7 +240,7 @@ Material:
     - _Offset_Z_Axis_BLD: 0
     - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
-    - _Outline_Width: 27.1
+    - _Outline_Width: 11.9
     - _Parallax: 0.02
     - _ParallaxScale: 0.059
     - _ParallaxToggle: 1
