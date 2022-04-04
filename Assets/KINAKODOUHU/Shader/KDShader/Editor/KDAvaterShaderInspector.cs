@@ -62,7 +62,11 @@ namespace KD
         static bool _Outline_Foldout = true;
         static bool _AdvancedSettings_Foldout = false;
 
-       
+        // -----------------------------------------------------
+        //Change Shader
+         static Shader KDAvaterShaders = Shader.Find("KDShader/KDAvaterShaders");
+      
+         static Shader KDAvaterShaders_NoOutline = Shader.Find("Hidden/KDShader/KDAvaterShaders_NoOutline");
 
         // -----------------------------------------------------
         //USE_UI
@@ -1296,9 +1300,32 @@ namespace KD
         void GUI_Outline(Material material)
         {
 
-            
-           
-            
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Outline");
+
+            if (material.GetFloat("_KDASType") == 0)
+            {
+                if (GUILayout.Button("Off", shortButtonStyle))
+                {
+                    material.SetFloat("_KDASType", 1); 
+                    m_MaterialEditor.SetShader(KDAvaterShaders);
+
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", shortButtonStyle))
+                {
+                    material.SetFloat("_KDASType", 0);
+                    m_MaterialEditor.SetShader(KDAvaterShaders_NoOutline);
+                    
+                    
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (material.GetFloat("_KDASType") == 1)
+            {
 
             m_MaterialEditor.FloatProperty(outline_Width, "Outline Width");
             m_MaterialEditor.ColorProperty(outline_Color, "Outline Color");
@@ -1363,7 +1390,7 @@ namespace KD
                 EditorGUILayout.EndHorizontal();
                 m_MaterialEditor.TexturePropertySingleLine(Styles.outlineTexText, outlineTex);
             }
-            
+            }
 
 
         }
@@ -1507,7 +1534,7 @@ namespace KD
     }
          public override void AssignNewShaderToMaterial(Material material, Shader oldShader, Shader newShader)
     {
-        base.AssignNewShaderToMaterial(material, oldShader, newShader);
+       base.AssignNewShaderToMaterial(material, oldShader, newShader);
 
         if(oldShader != newShader)
         {
@@ -1517,7 +1544,11 @@ namespace KD
                  SetBlendMode(material, (BlendMode) material.GetFloat("_RenderMode"));
                  return;
             }
-             
+             if( oldShader.name == "KDShader/KDAvaterShaders" || 
+                 oldShader.name == "Hidden/KDShader/KDAvaterShaders_NoOutline" )
+            {
+                return;
+            }
         }
 
     }
