@@ -11,7 +11,7 @@ Shader "KDShader/KDAvaterShaders"
 		[HideInInspector]	_KdaVerY	                  ( "KdaVerY"	, Float ) = 1
 		[HideInInspector]	_KdaVerZ	                  ( "KdaVerZ"	, Float ) = 00
         [HideInInspector]   _KDASType                      ( "KDASType"	, Int ) = 0
-
+        [HideInInspector]   _OutlineMode                   ( "OutlineMode"	, Int ) = 0
 	    
 		[HideInInspector] _Cutoff ("Alpha cutoff", Range(0,1)) = 0
 

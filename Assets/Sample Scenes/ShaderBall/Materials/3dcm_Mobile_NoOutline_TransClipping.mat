@@ -8,16 +8,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 3dcm_Mobile_NoOutline_TransClipping
-  m_Shader: {fileID: 4800000, guid: a11a381f433c19147ae73551a210d710, type: 3}
-  m_ShaderKeywords: _ _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
-    _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
-    _OUTLINETEXTOGGLE_ON _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP
-    _USEBASEAS2ND_ON _UVSEC_UV1
+  m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
+  m_ShaderKeywords: _ _ALPHATEST_ON _EMISSION _IS_CLIPPING_MODE _IS_OUTLINE_CLIPPING_YES
+    _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
+    _METALLICGLOSSMAP _NORMALMAP _OUTLINETEXTOGGLE_ON _PARALLAX_ON _RIMLIGHTNORMAL_ON
+    _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -213,7 +214,7 @@ Material:
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
-    - _KDASType: 0
+    - _KDASType: 1
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -237,13 +238,14 @@ Material:
     - _Offset_X_Axis_BLD: 0.124
     - _Offset_Y_Axis_BLD: -0.425
     - _Offset_Z_Axis_BLD: -0.096
+    - _OutlineMode: 1
     - _OutlineTexToggle: 1
     - _OutlineWidth: 0.1
-    - _Outline_Width: 8.73
+    - _Outline_Width: 8.74
     - _Parallax: 0.02
     - _ParallaxScale: 0.319
     - _ParallaxToggle: 1
-    - _RenderMode: 0
+    - _RenderMode: 1
     - _RimLightNormal: 1
     - _RimLightToggle: 1
     - _RimLight_Power: 0.538
@@ -267,7 +269,7 @@ Material:
     - _Tweak_Matcap_Emission_Level: 0.647
     - _Tweak_RimLightMaskLevel: 0.362
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 0.169
+    - _Tweak_transparency: 0.629
     - _UVSec: 0
     - _Unlit_Intensity: 1
     - _UseBaseAs1st: 0

@@ -55,7 +55,7 @@
 			 UNITY_DECLARE_TEX2D_NOSAMPLER(_OutlineTex);
 			SamplerState sampler_OutlineTex;
 			 half _Outline_Width;
-
+			 int  _OutlineMode;
 				 			      
 			       float _ZWrite;
 			       float _SrcBlend;
