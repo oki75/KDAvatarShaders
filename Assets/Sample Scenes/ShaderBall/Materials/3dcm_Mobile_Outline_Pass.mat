@@ -7,18 +7,16 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 3dcm_Mobile_NoOutline_Clipping_StensiMaskOut
+  m_Name: 3dcm_Mobile_Outline_Pass
   m_Shader: {fileID: 4800000, guid: a11a381f433c19147ae73551a210d710, type: 3}
-  m_ShaderKeywords: _ _ALPHATEST_ON _DETAILBLEND_ON _EMISSION _IS_CLIPPING_MODE _IS_OUTLINE_CLIPPING_YES
-    _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
-    _METALLICGLOSSMAP _NORMALMAP _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON
-    _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
+  m_ShaderKeywords: _ _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
+    _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
+    _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -64,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive_Tex:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EyeBase:
@@ -76,7 +74,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FixShadeMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ef1eec863d385c144b3fb3c9e2eb9881, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Fix_ShadeColorMap:
@@ -124,7 +122,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: cec5d536f4d09664aaa082bfe3f72cdd, type: 3}
+        m_Texture: {fileID: 2800000, guid: 47a411395769d2a47b61dea667a51fce, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RGB_mask:
@@ -148,7 +146,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _1st2nd_Shades_Feather: 0
+    - _1st2nd_Shades_Feather: 0.165
     - _AlphaTestRef: 0.5
     - _AmbientMax: 0.8301814
     - _AmbientMinimum: 0
@@ -157,26 +155,26 @@ Material:
     - _BLD_Toggle: 0
     - _BLD_X: 0
     - _BLD_Y: 0
-    - _BaseColor_Step: 0.333
+    - _BaseColor_Step: 0.494
     - _BaseParallax: 0
-    - _BaseShade_Feather: 0
+    - _BaseShade_Feather: 0.369
     - _BlendAddEyeBase: 1
     - _BlendMode: 0
     - _BlendShadowColor: 1
     - _BlurLevel: 8.165618
     - _BumpScale: 1
     - _BumpScale1: 0
-    - _BumpScale2: 0.94
-    - _Clipping_Level: 0.647
+    - _BumpScale2: 1
+    - _Clipping_Level: 0.092
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
     - _Decal_UVSet2_Toggle: 0
-    - _DetailBlend: 1
+    - _DetailBlend: 0
     - _DetailNormalMapScale: 1
     - _Detail_Parallax: 0
     - _DstBlend: 0
-    - _DubleHighColor_Toggle: 0
+    - _DubleHighColor_Toggle: 1
     - _EmissionScaleUI: 0
     - _EyeHi2AdjustMirror: 0
     - _EyeHi2OffsetX: 0.03070339
@@ -200,21 +198,21 @@ Material:
     - _Glossiness: 0.4
     - _GlossyReflections: 1
     - _HighColorBlurShadow: 0
-    - _HighColorHue: 0.444
+    - _HighColorHue: 0.06228113
     - _HighColorMask_UVSet2_Toggle: 0
     - _HighColorMask__UVSet2_Toggle: 0
     - _HighColorNormal: 0
     - _HighColorParallax: 0
     - _HighColorSaturation: -0.1953587
-    - _HighColor_Power: 0.553
-    - _HighColor_Ratio: 0.168
+    - _HighColor_Power: 0.684
+    - _HighColor_Ratio: 0.5697438
     - _Inverse_Clipping: 0
     - _Is_BLD: 0
     - _Is_LightColor_Outline: 1
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
-    - _KDASType: 2
+    - _KDASType: 0
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -235,41 +233,40 @@ Material:
     - _NormalMapParallax: 0
     - _NormalMap_UVSet2_Toggle: 0
     - _OcclusionStrength: 1
-    - _Offset_X_Axis_BLD: -0.282
+    - _Offset_X_Axis_BLD: 0.124
     - _Offset_Y_Axis_BLD: -0.425
-    - _Offset_Z_Axis_BLD: 0
-    - _OutlineMode: 0
+    - _Offset_Z_Axis_BLD: -0.096
     - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
-    - _Outline_Width: 10
-    - _Parallax: 0.02
-    - _ParallaxScale: 0.059
+    - _Outline_Width: 32.2
+    - _Parallax: 0
+    - _ParallaxScale: 0.051
     - _ParallaxToggle: 1
-    - _RenderMode: 4
+    - _RenderMode: 0
     - _RimLightNormal: 1
     - _RimLightToggle: 1
-    - _RimLight_Power: 0.793
-    - _ShadeColor_Step: 0.891
+    - _RimLight_Power: 0.538
+    - _ShadeColor_Step: 0.289
     - _ShadeNormal: 1
-    - _Shininess: 0.133
+    - _Shininess: 0.2917107
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StencilComp: 6
+    - _StencilComp: 8
     - _StencilPassOp: 0
-    - _StencilRef: 2
+    - _StencilRef: 0
     - _StencilReference: 2
     - _StencilZFailOp: 0
     - _SystemShadeonoff: 0
     - _SystemShadeonoff1: 0
-    - _Tweak_FixShadeMapLevel: 0.887
+    - _Tweak_FixShadeMapLevel: 1.34
     - _Tweak_HighColorBlurShadowLevel: 0.4329458
-    - _Tweak_HighColorMaskLevel: 0.729
-    - _Tweak_MatcapMaskLevel: 0.755
-    - _Tweak_Matcap_Emission_Level: 0
+    - _Tweak_HighColorMaskLevel: 0.385
+    - _Tweak_MatcapMaskLevel: 0.894
+    - _Tweak_Matcap_Emission_Level: 0.647
     - _Tweak_RimLightMaskLevel: 0.423
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 0.626
+    - _Tweak_transparency: 0.564
     - _UVSec: 0
     - _Unlit_Intensity: 1.04
     - _UseBaseAs1st: 0
@@ -277,10 +274,10 @@ Material:
     - _UseBlendBaseColor: 0
     - _Use_BaseAs1st: 1
     - _Use_BaseAs2nd: 1
-    - _Use_BaseAsFix: 0
+    - _Use_BaseAsFix: 1
     - _Use_Decal_alpha: 0
     - _ZWrite: 1
-    - _aniso_offset: -0.428
+    - _aniso_offset: -0.351
     - _outlinetextogle: 0
     - _simpleUI: 0
     - _tweak_Matcap_Emission_Level: 0
@@ -292,18 +289,18 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
-    - _Emissive_Color: {r: 0.16945532, g: 0.3018868, b: 0.20214579, a: 1}
+    - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
     - _EyeHi2Color: {r: 0.3553756, g: 0.453597, b: 0.6226415, a: 1}
     - _EyeHi2Tilling: {r: 1, g: 1, b: 0, a: 0}
     - _EyeHiColor: {r: 0.990566, g: 0.9571414, b: 0.855064, a: 1}
     - _EyeHiTilling: {r: 1, g: 1, b: 0, a: 0}
-    - _FixShadeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FixShadeColor: {r: 0.8962264, g: 0.6045301, b: 0.6045301, a: 1}
     - _Fix_Shade_Color: {r: 0, g: 0, b: 0, a: 1}
     - _HighColor: {r: 1, g: 0.7971698, b: 0.7971698, a: 1}
     - _LimbusColor: {r: 0.3584906, g: 0.245194, b: 0.245194, a: 1}
     - _LimbusTilling: {r: 1, g: 1, b: 0, a: 0}
     - _MainBodyColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MatCapColor: {r: 0.3773585, g: 0.17977929, b: 0.17977929, a: 1}
+    - _MatCapColor: {r: 0.5, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _Outline_Color: {r: 0, g: 1, b: 0.5821352, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}

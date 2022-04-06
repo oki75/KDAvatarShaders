@@ -1,37 +1,53 @@
-﻿//KDInspector.cs for KD Shader v.1.0
-//v.1.0.9
-//https://github.com/oki75/KDShader           
-//(C)KINAKODOUHU
+﻿//KDAvaterShadersInspector.cs for KDAvaterShaders v.1.1.00
+//https://github.com/oki75/KDAvaterShaders          
+         
+using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
+using System.Collections;
+using System.Linq;
 
 namespace KD
 {
-    public class KDInspector : ShaderGUI
+    
+    public class KDAvaterShadersInspector : ShaderGUI
     {
-        public enum _KDS_Technique
-        {
-            MultiPassUnlit, NoOutline
-        }
 
         public enum _CullMode
         {
             CullingOff, FrontCulling, BackCulling
         }
+        public enum BlendMode
+        {
+        Opaque,
+        Clipping,
+        TransClipping,
+        StencilMack,
+        StencilOut,
+       
+        }
+
+
 
 
         //Button
         public GUILayoutOption[] shortButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
         public GUILayoutOption[] middleButtonStyle = new GUILayoutOption[] { GUILayout.Width(130) };
 
-
+      
 
 
         //setting
 
- //       static float _kdsVersion = 1.00f;
+       static float _kdsVerX = 1;
+       static float _kdsVerY = 1;
+       static float _kdsVerZ = 00;
 
-        static int _StencilReference_Setting;
+       //Outline
+
+
+        static int _StencilRefReference_Setting;
 
         static bool _OriginalInspector = false;
 
@@ -39,6 +55,7 @@ namespace KD
         //Foldout
         static bool _Clipping_Foldout = false;
         static bool _StepAndFeather_Foldout = false;
+        static bool _EyeLens_Foldout = false;
         static bool _NormalMap_Foldout = false;
         static bool _ParallaxMap_Foldout = false;
         static bool _HighColor_Foldout = true;
@@ -47,6 +64,13 @@ namespace KD
         static bool _Emissive_Foldout = true;
         static bool _Outline_Foldout = true;
         static bool _AdvancedSettings_Foldout = false;
+
+        // -----------------------------------------------------
+        //Change Shader
+         static Shader KDAvaterShaders = Shader.Find("KDShader/KDAvaterShaders");
+      
+         static Shader KDAvaterShaders_NoOutline = Shader.Find("Hidden/KDShader/KDAvaterShaders_NoOutline");
+
         // -----------------------------------------------------
         //USE_UI
         #region Material Properties
@@ -54,7 +78,6 @@ namespace KD
         MaterialProperty clipping_Level = null;
         MaterialProperty tweak_transparency = null;
         MaterialProperty Inverse_Clipping = null;
-
         MaterialProperty mainTex = null;
         MaterialProperty decalMap = null;
         MaterialProperty decal_Toggle = null;
@@ -65,14 +88,48 @@ namespace KD
         MaterialProperty fixShadeColorMap = null;
         MaterialProperty fixShadeColor = null;
         MaterialProperty secondShadeMap = null;
-        MaterialProperty secondShadeColor = null;
+        MaterialProperty secondShadeColor = null;  
+        MaterialProperty EyeBase = null;
+        MaterialProperty BlendAddEyeBase = null;
+        MaterialProperty EyeHiAndLimbus = null;
+        MaterialProperty EyeHi_Toggle = null;
+        MaterialProperty EyeHi2_Blend = null;
+        MaterialProperty EyeHiAndLimbusMirrorON = null;
+        MaterialProperty LimbusColor = null;
+        MaterialProperty EyeHiColor = null;
+        MaterialProperty EyeHi2Color = null;
+        MaterialProperty LimbusTilling = null;
+        MaterialProperty Limbus_Scale =null;
+        MaterialProperty LimbusOffsetX = null;
+        MaterialProperty LimbusOffsetY = null;
+        MaterialProperty LimbusAdjustMirror = null;
+        MaterialProperty Limbus_BlurStep = null;
+        MaterialProperty Limbus_BlurFeather = null;
+        MaterialProperty EyeHiTilling = null;
+        MaterialProperty EyeHi_Scale =null;
+        MaterialProperty EyeHiOffsetX = null;
+        MaterialProperty EyeHiOffsetY = null;
+        MaterialProperty EyeHiAdjustMirror = null;
+        MaterialProperty EyeHi_BlurStep = null;
+        MaterialProperty EyeHi_BlurFeather = null;
+        MaterialProperty EyeHi2Tilling = null;
+        MaterialProperty EyeHi2_Scale =null;
+        MaterialProperty EyeHi2OffsetX = null;
+        MaterialProperty EyeHi2OffsetY = null;
+        MaterialProperty EyeHi2AdjustMirror = null;
+        MaterialProperty EyeHi2_BlurStep = null;
+        MaterialProperty EyeHi2_BlurFeather = null;
 
         MaterialProperty normalMap = null;
         MaterialProperty detailMap = null;
         MaterialProperty bumpScale = null;
         MaterialProperty detailScale = null;
-
         MaterialProperty tweak_FixShadeMapLevel = null;
+        
+        //HighColorBlurShadow
+        MaterialProperty HighColorBlurShadow = null;
+        MaterialProperty BlurLevel = null;
+        MaterialProperty Tweak_HighColorBlurShadowLevel = null;
         MaterialProperty use_BaseAs1st = null;
         MaterialProperty use_BaseAs2nd = null;
         MaterialProperty baseColor_Step = null;
@@ -80,20 +137,26 @@ namespace KD
         MaterialProperty shadeColor_Step = null;
         MaterialProperty first2nd_Shades_Feather = null;
 
-      
-
         MaterialProperty RGB_mask = null;
-
-        MaterialProperty parallaxToggle = null;
+//
+        MaterialProperty parallax = null;
+    
         MaterialProperty fixShadeParallax = null;
         MaterialProperty parallaxMap = null;
         MaterialProperty parallaxScale = null;
-
+//HighColor
         MaterialProperty highColor = null;
         MaterialProperty AnisotropicMask = null;
         MaterialProperty aniso_offset = null;
         MaterialProperty Anisotropic_highlight_Toggle = null;
         MaterialProperty Anisotropic_TangentNormal_Toggle = null;
+
+        MaterialProperty dubleHighColor_Toggle =null;
+        MaterialProperty HighColor_Ratio =null;
+
+        MaterialProperty HighColorHue = null;
+
+        MaterialProperty HighColorSaturation = null;
         
        
 
@@ -116,23 +179,37 @@ namespace KD
         MaterialProperty outline_Color = null;
         MaterialProperty outlineTex = null;
         MaterialProperty BlendShadowColor = null;
+        MaterialProperty Is_LightColor_Outline = null;
 
         MaterialProperty unlit_Intensity = null;
         MaterialProperty offset_X_Axis_BLD = null;
         MaterialProperty offset_Y_Axis_BLD = null;
         MaterialProperty offset_Z_Axis_BLD = null;
         MaterialProperty CullMode = null;
+        MaterialProperty AmbientMax = null;
         MaterialProperty AmbientMinimum = null;
+
+        MaterialProperty renderMode = null;
+        MaterialProperty KDASType = null;
+        MaterialProperty OutlineMode = null;
+       
         #endregion
 
-        MaterialEditor m_MaterialEditor;
+        MaterialEditor m_MaterialEditor;     
 
         // -----------------------------------------------------
 
         //USE_UI
+        
         public void FindProperties(MaterialProperty[] props)
         {
             //false=defaultOFF
+            
+            KDASType =           FindProperty("_KDASType",props, false);
+            OutlineMode =        FindProperty("_OutlineMode",props, false);
+
+            renderMode =         FindProperty("_RenderMode",props);
+
             clippingMask =       FindProperty("_ClippingMask", props, false);
             clipping_Level =     FindProperty("_Clipping_Level", props, false);
             tweak_transparency = FindProperty("_Tweak_transparency", props, false);
@@ -162,21 +239,61 @@ namespace KD
             baseShade_Feather =       FindProperty("_BaseShade_Feather", props);
             shadeColor_Step =         FindProperty("_ShadeColor_Step", props);
             first2nd_Shades_Feather = FindProperty("_1st2nd_Shades_Feather", props);
-
+           //EyeLens
+            EyeBase =         FindProperty("_EyeBase", props);
+            BlendAddEyeBase = FindProperty("_BlendAddEyeBase", props);
+            EyeHiAndLimbus = FindProperty("_EyeHiAndLimbus", props);
+            EyeHi_Toggle =   FindProperty("_EyeHi_Toggle", props);
+            EyeHi2_Blend =   FindProperty("_EyeHi2_Blend", props);
+            EyeHiAndLimbusMirrorON =FindProperty("_EyeHiAndLimbusMirrorON", props);
+            LimbusColor =           FindProperty("_LimbusColor",props);
+            EyeHiColor =            FindProperty("_EyeHiColor", props);
+            EyeHi2Color =           FindProperty("_EyeHi2Color", props);
+            LimbusTilling =         FindProperty("_LimbusTilling", props);
+            Limbus_Scale =         FindProperty("_Limbus_Scale", props);
+            LimbusOffsetX =         FindProperty("_LimbusOffsetX", props);
+            LimbusOffsetY =         FindProperty("_LimbusOffsetY", props);
+            LimbusAdjustMirror =         FindProperty("_LimbusAdjustMirror", props);
+            Limbus_BlurStep =         FindProperty("_Limbus_BlurStep", props);
+            Limbus_BlurFeather =         FindProperty("_Limbus_BlurFeather", props);
+            EyeHiTilling =          FindProperty("_EyeHiTilling",props);
+            EyeHi_Scale =          FindProperty("_EyeHi_Scale",props);
+            EyeHiOffsetX =         FindProperty("_EyeHiOffsetX", props);
+            EyeHiOffsetY =         FindProperty("_EyeHiOffsetY", props);
+            EyeHiAdjustMirror =         FindProperty("_EyeHiAdjustMirror", props);
+            EyeHi_BlurStep =            FindProperty("_EyeHi_BlurStep", props);
+            EyeHi_BlurFeather =            FindProperty("_EyeHi_BlurFeather", props);
+            EyeHi2Tilling =          FindProperty("_EyeHi2Tilling",props);
+            EyeHi2_Scale =          FindProperty("_EyeHi2_Scale",props);
+            EyeHi2OffsetX =         FindProperty("_EyeHi2OffsetX", props);
+            EyeHi2OffsetY =         FindProperty("_EyeHi2OffsetY", props);
+            EyeHi2AdjustMirror =         FindProperty("_EyeHi2AdjustMirror", props);
+            EyeHi2_BlurStep =            FindProperty("_EyeHi2_BlurStep", props);
+            EyeHi2_BlurFeather =            FindProperty("_EyeHi2_BlurFeather", props);
+  
             RGB_mask = FindProperty("_RGB_mask", props);
 
-            parallaxToggle =    FindProperty("_ParallaxToggle", props);
+            parallax =    FindProperty("_Parallax", props);
             fixShadeParallax =  FindProperty("_FixShadeParallax", props);
             parallaxMap =       FindProperty("_ParallaxMap", props);
             parallaxScale =     FindProperty("_ParallaxScale", props);
-
+           //HighColor
             highColor =                         FindProperty("_HighColor", props);
             shininess =                   FindProperty("_Shininess", props);
             HighColorMask =                 FindProperty("_Set_HighColorMask", props);
             AnisotropicMask =                   FindProperty("_Set_AnisotropicMask", props);
             Anisotropic_highlight_Toggle =     FindProperty("_Anisotropic_highlight_Toggle", props);
             Anisotropic_TangentNormal_Toggle = FindProperty("_Anisotropic_TangentNormal_Toggle", props);
+  
+            dubleHighColor_Toggle =            FindProperty("_DubleHighColor_Toggle",props);
             aniso_offset =                      FindProperty("_aniso_offset", props);
+            HighColorHue =                       FindProperty("_HighColorHue", props);
+            HighColorSaturation =                FindProperty("_HighColorSaturation",props);
+            HighColor_Ratio =                    FindProperty("_HighColor_Ratio",props);
+
+            HighColorBlurShadow =                FindProperty("_HighColorBlurShadow",props);
+            BlurLevel =                          FindProperty("_BlurLevel",props);
+            Tweak_HighColorBlurShadowLevel =     FindProperty("_Tweak_HighColorBlurShadowLevel", props);
             tweak_HighColorMaskLevel =          FindProperty("_Tweak_HighColorMaskLevel", props);
 
             rimLightColor = FindProperty("_RimLightColor", props);
@@ -195,21 +312,25 @@ namespace KD
             outline_Color = FindProperty("_Outline_Color", props, false);
             outlineTex = FindProperty("_OutlineTex", props, false);
             BlendShadowColor = FindProperty("_BlendShadowColor", props, false);
+            Is_LightColor_Outline = FindProperty("_Is_LightColor_Outline",props, false);
 
             unlit_Intensity = FindProperty("_Unlit_Intensity", props, false);
             offset_X_Axis_BLD = FindProperty("_Offset_X_Axis_BLD", props, false);
             offset_Y_Axis_BLD = FindProperty("_Offset_Y_Axis_BLD", props, false);
             offset_Z_Axis_BLD = FindProperty("_Offset_Z_Axis_BLD", props, false);
             CullMode = FindProperty("_CullMode", props);
+            AmbientMax = FindProperty("_AmbientMax", props);
             AmbientMinimum = FindProperty("_AmbientMinimum", props);
+
+           
         }
         // --------------------------------
         
         // --------------------------------
-            static void Line()
-        {
-            GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
-        }
+        //    static void Line()
+        //{
+        //    GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
+        //}
 
         static bool Foldout(bool display, string title)
         {
@@ -238,13 +359,14 @@ namespace KD
 
             return display;
         }
-
-
-
+    
+  
         // --------------------------------
         //USE_UI Text(Tex&color)
         private static class Styles
         {
+           
+            public static GUIContent EyeBaseText = new GUIContent("EyeBase", "EyeBase : Texture(sRGBA)");
             public static GUIContent decalMapText = new GUIContent("DecalMap", "DecalMap : Texture(sRGBA)");
             public static GUIContent baseColorText = new GUIContent("BaseMap", "Base Color : Texture(sRGB) × Color(RGB) Default:White");
             public static GUIContent firstShadeColorText = new GUIContent("1st ShadeMap", "1st ShadeColor : Texture(sRGB) × Color(RGB) Default:White");
@@ -309,7 +431,7 @@ namespace KD
 
             EditorGUILayout.Space();
 
-            if (material.HasProperty("_ClippingMask"))
+            if (material.GetFloat("_KDASType") > 0)
             {
                 _Clipping_Foldout = Foldout(_Clipping_Foldout, "Clipping Settings");
                 if (_Clipping_Foldout)
@@ -317,7 +439,7 @@ namespace KD
                     EditorGUI.indentLevel++;
                     EditorGUILayout.Space();
 
-                    if (material.HasProperty("_StencilReference"))
+                    if (material.GetFloat("_KDASType") == 2)
                     {
                         GUI_SetStencilNo(material);
                     }
@@ -335,7 +457,28 @@ namespace KD
         
             EditorGUILayout.Space();
 
+        var blendMode = renderMode;
+        var mode = (BlendMode) blendMode.floatValue;
 
+        using (var scope = new EditorGUI.ChangeCheckScope())
+        {
+            mode = (BlendMode) EditorGUILayout.Popup("RenderMode", (int) mode, Enum.GetNames(typeof(BlendMode)));
+
+            if (scope.changed)
+            {
+                blendMode.floatValue = (float) mode;
+                foreach (UnityEngine.Object obj in blendMode.targets)
+                {
+                    SetBlendMode(obj as Material, mode);
+                }
+            }
+        }
+            
+            
+            
+            
+            
+            
             // Main
 
 
@@ -417,8 +560,37 @@ namespace KD
 
             EditorGUILayout.LabelField("FixShade", EditorStyles.boldLabel);
 
-            
+             EditorGUILayout.BeginHorizontal();
+             
+             EditorGUILayout.PrefixLabel("HighColorBlurShadow");
 
+             if (material.GetFloat("_HighColorBlurShadow") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_HighColorBlurShadow", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_HighColorBlurShadow", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+                 
+                 if (material.GetFloat("_HighColorBlurShadow") == 1)
+                {
+                    EditorGUI.indentLevel++;
+                     m_MaterialEditor.RangeProperty(BlurLevel , "BlurLevel");
+                     m_MaterialEditor.RangeProperty(Tweak_HighColorBlurShadowLevel ,"ShadowLevel");
+                    EditorGUI.indentLevel--;
+                }
+               
+
+               
+           
             m_MaterialEditor.TexturePropertySingleLine(Styles.fixShadeText, fixShadeMap, tweak_FixShadeMapLevel);
 
             EditorGUILayout.BeginHorizontal();
@@ -456,8 +628,32 @@ namespace KD
                 
                
                 m_MaterialEditor.TexturePropertySingleLine(Styles.normalMapText, normalMap, bumpScale);
-                m_MaterialEditor.TexturePropertySingleLine(Styles.normalMap2Text, detailMap, detailScale);
 
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("Detail Blend");
+               
+                if (material.GetFloat("_DetailBlend") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_DetailBlend", 1);
+                        material.EnableKeyword("_DETAILBLEND_ON");
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_DetailBlend", 0);
+                        material.DisableKeyword("_DETAILBLEND_ON");
+
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+                 if (material.GetFloat("_DetailBlend") == 1)
+            {
+                m_MaterialEditor.TexturePropertySingleLine(Styles.normalMap2Text, detailMap, detailScale);
+            }
                 GUILayout.Label("NormalMap Effectiveness", EditorStyles.boldLabel);
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Shade Colors");
@@ -537,6 +733,17 @@ namespace KD
             }
 
             EditorGUILayout.Space();
+//EyeLens
+             _EyeLens_Foldout = Foldout(_EyeLens_Foldout, "Limbus and EyeHi Settings");
+            if (_EyeLens_Foldout)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.Space();
+                GUI_EyeLens(material);
+                EditorGUI.indentLevel--;
+            }
+
+            EditorGUILayout.Space();
 
             _ParallaxMap_Foldout = Foldout(_ParallaxMap_Foldout, "Parallax Settings");
             if (_ParallaxMap_Foldout)
@@ -594,8 +801,8 @@ namespace KD
 
             EditorGUILayout.Space();
 
-            if (material.HasProperty("_Outline_Color"))
-            {
+          
+            
                 _Outline_Foldout = Foldout(_Outline_Foldout, "Outline Settings");
                 if (_Outline_Foldout)
                 {
@@ -605,7 +812,7 @@ namespace KD
                     EditorGUI.indentLevel--;
                 }
                 EditorGUILayout.Space();
-            }
+            
             // Advanced Settings
             _AdvancedSettings_Foldout = Foldout(_AdvancedSettings_Foldout, "Advanced Settings");
             if (_AdvancedSettings_Foldout)
@@ -643,9 +850,12 @@ namespace KD
                 }
                 EditorGUILayout.Space();
                 m_MaterialEditor.ShaderProperty(unlit_Intensity, "Unlit_Intensity");
+                m_MaterialEditor.ShaderProperty(AmbientMax, "AmbientMix");
                 m_MaterialEditor.ShaderProperty(AmbientMinimum, "AmbientMinimum");
                 EditorGUILayout.Space();
-                m_MaterialEditor.ShaderProperty(CullMode, "CullMode");                
+                m_MaterialEditor.ShaderProperty(CullMode, "CullMode");
+              
+
                 EditorGUI.indentLevel--;
                
             }
@@ -657,7 +867,8 @@ namespace KD
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
         //Var
-            GUILayout.Label("KD Shader"+" V." +"1.0.9"+" beta"  , EditorStyles.boldLabel);
+        
+            GUILayout.Label("KD AvaterShaders"+" v."+_kdsVerX +"." + _kdsVerY+"."+_kdsVerZ  , EditorStyles.boldLabel);
             EditorGUILayout.EndHorizontal();
 
         }// End of OnGUI()
@@ -666,13 +877,13 @@ namespace KD
 
         void GUI_SetStencilNo(Material material)
         {
-            GUILayout.Label("For _StencilMask or _StencilOut Shader", EditorStyles.boldLabel);
-            _StencilReference_Setting = material.GetInt("_StencilReference");
-            int _Current_StencilReference = _StencilReference_Setting;
-            _Current_StencilReference = (int)EditorGUILayout.IntField("Stencil No.", _Current_StencilReference);
-            if (_StencilReference_Setting != _Current_StencilReference)
+            GUILayout.Label("For StencilRefMask or _StencilRefOut Shader", EditorStyles.boldLabel);
+            _StencilRefReference_Setting = material.GetInt("_StencilRef");
+            int _Current_StencilRefReference = _StencilRefReference_Setting;
+            _Current_StencilRefReference = (int)EditorGUILayout.IntField("Stencil No.", _Current_StencilRefReference);
+            if (_StencilRefReference_Setting != _Current_StencilRefReference)
             {
-                material.SetInt("_StencilReference", _Current_StencilReference);
+                material.SetInt("_StencilRef", _Current_StencilRefReference);
             }
         }
 
@@ -703,6 +914,7 @@ namespace KD
             m_MaterialEditor.RangeProperty(clipping_Level, "Clipping Level");
         }
 
+
         void GUI_SetTransparencySetting(Material material)
         {
 
@@ -730,28 +942,175 @@ namespace KD
 
             
         }
-        void GUI_Parallax(Material material)
+//
+         void GUI_EyeLens(Material material)
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Parallax");
+            EditorGUILayout.PrefixLabel("EyeLens");
 
-            if (material.GetFloat("_ParallaxToggle") == 0)
+            if (material.GetFloat("_EyeHiAndLimbus") == 0)
             {
                 if (GUILayout.Button("Off", shortButtonStyle))
                 {
-                    material.SetFloat("_ParallaxToggle", 1);
+                    material.SetFloat("_EyeHiAndLimbus", 1);
+                    material.EnableKeyword("_EYEHIANDLIMBUS_ON");
                 }
             }
             else
             {
                 if (GUILayout.Button("Active", shortButtonStyle))
                 {
-                    material.SetFloat("_ParallaxToggle", 0);
+                    material.SetFloat("_EyeHiAndLimbus", 0);
+                     material.DisableKeyword("_EYEHIANDLIMBUS_ON");
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+             
+            
+
+            if (material.GetFloat("_EyeHiAndLimbus") == 1)
+            {
+
+                EditorGUI.indentLevel++;
+                EditorGUILayout.BeginHorizontal();
+
+                m_MaterialEditor.TexturePropertySingleLine(Styles.EyeBaseText, EyeBase);
+
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+
+                EditorGUILayout.PrefixLabel("BlendAddEyeBase");
+
+                if (material.GetFloat("_BlendAddEyeBase") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_BlendAddEyeBase", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_BlendAddEyeBase", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("EyeHi");
+
+                if (material.GetFloat("_EyeHi_Toggle") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_EyeHi_Toggle", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_EyeHi_Toggle", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+
+                EditorGUILayout.PrefixLabel("EyeHi2_Blend");
+
+                if (material.GetFloat("_EyeHi2_Blend") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_EyeHi2_Blend", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_EyeHi2_Blend", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+
+                EditorGUILayout.PrefixLabel("EyeHiAndLimbusMirrorON");
+
+                if (material.GetFloat("_EyeHiAndLimbusMirrorON") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_EyeHiAndLimbusMirrorON", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_EyeHiAndLimbusMirrorON", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+
+                m_MaterialEditor.ColorProperty(LimbusColor, "LimbusColor");
+                m_MaterialEditor.ColorProperty(EyeHiColor, "EyeHiColor");
+                m_MaterialEditor.ColorProperty(EyeHi2Color, "EyeHi2Color");
+                m_MaterialEditor.VectorProperty(LimbusTilling, "LimbusTilling");
+                m_MaterialEditor.RangeProperty(Limbus_Scale, "Limbus_Scale");
+                m_MaterialEditor.RangeProperty(LimbusOffsetX, "LimbusOffsetX");
+                m_MaterialEditor.RangeProperty(LimbusOffsetY, "LimbusOffsetY");
+                m_MaterialEditor.RangeProperty(LimbusAdjustMirror, "LimbusAdjustMirror");
+                m_MaterialEditor.RangeProperty(Limbus_BlurStep, "Limbus_BlurStep");
+                m_MaterialEditor.RangeProperty(Limbus_BlurFeather, "Limbus_BlurFeather");
+
+                m_MaterialEditor.VectorProperty(EyeHiTilling, "EyeHiTilling");
+                m_MaterialEditor.RangeProperty(EyeHi_Scale, "EyeHi_Scale");
+                m_MaterialEditor.RangeProperty(EyeHiOffsetX, "EyeHiOffsetX");
+                m_MaterialEditor.RangeProperty(EyeHiOffsetY, "EyeHiOffsetY");
+                m_MaterialEditor.RangeProperty(EyeHiAdjustMirror, "EyeHiAdjustMirror");
+                m_MaterialEditor.RangeProperty(EyeHi_BlurStep, "EyeHi_BlurStep");
+                m_MaterialEditor.RangeProperty(EyeHi_BlurFeather, "EyeHi_BlurFeather");
+
+                m_MaterialEditor.VectorProperty(EyeHi2Tilling, "EyeHi2Tilling");
+                m_MaterialEditor.RangeProperty(EyeHi2_Scale, "EyeHi2_Scale");
+                m_MaterialEditor.RangeProperty(EyeHi2OffsetX, "EyeHi2OffsetX");
+                m_MaterialEditor.RangeProperty(EyeHi2OffsetY, "EyeHi2OffsetY");
+                m_MaterialEditor.RangeProperty(EyeHi2AdjustMirror, "EyeHi2AdjustMirror");
+                m_MaterialEditor.RangeProperty(EyeHi2_BlurStep, "EyeHi2_BlurStep");
+                m_MaterialEditor.RangeProperty(EyeHi2_BlurFeather, "EyeHi2_BlurFeather");
+
+
+                EditorGUI.indentLevel--;
+            }
+            EditorGUILayout.Space();
+        }
+        
+        void GUI_Parallax(Material material)
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Parallax");
+
+            if (material.GetFloat("_Parallax") == 0)
+            {
+                if (GUILayout.Button("Off", shortButtonStyle))
+                {
+                    material.SetFloat("_Parallax", 1); 
+                    material.EnableKeyword("_PARALLAX_ON");
+
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", shortButtonStyle))
+                {
+                    material.SetFloat("_Parallax", 0);
+                    material.DisableKeyword("_PARALLAX_ON");
                 }
             }
             EditorGUILayout.EndHorizontal();
 
-            if (material.GetFloat("_ParallaxToggle") == 1)
+            if (material.GetFloat("_Parallax") == 1)
             {
 
                 EditorGUI.indentLevel++;
@@ -835,14 +1194,34 @@ namespace KD
                 }
                 EditorGUILayout.EndHorizontal();
 
-               
-
-                m_MaterialEditor.RangeProperty(aniso_offset, "Offset");
+            m_MaterialEditor.RangeProperty(aniso_offset, "Offset");
             
 
                 EditorGUI.indentLevel--;
             }
             EditorGUILayout.Space();
+
+            EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("DubleHighColor");
+
+                if (material.GetFloat("_DubleHighColor_Toggle") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_DubleHighColor_Toggle", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_DubleHighColor_Toggle", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+            m_MaterialEditor.RangeProperty(HighColorHue,"Hue");
+            m_MaterialEditor.RangeProperty(HighColorSaturation,"Saturation"); 
+            m_MaterialEditor.RangeProperty(HighColor_Ratio, "HighColor Ratio");  
             m_MaterialEditor.RangeProperty(tweak_HighColorMaskLevel, "HighColor Mask Level");
             m_MaterialEditor.RangeProperty(shininess, "Shininess");
         }
@@ -928,6 +1307,35 @@ namespace KD
         void GUI_Outline(Material material)
         {
 
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Outline");
+
+            if (material.GetInt("_OutlineMode") == 0)
+            {
+                if (GUILayout.Button("Off", shortButtonStyle))
+                {
+                    material.SetInt("_OutlineMode", 1); 
+                    m_MaterialEditor.SetShader(KDAvaterShaders);
+                    
+
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", shortButtonStyle))
+                {
+                    material.SetInt("_OutlineMode", 0);
+                    m_MaterialEditor.SetShader(KDAvaterShaders_NoOutline);
+                    
+                    
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (material.GetInt("_OutlineMode") == 1)
+            {
+
+
             m_MaterialEditor.FloatProperty(outline_Width, "Outline Width");
             m_MaterialEditor.ColorProperty(outline_Color, "Outline Color");
 
@@ -947,6 +1355,25 @@ namespace KD
                 if (GUILayout.Button("Active", shortButtonStyle))
                 {
                     material.SetFloat("_BlendShadowColor", 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+             EditorGUILayout.BeginHorizontal();
+
+            EditorGUILayout.PrefixLabel("LightColor to Outline");
+           
+            if (material.GetFloat("_Is_LightColor_Outline") == 0)
+            {
+                if (GUILayout.Button("Off", shortButtonStyle))
+                {
+                    material.SetFloat("_Is_LightColor_Outline", 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", shortButtonStyle))
+                {
+                    material.SetFloat("_Is_LightColor_Outline", 0);
                 }
             }
             EditorGUILayout.EndHorizontal();
@@ -972,10 +1399,182 @@ namespace KD
                 EditorGUILayout.EndHorizontal();
                 m_MaterialEditor.TexturePropertySingleLine(Styles.outlineTexText, outlineTex);
             }
-
+            
+        }
 
         }
+
+    /// <summary>
+    /// Processes when switching shaders
+    /// </summary>
+    /// <param name="material"></param>
+    /// <param name="oldShader"></param>
+    /// <param name="newShader"></param>
+
+         public override void AssignNewShaderToMaterial(Material material, Shader oldShader, Shader newShader)
+    {
+       base.AssignNewShaderToMaterial(material, oldShader, newShader);
+
+        if(oldShader != newShader)
+        {
+      //      if (oldShader == null)
+      //      { 
+                // Material BlendMode resetting
+            SetBlendMode(material, (BlendMode) material.GetFloat("_RenderMode"));
+       //     return;}
+      //      }
+      //  if( oldShader.name == "KDShader/KDAvaterShaders" || oldShader.name == "KDShader/KDAvaterShaders_NoOutline" )
+      //      {
+      //       return;
+            }
+    
+    }
+         //renderMode
+        public static void SetBlendMode(Material material, BlendMode renderMode)
+    {        
+        switch (renderMode)
+        {
+            case BlendMode.Opaque:
+                material.SetOverrideTag("RenderType", "");
+                material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
+                material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
+                material.SetInt("_ZWrite", 1);
+                material.SetFloat("_KDASType", 0);
+
+                material.DisableKeyword("_ALPHATEST_ON");
+                material.DisableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+
+                material.EnableKeyword("_IS_CLIPPING_OFF");
+                material.DisableKeyword("_IS_CLIPPING_MODE");
+                material.DisableKeyword("_IS_CLIPPING_TRANSMODE");    
+
+                material.DisableKeyword("_IS_OUTLINE_CLIPPING_YES");
+                material.EnableKeyword("_IS_OUTLINE_CLIPPING_NO");     
+
+                 material.SetFloat("_StencilComp", 8);  //Always
+                material.SetFloat("_StencilPassOp", 0);  //keep
+                material.SetFloat("_StencilZFailOp", 0); //Keep        
+
+                material.renderQueue = -1;
+                break;
+
+            case BlendMode.Clipping:
+                material.SetOverrideTag("RenderType", "TransparentCutout");
+                material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
+                material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
+                material.SetInt("_ZWrite", 1);
+                material.SetFloat("_KDASType", 1);
+
+                material.EnableKeyword("_ALPHATEST_ON");
+                material.DisableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+
+                material.DisableKeyword("_IS_CLIPPING_OFF");
+                material.EnableKeyword("_IS_CLIPPING_MODE");
+                material.DisableKeyword("_IS_CLIPPING_TRANSMODE");
+                
+             
+                material.EnableKeyword("_IS_OUTLINE_CLIPPING_YES");
+                material.DisableKeyword("_IS_OUTLINE_CLIPPING_NO");
+                 
+                material.SetFloat("_StencilComp", 8);  //Always
+                material.SetFloat("_StencilPassOp", 0);  //keep
+                material.SetFloat("_StencilZFailOp", 0); //Keep  
+                
+
+                material.renderQueue = 2450;
+                break;
+
+            case BlendMode.TransClipping:
+                material.SetOverrideTag("RenderType", "Transparent");
+                material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.SrcAlpha);
+                material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                material.SetInt("_ZWrite", 0);
+                material.SetFloat("_KDASType", 1);
+
+                material.DisableKeyword("_ALPHATEST_ON");
+                material.EnableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+
+                material.DisableKeyword("_IS_CLIPPING_OFF");
+                material.DisableKeyword("_IS_CLIPPING_MODE");
+                material.EnableKeyword("_IS_CLIPPING_TRANSMODE");
+
+                material.EnableKeyword("_IS_OUTLINE_CLIPPING_YES");
+                material.DisableKeyword("_IS_OUTLINE_CLIPPING_NO");
+
+                material.SetFloat("_StencilComp", 8);  //Always
+                material.SetFloat("_StencilPassOp", 0);  //keep
+                material.SetFloat("_StencilZFailOp", 0); //Keep     
+
+                material.renderQueue = 3000;
+                break;
+
+            case BlendMode.StencilMack:
+            
+                material.SetOverrideTag("RenderType", "");
+                material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
+                material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
+                material.SetInt("_ZWrite", 1);
+                material.SetFloat("_KDASType", 2);
+
+                material.DisableKeyword("_ALPHATEST_ON");
+                material.DisableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+
+                material.EnableKeyword("_IS_CLIPPING_OFF");
+                material.DisableKeyword("_IS_CLIPPING_MODE");
+                material.DisableKeyword("_IS_CLIPPING_TRANSMODE");    
+
+                material.DisableKeyword("_IS_OUTLINE_CLIPPING_YES");
+                material.EnableKeyword("_IS_OUTLINE_CLIPPING_NO");     
+                
+                material.SetFloat("_StencilComp", 8);  //Always
+                material.SetFloat("_StencilPassOp", 2);  //Replace
+                material.SetFloat("_StencilZFailOp", 0); //Keep     
+
+                material.renderQueue = -1;
+                break;
+
+            case BlendMode.StencilOut:
+            
+                material.SetOverrideTag("RenderType", "TransparentCutout");
+                material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
+                material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
+                material.SetInt("_ZWrite", 1);
+                material.SetFloat("_KDASType", 2);
+
+                material.EnableKeyword("_ALPHATEST_ON");
+                material.DisableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+
+                material.DisableKeyword("_IS_CLIPPING_OFF");
+                material.EnableKeyword("_IS_CLIPPING_MODE");
+                material.DisableKeyword("_IS_CLIPPING_TRANSMODE");
+                
+             
+                material.EnableKeyword("_IS_OUTLINE_CLIPPING_YES");
+                material.DisableKeyword("_IS_OUTLINE_CLIPPING_NO"); 
+                
+                material.SetFloat("_StencilComp", 6);  //NotEqual
+                material.SetFloat("_StencilPassOp", 0);  //keep
+                material.SetFloat("_StencilZFailOp", 0); //Keep     
+
+                material.renderQueue = 2450;
+                break;
+           
+            
+                
+              default:
+                throw new ArgumentOutOfRangeException("RenderMode", renderMode, null);   
+      
+            
+        }
+    }
+
+   
     
 
-    } //End of KDInspector
+    } //End of KDAvaterShadersInspector
 }//End of namespace KD

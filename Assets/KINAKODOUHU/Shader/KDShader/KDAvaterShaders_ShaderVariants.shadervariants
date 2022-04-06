@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &20000000
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: KDAvaterShaders_ShaderVariants
+  m_Shaders:
+  - first: {fileID: 4800000, guid: c45f26261c92bf948b4d1ee3397f450d, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: 71f0192bd5abc514894218254ba7dea0, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: a11a381f433c19147ae73551a210d710, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: 25c301afcff0d9145b821fdc2c8308ea, type: 3}
+    second:
+      variants: []

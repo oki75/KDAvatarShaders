@@ -1,8 +1,9 @@
-//KDShader_ShadowCaster.cginc
-//KDShader ver.1.0
-//v.1.0.8
+//KDAvaterShaders_ShadowCaster.cginc
+//KDShader
+//KDAvaterShaders ver.1.0
+//v.1.1.00
 //https://github.com/oki75/KDShader           
-//(C)KINAKODOUHU
+
 
 
  struct appdata 

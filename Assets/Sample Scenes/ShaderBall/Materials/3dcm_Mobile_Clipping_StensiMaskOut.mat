@@ -8,15 +8,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 3dcm_Mobile_Clipping_StensiMaskOut
-  m_Shader: {fileID: 4800000, guid: c5f12da0cbb927b48aab1e2cce226827, type: 3}
-  m_ShaderKeywords: _ _EMISSION _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS
-    _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP _RIMLIGHTNORMAL_ON _SHADENORMAL_ON
+  m_Shader: {fileID: 4800000, guid: a11a381f433c19147ae73551a210d710, type: 3}
+  m_ShaderKeywords: _ _ALPHATEST_ON _EMISSION _IS_CLIPPING_MODE _IS_OUTLINE_CLIPPING_YES
+    _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
+    _METALLICGLOSSMAP _NORMALMAP _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON
     _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2451
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -34,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ClippingMask:
-        m_Texture: {fileID: 2800000, guid: 4527d788deee6b841be87bba2a106c4f, type: 3}
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DecalMap:
@@ -63,6 +65,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Emissive_Tex:
         m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EyeBase:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FixShadeColorMap:
@@ -144,6 +150,7 @@ Material:
     m_Floats:
     - _1st2nd_Shades_Feather: 0.171
     - _AlphaTestRef: 0.5
+    - _AmbientMax: 0.8301814
     - _AmbientMinimum: 0
     - _Anisotropic_TangentNormal_Toggle: 0
     - _Anisotropic_highlight_Toggle: 0
@@ -151,70 +158,118 @@ Material:
     - _BLD_X: 0
     - _BLD_Y: 0
     - _BaseColor_Step: 0.382
+    - _BaseParallax: 0
     - _BaseShade_Feather: 0.296
-    - _BlendShadowColor: 0
+    - _BlendAddEyeBase: 1
+    - _BlendMode: 0
+    - _BlendShadowColor: 1
+    - _BlurLevel: 8.165618
     - _BumpScale: 1
     - _BumpScale1: 0
     - _BumpScale2: 1
-    - _Clipping_Level: 0
+    - _Clipping_Level: 0.483
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
     - _Decal_UVSet2_Toggle: 0
+    - _DetailBlend: 0
     - _DetailNormalMapScale: 1
+    - _Detail_Parallax: 0
     - _DstBlend: 0
+    - _DubleHighColor_Toggle: 1
     - _EmissionScaleUI: 0
+    - _EyeHi2AdjustMirror: 0
+    - _EyeHi2OffsetX: 0.03070339
+    - _EyeHi2OffsetY: 0
+    - _EyeHi2_Blend: 0
+    - _EyeHi2_BlurFeather: 0.4237356
+    - _EyeHi2_BlurStep: 0.7508348
+    - _EyeHi2_Scale: 1
+    - _EyeHiAdjustMirror: 0.00738687
+    - _EyeHiAndLimbus: 0
+    - _EyeHiAndLimbusMirrorON: 1
+    - _EyeHiOffsetX: 0.03070339
+    - _EyeHiOffsetY: 0
+    - _EyeHi_BlurFeather: 0.4237356
+    - _EyeHi_BlurStep: 0.7508348
+    - _EyeHi_Scale: 1
+    - _EyeHi_Toggle: 0
     - _FixShadeParallax: 0
     - _Fix_ShadeMap_UVSet2_Toggle: 0
     - _GlossMapScale: 0.441
     - _Glossiness: 0.4
     - _GlossyReflections: 1
+    - _HighColorBlurShadow: 0
+    - _HighColorHue: 0.268
     - _HighColorMask_UVSet2_Toggle: 0
     - _HighColorMask__UVSet2_Toggle: 0
     - _HighColorNormal: 0
+    - _HighColorParallax: 0
+    - _HighColorSaturation: -0.296
     - _HighColor_Power: 0.553
+    - _HighColor_Ratio: 0.399
     - _Inverse_Clipping: 0
     - _Is_BLD: 0
+    - _Is_LightColor_Outline: 1
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
+    - _KDASType: 2
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
+    - _KdaVerX: 1
+    - _KdaVerY: 1
+    - _KdaVerZ: 0
     - _LightDirection_MaskOn: 1
     - _Lightmapping: 1
+    - _LimbusAdjustMirror: -0.4239556
+    - _LimbusOffsetX: 0.1913488
+    - _LimbusOffsetY: -0.1267346
+    - _Limbus_BlurFeather: 0.3461028
+    - _Limbus_BlurStep: 0.3467462
+    - _Limbus_Scale: 1
     - _Metallic: 0
     - _Mode: 0
     - _NormalMap2_UVSet2_Toggle: 0
+    - _NormalMapParallax: 0
     - _NormalMap_UVSet2_Toggle: 0
     - _OcclusionStrength: 1
     - _Offset_X_Axis_BLD: -0.282
     - _Offset_Y_Axis_BLD: -0.425
     - _Offset_Z_Axis_BLD: 0
+    - _OutlineMode: 0
     - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
-    - _Outline_Width: 27.1
+    - _Outline_Width: 11.9
     - _Parallax: 0.02
     - _ParallaxScale: 0.059
     - _ParallaxToggle: 1
+    - _RenderMode: 6
     - _RimLightNormal: 1
     - _RimLightToggle: 1
     - _RimLight_Power: 0.793
     - _ShadeColor_Step: 0.289
     - _ShadeNormal: 1
+    - _Shininess: 0.2917107
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _StencilComp: 6
+    - _StencilPassOp: 0
+    - _StencilRef: 2
     - _StencilReference: 2
+    - _StencilZFailOp: 0
     - _SystemShadeonoff: 0
     - _SystemShadeonoff1: 0
     - _Tweak_FixShadeMapLevel: 0.735
+    - _Tweak_HighColorBlurShadowLevel: 0.4329458
     - _Tweak_HighColorMaskLevel: 0.688
     - _Tweak_MatcapMaskLevel: 0.755
     - _Tweak_Matcap_Emission_Level: 0
     - _Tweak_RimLightMaskLevel: 0.423
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 1
+    - _Tweak_transparency: 0.343
     - _UVSec: 0
     - _Unlit_Intensity: 1.04
     - _UseBaseAs1st: 0
@@ -238,9 +293,15 @@ Material:
     - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
     - _Emissive_Color: {r: 0.16945532, g: 0.3018868, b: 0.20214579, a: 1}
+    - _EyeHi2Color: {r: 0.3553756, g: 0.453597, b: 0.6226415, a: 1}
+    - _EyeHi2Tilling: {r: 1, g: 1, b: 0, a: 0}
+    - _EyeHiColor: {r: 0.990566, g: 0.9571414, b: 0.855064, a: 1}
+    - _EyeHiTilling: {r: 1, g: 1, b: 0, a: 0}
     - _FixShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _Fix_Shade_Color: {r: 0, g: 0, b: 0, a: 1}
     - _HighColor: {r: 1, g: 0.7971698, b: 0.7971698, a: 1}
+    - _LimbusColor: {r: 0.3584906, g: 0.245194, b: 0.245194, a: 1}
+    - _LimbusTilling: {r: 1, g: 1, b: 0, a: 0}
     - _MainBodyColor: {r: 0, g: 0, b: 0, a: 1}
     - _MatCapColor: {r: 0.3773585, g: 0.17977929, b: 0.17977929, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}

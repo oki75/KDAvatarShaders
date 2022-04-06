@@ -7,14 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 3dcm_Mobile_Clipping
+  m_Name: Defotest
   m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
-  m_ShaderKeywords: _ _ANISOTROPIC_HIGHLIGHT_TOGGLE_ON _BLENDSHADOWCOLOR_ON _EMISSION
-    _EYEHIANDLIMBUS_ON _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO _LIGHTDIRECTION_MASKON_ON
-    _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME _METALLICGLOSSMAP _NORMALMAP
-    _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON _SPECGLOSSMAP _USEBASEAS2ND_ON
-    _UVSEC_UV1
-  m_LightmapFlags: 5
+  m_ShaderKeywords: _ _EYEHIANDLIMBUS_ON _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -32,18 +28,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 9086c5d3bb6786b45a688d4498745a20, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ClippingMask:
-        m_Texture: {fileID: 2800000, guid: 47a411395769d2a47b61dea667a51fce, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DecalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Decalmap:
+    - _ClippingMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DecalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -79,16 +71,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Fix_ShadeColorMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Fix_ShadeMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ce67abe22f5113243ad363fddee9aead, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
@@ -96,19 +80,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 143847595200de945a901f8362f5cb23, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 9086c5d3bb6786b45a688d4498745a20, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap2:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Occlusion:
-        m_Texture: {fileID: 2800000, guid: 87028b658fe620540b236edd2aefd6fe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -116,10 +96,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Parallax2Map:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -136,174 +112,134 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Set_HighColorMask:
-        m_Texture: {fileID: 2800000, guid: ef1eec863d385c144b3fb3c9e2eb9881, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SpecGlossMap:
-        m_Texture: {fileID: 2800000, guid: ef1eec863d385c144b3fb3c9e2eb9881, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _1st2nd_Shades_Feather: 0.147
-    - _AlphaTestRef: 0.5
-    - _AmbientMax: 0.8301814
+    - _1st2nd_Shades_Feather: 0
+    - _AmbientMax: 1
     - _AmbientMinimum: 0
-    - _Anisotropic_TangentNormal_Toggle: 0
+    - _Anisotropic_TangentNormal_Toggle: 1
     - _Anisotropic_highlight_Toggle: 0
-    - _BLD_Toggle: 0
-    - _BLD_X: 0
-    - _BLD_Y: 0
-    - _BaseColor_Step: 0.413
+    - _BaseColor_Step: 0.752
     - _BaseParallax: 0
-    - _BaseShade_Feather: 0.236
+    - _BaseShade_Feather: 0
     - _BlendAddEyeBase: 0
     - _BlendMode: 0
     - _BlendShadowColor: 1
     - _BlurLevel: 0
-    - _BumpScale: 0.502
-    - _BumpScale1: 0
+    - _BumpScale: 0
     - _BumpScale2: 0
-    - _Clipping_Level: 0.417
+    - _Clipping_Level: 0
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
-    - _Decal_UVSet2_Toggle: 0
+    - _Decal_UVSet2_Toggle: 1
     - _DetailBlend: 0
     - _DetailNormalMapScale: 1
     - _Detail_Parallax: 0
     - _DstBlend: 0
-    - _DubleHighColor_Toggle: 1
-    - _EmissionScaleUI: 0
+    - _DubleHighColor_Toggle: 0
     - _EyeHi2AdjustMirror: 0
-    - _EyeHi2OffsetX: 0.03070339
+    - _EyeHi2OffsetX: 0
     - _EyeHi2OffsetY: 0
     - _EyeHi2_Blend: 0
-    - _EyeHi2_BlurFeather: 0.4237356
-    - _EyeHi2_BlurStep: 0.7508348
+    - _EyeHi2_BlurFeather: 0.506
+    - _EyeHi2_BlurStep: 0.492
     - _EyeHi2_Scale: 1
-    - _EyeHiAdjustMirror: 0.00738687
+    - _EyeHiAdjustMirror: 0
     - _EyeHiAndLimbus: 1
-    - _EyeHiAndLimbusMirrorON: 1
-    - _EyeHiOffsetX: 0.03070339
+    - _EyeHiAndLimbusMirrorON: 0
+    - _EyeHiOffsetX: 0
     - _EyeHiOffsetY: 0
-    - _EyeHi_BlurFeather: 0.4237356
-    - _EyeHi_BlurStep: 0.7508348
+    - _EyeHi_BlurFeather: 0.492
+    - _EyeHi_BlurStep: 0.492
     - _EyeHi_Scale: 1
     - _EyeHi_Toggle: 0
     - _FixShadeParallax: 0
     - _Fix_ShadeMap_UVSet2_Toggle: 0
-    - _GlossMapScale: 0.441
-    - _Glossiness: 0.4
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _HighColorBlurShadow: 0
-    - _HighColorHue: 0.358
+    - _HighColorHue: 0
     - _HighColorMask_UVSet2_Toggle: 0
-    - _HighColorMask__UVSet2_Toggle: 0
-    - _HighColorNormal: 0
     - _HighColorParallax: 0
-    - _HighColorSaturation: -0.229
-    - _HighColor_Power: 0
+    - _HighColorSaturation: 0
     - _HighColor_Ratio: 0
     - _Inverse_Clipping: 0
     - _Is_BLD: 0
     - _Is_LightColor_Outline: 1
-    - _Is_NormalMapToHighColor: 1
-    - _Is_NormalMapToHighColorNormal: 0
+    - _Is_NormalMapToHighColor: 0
     - _Is_NormalMapToRimLight: 0
     - _KDASType: 0
-    - _KDSTechnique: 0
-    - _KDSType: 0
-    - _KDSVersion: 1
     - _KdaVerX: 1
     - _KdaVerY: 1
     - _KdaVerZ: 0
     - _LightDirection_MaskOn: 1
-    - _Lightmapping: 1
-    - _LimbusAdjustMirror: -0.4239556
-    - _LimbusOffsetX: -0.263
-    - _LimbusOffsetY: -0.422
-    - _Limbus_BlurFeather: 0.3461028
-    - _Limbus_BlurStep: 0.3467462
-    - _Limbus_Scale: 4.29
+    - _LimbusAdjustMirror: 0
+    - _LimbusOffsetX: 0
+    - _LimbusOffsetY: 0
+    - _Limbus_BlurFeather: 0.5
+    - _Limbus_BlurStep: 0.5
+    - _Limbus_Scale: 1
     - _Metallic: 0
     - _Mode: 0
     - _NormalMap2_UVSet2_Toggle: 0
     - _NormalMapParallax: 0
     - _NormalMap_UVSet2_Toggle: 0
     - _OcclusionStrength: 1
-    - _Offset_X_Axis_BLD: 1
-    - _Offset_Y_Axis_BLD: 0.194
-    - _Offset_Z_Axis_BLD: 0.184
+    - _Offset_X_Axis_BLD: -1
+    - _Offset_Y_Axis_BLD: 1
+    - _Offset_Z_Axis_BLD: -1
+    - _OutlineMode: 1
     - _OutlineTexToggle: 0
-    - _OutlineWidth: 0.1
-    - _Outline_Width: 5.65
-    - _Parallax: 0.02
-    - _ParallaxScale: 0.02578901
-    - _ParallaxToggle: 0
+    - _Outline_Width: 1
+    - _Parallax: 0
+    - _ParallaxScale: 0
     - _RenderMode: 0
-    - _RimLightNormal: 1
     - _RimLightToggle: 1
-    - _RimLight_Power: 0.291
-    - _ShadeColor_Step: 0.315
+    - _RimLight_Power: 0
+    - _ShadeColor_Step: 0.578
     - _ShadeNormal: 0
-    - _Shininess: 0.043
+    - _Shininess: 0.01
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StencilComp: 8
     - _StencilPassOp: 0
     - _StencilRef: 0
-    - _StencilReference: 2
     - _StencilZFailOp: 0
-    - _SystemShadeonoff: 0
-    - _Tweak_FixShadeMapLevel: 0
+    - _Tweak_FixShadeMapLevel: 1
     - _Tweak_HighColorBlurShadowLevel: 0
-    - _Tweak_HighColorMaskLevel: 1
-    - _Tweak_MatcapMaskLevel: 0.864
-    - _Tweak_Matcap_Emission_Level: 0.535
-    - _Tweak_RimLightMaskLevel: 1
-    - _Tweak_SystemShadowsLevel1: 0
-    - _Tweak_transparency: 0.262
+    - _Tweak_HighColorMaskLevel: 0
+    - _Tweak_MatcapMaskLevel: 0
+    - _Tweak_Matcap_Emission_Level: 0
+    - _Tweak_RimLightMaskLevel: 0
+    - _Tweak_transparency: 0
     - _UVSec: 0
     - _Unlit_Intensity: 1
-    - _UseBaseAs1st: 0
-    - _UseBaseAs2nd: 1
-    - _UseBlendBaseColor: 0
     - _Use_BaseAs1st: 1
     - _Use_BaseAs2nd: 1
-    - _Use_BaseAsFix: 0
+    - _Use_BaseAsFix: 1
     - _Use_Decal_alpha: 0
     - _ZWrite: 1
-    - _aniso_offset: -0.11
-    - _outlinetextogle: 0
-    - _simpleUI: 0
-    - _tweak_Matcap_Emission_Level: 0
+    - _aniso_offset: 0
     m_Colors:
-    - _1st_ShadeColor: {r: 0.30464578, g: 0.27847987, b: 0.3962264, a: 1}
-    - _2nd_ShadeColor: {r: 0.6294163, g: 0.60746706, b: 0.6886792, a: 1}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _1st_ShadeColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+    - _2nd_ShadeColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+    - _BaseColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
-    - _Emissive_Color: {r: 0.5849056, g: 0.29521182, b: 0.29521182, a: 1}
-    - _EyeHi2Color: {r: 0.3553756, g: 0.453597, b: 0.6226415, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Emissive_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EyeHi2Color: {r: 1, g: 1, b: 1, a: 1}
     - _EyeHi2Tilling: {r: 1, g: 1, b: 0, a: 0}
-    - _EyeHiColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EyeHiColor: {r: 0.6415094, g: 0.5234959, b: 0.5234959, a: 1}
     - _EyeHiTilling: {r: 1, g: 1, b: 0, a: 0}
-    - _FixShadeColor: {r: 0.9622642, g: 0.72169816, b: 0.95273954, a: 1}
-    - _Fix_Shade_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _FixShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _HighColor: {r: 1, g: 1, b: 1, a: 1}
-    - _LimbusColor: {r: 0.22628158, g: 0.23064345, b: 0.4245283, a: 1}
+    - _LimbusColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
     - _LimbusTilling: {r: 1, g: 1, b: 0, a: 0}
-    - _MainBodyColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MatCapColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Outline_Color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+    - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
