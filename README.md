@@ -16,9 +16,9 @@ KDShader is available under the MIT License. Please refer to the LICENSE include
 　 
 ## Shader Downlaod
 ### legacy
-[KDShader_ShaderOnly_v1.0.8_beta.unitypackage](https://github.com/oki75/KDAvaterShaders/blob/0220a261884583b20970bb4eeef87d5acd8d22f1/KDShader_ShaderOnly_v1.0.8_beta.unitypackage)
+[KDShader_ShaderOnly_v1.0.8_beta.unitypackage](https://github.com/oki75/KDAvaterShaders/raw/main/KDShader_ShaderOnly_v1.0.8_beta.unitypackage)
 ### New
-[KDAvaterShaders_ShaderOnly_v1.1.0.unitypackage](https://github.com/oki75/KDAvaterShaders/blob/391a49731934bce2a456f7eacf3ab613e639292c/KDAvaterShaders_ShaderOnly_v1.1.0.unitypackage)
+[KDAvaterShaders_ShaderOnly_v1.1.0.unitypackage](https://github.com/oki75/KDAvaterShaders/raw/391a49731934bce2a456f7eacf3ab613e639292c/KDAvaterShaders_ShaderOnly_v1.1.0.unitypackage)
 
 ### References
 - [「ユニティちゃんトゥーンシェーダーVer.2」【Unity道場スペシャル 2017博多】Unityで楽しむノンフォトリアルな絵づくり講座：トゥーンシェーダー・マニアクス](https://www.slideshare.net/UnityTechnologiesJapan/unity2017)
