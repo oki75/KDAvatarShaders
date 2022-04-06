@@ -22,6 +22,8 @@ KDShader is available under the MIT License. Please refer to the LICENSE include
 - [Unity のエディタ拡張で FoldOut をかっこよくするのをやってみた](https://tips.hecomi.com/entry/2016/10/15/004144)
 　 
 # Shader Downlaod
-
+# legacy
 [KDShader_ShaderOnly_v1.0.9_beta.unitypackage](https://github.com/oki75/KDAvaterShaders/blob/6855417202b9871025d1dfa5ec835ce1577613e5/KDShader_ShaderOnly_v1.0.9_beta.unitypackage)
-
+# New
+[KDAvaterShaders_ShaderOnly_v1.1.0.unitypackage
+(https://github.com/oki75/KDAvaterShaders/blob/391a49731934bce2a456f7eacf3ab613e639292c/KDAvaterShaders_ShaderOnly_v1.1.0.unitypackage)
