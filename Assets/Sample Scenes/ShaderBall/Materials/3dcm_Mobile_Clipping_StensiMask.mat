@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -166,7 +166,7 @@ Material:
     - _BumpScale: 1
     - _BumpScale1: 0
     - _BumpScale2: 1
-    - _Clipping_Level: 0
+    - _Clipping_Level: 0.098
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
@@ -213,7 +213,7 @@ Material:
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
-    - _KDASType: 0
+    - _KDASType: 2
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -237,6 +237,7 @@ Material:
     - _Offset_X_Axis_BLD: -0.282
     - _Offset_Y_Axis_BLD: -0.425
     - _Offset_Z_Axis_BLD: 0
+    - _OutlineMode: 0
     - _OutlineTexToggle: 1
     - _OutlineWidth: 0.1
     - _Outline_Width: 15.7
@@ -267,7 +268,7 @@ Material:
     - _Tweak_Matcap_Emission_Level: 0
     - _Tweak_RimLightMaskLevel: 0.423
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 0.306
+    - _Tweak_transparency: 0.074
     - _UVSec: 0
     - _Unlit_Intensity: 1.04
     - _UseBaseAs1st: 0

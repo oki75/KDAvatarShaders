@@ -9,15 +9,16 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 3dcm_Mobile_NoOutline_Clipping_StensiMaskOut
   m_Shader: {fileID: 4800000, guid: a11a381f433c19147ae73551a210d710, type: 3}
-  m_ShaderKeywords: _ _DETAILBLEND_ON _EMISSION _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
+  m_ShaderKeywords: _ _ALPHATEST_ON _DETAILBLEND_ON _EMISSION _IS_CLIPPING_MODE _IS_OUTLINE_CLIPPING_YES
     _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
     _METALLICGLOSSMAP _NORMALMAP _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON
     _SPECGLOSSMAP _USEBASEAS2ND_ON _UVSEC_UV1
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -166,7 +167,7 @@ Material:
     - _BumpScale: 1
     - _BumpScale1: 0
     - _BumpScale2: 0.94
-    - _Clipping_Level: 0.497
+    - _Clipping_Level: 0.647
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
@@ -213,7 +214,7 @@ Material:
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
-    - _KDASType: 0
+    - _KDASType: 2
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -237,13 +238,14 @@ Material:
     - _Offset_X_Axis_BLD: -0.282
     - _Offset_Y_Axis_BLD: -0.425
     - _Offset_Z_Axis_BLD: 0
+    - _OutlineMode: 0
     - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
     - _Outline_Width: 10
     - _Parallax: 0.02
     - _ParallaxScale: 0.059
     - _ParallaxToggle: 1
-    - _RenderMode: 0
+    - _RenderMode: 4
     - _RimLightNormal: 1
     - _RimLightToggle: 1
     - _RimLight_Power: 0.793
@@ -253,21 +255,21 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StencilComp: 8
+    - _StencilComp: 6
     - _StencilPassOp: 0
-    - _StencilRef: 0
+    - _StencilRef: 2
     - _StencilReference: 2
     - _StencilZFailOp: 0
     - _SystemShadeonoff: 0
     - _SystemShadeonoff1: 0
-    - _Tweak_FixShadeMapLevel: 0.735
+    - _Tweak_FixShadeMapLevel: 0.887
     - _Tweak_HighColorBlurShadowLevel: 0.4329458
     - _Tweak_HighColorMaskLevel: 0.729
     - _Tweak_MatcapMaskLevel: 0.755
     - _Tweak_Matcap_Emission_Level: 0
     - _Tweak_RimLightMaskLevel: 0.423
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 0.753
+    - _Tweak_transparency: 0.626
     - _UVSec: 0
     - _Unlit_Intensity: 1.04
     - _UseBaseAs1st: 0

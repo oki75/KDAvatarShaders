@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 3dcm_Mobile_Clipping_StensiMaskOut
-  m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
+  m_Shader: {fileID: 4800000, guid: a11a381f433c19147ae73551a210d710, type: 3}
   m_ShaderKeywords: _ _ALPHATEST_ON _EMISSION _IS_CLIPPING_MODE _IS_OUTLINE_CLIPPING_YES
     _LIGHTDIRECTION_MASKON_ON _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
     _METALLICGLOSSMAP _NORMALMAP _PARALLAX_ON _RIMLIGHTNORMAL_ON _SHADENORMAL_ON
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ClippingMask:
-        m_Texture: {fileID: 2800000, guid: 4527d788deee6b841be87bba2a106c4f, type: 3}
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DecalMap:
@@ -167,7 +167,7 @@ Material:
     - _BumpScale: 1
     - _BumpScale1: 0
     - _BumpScale2: 1
-    - _Clipping_Level: 0.019
+    - _Clipping_Level: 0.483
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
@@ -214,7 +214,7 @@ Material:
     - _Is_NormalMapToHighColor: 1
     - _Is_NormalMapToHighColorNormal: 0
     - _Is_NormalMapToRimLight: 1
-    - _KDASType: 0
+    - _KDASType: 2
     - _KDSTechnique: 0
     - _KDSType: 2
     - _KDSVersion: 1
@@ -238,13 +238,14 @@ Material:
     - _Offset_X_Axis_BLD: -0.282
     - _Offset_Y_Axis_BLD: -0.425
     - _Offset_Z_Axis_BLD: 0
+    - _OutlineMode: 0
     - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
     - _Outline_Width: 11.9
     - _Parallax: 0.02
     - _ParallaxScale: 0.059
     - _ParallaxToggle: 1
-    - _RenderMode: 4
+    - _RenderMode: 6
     - _RimLightNormal: 1
     - _RimLightToggle: 1
     - _RimLight_Power: 0.793
@@ -268,7 +269,7 @@ Material:
     - _Tweak_Matcap_Emission_Level: 0
     - _Tweak_RimLightMaskLevel: 0.423
     - _Tweak_SystemShadowsLevel1: 0.726
-    - _Tweak_transparency: 0.108
+    - _Tweak_transparency: 0.343
     - _UVSec: 0
     - _Unlit_Intensity: 1.04
     - _UseBaseAs1st: 0

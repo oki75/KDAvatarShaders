@@ -21,10 +21,11 @@ namespace KD
         public enum BlendMode
         {
         Opaque,
-        Cutout,
-        Transparent,
+        Clipping,
+        TransClipping,
         StencilMack,
-        StencilOut
+        StencilOut,
+       
         }
 
 
@@ -1458,7 +1459,7 @@ namespace KD
                 material.renderQueue = -1;
                 break;
 
-            case BlendMode.Cutout:
+            case BlendMode.Clipping:
                 material.SetOverrideTag("RenderType", "TransparentCutout");
                 material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
                 material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
@@ -1485,7 +1486,7 @@ namespace KD
                 material.renderQueue = 2450;
                 break;
 
-            case BlendMode.Transparent:
+            case BlendMode.TransClipping:
                 material.SetOverrideTag("RenderType", "Transparent");
                 material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.SrcAlpha);
                 material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
@@ -1563,6 +1564,7 @@ namespace KD
                 material.renderQueue = 2450;
                 break;
            
+            
                 
               default:
                 throw new ArgumentOutOfRangeException("RenderMode", renderMode, null);   
