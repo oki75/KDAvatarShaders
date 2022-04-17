@@ -100,7 +100,7 @@
 			 float        _Offset_Z_Axis_BLD;
 
              float4       _HighColor;
-			 float        _DubleHighColor_Toggle;
+			 fixed        _DubleHighColor_Toggle;
 			 float        _HighColorHue;
 			 float        _HighColorSaturation;
 			 half         _HighColor_Ratio;
