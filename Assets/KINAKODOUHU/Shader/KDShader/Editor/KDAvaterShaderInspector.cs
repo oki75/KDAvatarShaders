@@ -138,12 +138,26 @@ namespace KD
         MaterialProperty first2nd_Shades_Feather = null;
 
         MaterialProperty RGB_mask = null;
-//
+//Parallax
         MaterialProperty parallax = null;
-    
+
+        MaterialProperty NormalMapParallax = null;
+        MaterialProperty Detail_Parallax = null;
+        MaterialProperty BaseParallax = null;
+        
+        MaterialProperty HighColorParallax =null;
         MaterialProperty fixShadeParallax = null;
+
+
+
+
+
+
         MaterialProperty parallaxMap = null;
         MaterialProperty parallaxScale = null;
+
+
+
 //HighColor
         MaterialProperty highColor = null;
         MaterialProperty AnisotropicMask = null;
@@ -274,6 +288,10 @@ namespace KD
             RGB_mask = FindProperty("_RGB_mask", props);
 
             parallax =    FindProperty("_Parallax", props);
+            NormalMapParallax = FindProperty("_NormalMapParallax",props);
+            Detail_Parallax = FindProperty("_Detail_Parallax",props);
+            BaseParallax = FindProperty("_BaseParallax", props);
+            HighColorParallax = FindProperty("_HighColorParallax",props);
             fixShadeParallax =  FindProperty("_FixShadeParallax", props);
             parallaxMap =       FindProperty("_ParallaxMap", props);
             parallaxScale =     FindProperty("_ParallaxScale", props);
@@ -1116,6 +1134,84 @@ namespace KD
                 EditorGUI.indentLevel++;
 
                 m_MaterialEditor.TexturePropertySingleLine(Styles.parallaxMapText, parallaxMap);
+
+                 EditorGUILayout.BeginHorizontal();
+
+                EditorGUILayout.PrefixLabel("Normal Parallax");
+
+                if (material.GetFloat("_NormalMapParallax") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_NormalMapParallax", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_NormalMapParallax", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+
+                  EditorGUILayout.BeginHorizontal();
+
+                EditorGUILayout.PrefixLabel("Detail Parallax");
+
+                if (material.GetFloat("_Detail_Parallax") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_Detail_Parallax", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_Detail_Parallax", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+                 EditorGUILayout.BeginHorizontal();
+
+                EditorGUILayout.PrefixLabel("Base Parallax");
+
+                if (material.GetFloat("_BaseParallax") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_BaseParallax", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_BaseParallax", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+                  EditorGUILayout.BeginHorizontal();
+
+                EditorGUILayout.PrefixLabel("HighColor Parallax");
+
+                if (material.GetFloat("_HighColorParallax") == 0)
+                {
+                    if (GUILayout.Button("Off", shortButtonStyle))
+                    {
+                        material.SetFloat("_HighColorParallax", 1);
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Active", shortButtonStyle))
+                    {
+                        material.SetFloat("_HighColorParallax", 0);
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
 
