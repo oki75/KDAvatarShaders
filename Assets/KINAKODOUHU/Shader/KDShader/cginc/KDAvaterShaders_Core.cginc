@@ -1,7 +1,7 @@
 //KDAvatarShaders_Core.cginc
 //KDShader
 //KDAvaterShaders ver.1.1
-//v.1.1.00
+//v.1.1.1
 //https://github.com/oki75/KDAvaterShaders 
  
 
@@ -69,6 +69,8 @@
 			 fixed        _NormalMap2_UVSet2_Toggle;
 			 float        _BumpScale2;
 
+
+
              UNITY_DECLARE_TEX2D_NOSAMPLER(_ParallaxMap);
 			 SamplerState sampler_ParallaxMap;
 			 float4       _ParallaxMap_ST;
@@ -81,13 +83,15 @@
 		     fixed        _BaseParallax;
 			 fixed        _FixShadeParallax;
 
+           
+			 
 			 fixed        _Is_BLD;
 			 float        _Offset_X_Axis_BLD;
 			 float        _Offset_Y_Axis_BLD;
 			 float        _Offset_Z_Axis_BLD;
 
              float4       _HighColor;
-			 float        _DubleHighColor_Toggle;
+			 fixed        _DubleHighColor_Toggle;
 			 float        _HighColorHue;
 			 float        _HighColorSaturation;
 			 half         _HighColor_Ratio;
@@ -171,8 +175,10 @@
 			 float        _Tweak_HighColorBlurShadowLevel;
 			 float        _Tweak_FixShadeMapLevel;
 //EyeLens 
+#ifdef _EYEHIANDLIMBUS_ON
+
 			 float _EyeHi2_Blend;
-			 float _EyeHi_Toggle;
+			 fixed _EyeHi_Toggle;
 			 half4 _LimbusColor;
 			 half _Limbus_Scale;
 			 half _LimbusAdjustMirror;
@@ -203,6 +209,8 @@
 			 half _EyeHi2OffsetY;
 			 half _EyeHi2_BlurStep;
 			 half _EyeHi2_BlurFeather;
+#else
+#endif			 
 //			 
 			UNITY_DECLARE_TEX2D_NOSAMPLER(_MatCap_Sampler);
 			SamplerState sampler_MatCap_Sampler;
@@ -329,7 +337,8 @@
 				half3 Lighting28_g332 = clampResult27_g332;
 				float3 Lighting82 = Lighting28_g332;
 
-            //uv2
+            //uv
+                float2 texCoordDef = i.texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 
 				float2 uv_NormalMap = i.texcoord.xy * _NormalMap_ST.xy + _NormalMap_ST.zw;
 				float2 uv2_NormalMap = i.texcoord.zw * _NormalMap_ST.xy + _NormalMap_ST.zw;
@@ -337,7 +346,6 @@
                 float2 uv_NormalMap2 = i.texcoord.xy * _NormalMap2_ST.xy + _NormalMap2_ST.zw;
 				float2 uv2_NormalMap2 = i.texcoord.zw * _NormalMap2_ST.xy + _NormalMap2_ST.zw;
 
-				float2 uv_ParallaxMap = i.texcoord.xy * _ParallaxMap_ST.xy + _ParallaxMap_ST.zw;
             
 				float2 uv_DecalMap = i.texcoord.xy * _DecalMap_ST.xy + _DecalMap_ST.zw;
 				float2 uv2_DecalMap = i.texcoord.zw * _DecalMap_ST.xy + _DecalMap_ST.zw;
@@ -355,11 +363,7 @@
 
 				float2 uv_Emissive_Tex = i.texcoord.xy * _Emissive_Tex_ST.xy + _Emissive_Tex_ST.zw;
 							
-            //Parallax R=hight G=Mask
-				
-				float4 parallaxMap = SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, uv_ParallaxMap );
-				float HightMap = parallaxMap.r;
-
+            
 				float3 ase_worldTangent = i.ase_texcoord1.xyz;
 				float3 ase_worldNormal = i.ase_texcoord2.xyz;
 				float3 ase_worldBitangent = i.ase_texcoord3.xyz;
@@ -368,7 +372,11 @@
 				float3 tanToWorld1 = float3( ase_worldTangent.y, ase_worldBitangent.y, ase_worldNormal.y );
 				float3 tanToWorld2 = float3( ase_worldTangent.z, ase_worldBitangent.z, ase_worldNormal.z );
 
-				
+//Parallax R=hight G=Mask
+#ifdef _PARALLAX_ON
+                float2 uv_ParallaxMap = i.texcoord.xy * _ParallaxMap_ST.xy + _ParallaxMap_ST.zw;
+				float4 parallaxMap = SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, uv_ParallaxMap );
+				float HightMap = parallaxMap.r;
 
 				float3 ase_tanViewDir =  tanToWorld * ase_worldViewDir.x + tanToWorld1 * ase_worldViewDir.y  + tanToWorld2 * ase_worldViewDir.z;
 				ase_tanViewDir = normalize(ase_tanViewDir);
@@ -378,16 +386,16 @@
 				float2 Offset2335_g1 = ( ( SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, Offset2364_g1 ).r - 1 ) * ase_tanViewDir.xy * 0.0 ) + Offset2364_g1;
 				float2 Offset2358_g1 = ( ( SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, Offset2335_g1 ).r - 1 ) * ase_tanViewDir.xy * 0.0 ) + Offset2335_g1;
 
-#ifdef _PARALLAX_ON
-
 				float2 staticSwitch418 = Offset2358_g1;
+				float parallaxtogle281 = parallaxMap.g;
 #else
 
-				float2 staticSwitch418 = uv_ParallaxMap;
+				float2 staticSwitch418 = texCoordDef;
+				float parallaxtogle281 = 0.0;
 #endif
 
 				float2 Parallaxoffset275 = staticSwitch418;
-				float parallaxtogle281 = parallaxMap.g;
+				
 
 				 //MainTex
 			    float2 lerpResult378 = lerp( uv_MainTex , ( ( Parallaxoffset275 + uv_MainTex ) / 
@@ -443,13 +451,15 @@
 				float3 worldNormal251 = float3(dot(tanToWorld,NHighColor), dot(tanToWorld1,NHighColor), dot(tanToWorld2,NHighColor));
 
             //EyeLens
-                    
+ #ifdef _EYEHIANDLIMBUS_ON    
+                
                 float time22 = 0.0;
 				float2 voronoiSmoothId22 = 0;
 				float2 id22 = 0;
 				float2 uv22 = 0;
 
             //Limbus
+
 
 				float clampResult56_g455 = clamp( _Limbus_Scale , 0.0 , ( 1.0 / _Limbus_Scale ) );
 				float2 temp_cast_1 = (clampResult56_g455).xx;
@@ -550,7 +560,7 @@
 				    float lerpResult829 = lerp( temp_output_271_0_g455 , ( temp_output_271_0_g455 * temp_output_274_0_g455 ) , (( _EyeHiAndLimbusMirrorON )?( 1.0 ):( 0.0 )));
 				    float4 lerpResult830 = lerp( lerpResult833 , lerpResult681 , lerpResult829);
 				    float4 lerpResult847 = lerp( lerpResult842 , lerpResult830 , (( _BlendAddEyeBase )?( 1.0 ):( 0.0 )));
-#ifdef _EYEHIANDLIMBUS_ON
+
 				    float4 staticSwitch948 = (( _EyeHi2_Blend )?( lerpResult847 ):( (( _EyeHi_Toggle )?( lerpResult723 ):( lerpResult689 )) ));
 #else
 				    float4 staticSwitch948 = mainTex453;

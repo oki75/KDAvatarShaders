@@ -1,6 +1,6 @@
 //KDShader
 //KDAvaterShaders ver.1.0
-//v.1.1.00
+//v.1.1.1
 //https://github.com/oki75/KDAvaterShaders          
 
 Shader "Hidden/KDShader/KDAvaterShaders_Core_Pass"

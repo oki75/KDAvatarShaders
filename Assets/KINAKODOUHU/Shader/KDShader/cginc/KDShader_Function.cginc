@@ -1,6 +1,6 @@
 //KDShader_Function.cginc
 //KDShader
-//v.1.1.00
+//v.1.1.1
 //https://github.com/oki75/KDAvaterShaders          
 
 

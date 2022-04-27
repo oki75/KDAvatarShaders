@@ -176,7 +176,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _Detail_Parallax: 0
     - _DstBlend: 0
-    - _DubleHighColor_Toggle: 1
+    - _DubleHighColor_Toggle: 0
     - _EmissionScaleUI: 0
     - _EyeHi2AdjustMirror: 0
     - _EyeHi2OffsetX: 0.03070339
@@ -238,6 +238,7 @@ Material:
     - _Offset_X_Axis_BLD: 1
     - _Offset_Y_Axis_BLD: 0.194
     - _Offset_Z_Axis_BLD: 0.184
+    - _OutlineMode: 0
     - _OutlineTexToggle: 0
     - _OutlineWidth: 0.1
     - _Outline_Width: 5.65
@@ -250,7 +251,7 @@ Material:
     - _RimLight_Power: 0.291
     - _ShadeColor_Step: 0.315
     - _ShadeNormal: 0
-    - _Shininess: 0.043
+    - _Shininess: 0.339
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
