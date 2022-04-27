@@ -451,14 +451,15 @@
 				float3 worldNormal251 = float3(dot(tanToWorld,NHighColor), dot(tanToWorld1,NHighColor), dot(tanToWorld2,NHighColor));
 
             //EyeLens
-                    
+ #ifdef _EYEHIANDLIMBUS_ON    
+                
                 float time22 = 0.0;
 				float2 voronoiSmoothId22 = 0;
 				float2 id22 = 0;
 				float2 uv22 = 0;
 
             //Limbus
-#ifdef _EYEHIANDLIMBUS_ON
+
 
 				float clampResult56_g455 = clamp( _Limbus_Scale , 0.0 , ( 1.0 / _Limbus_Scale ) );
 				float2 temp_cast_1 = (clampResult56_g455).xx;

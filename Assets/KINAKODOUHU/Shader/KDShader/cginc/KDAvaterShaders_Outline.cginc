@@ -346,7 +346,8 @@
 
 
              //EyeLens
-                    
+#ifdef _EYEHIANDLIMBUS_ON     
+
                     float time22 = 0.0;
 					float2 voronoiSmoothId22 = 0;
 					float2 id22 = 0;
@@ -451,7 +452,7 @@
 				    float lerpResult829 = lerp( temp_output_271_0_g455 , ( temp_output_271_0_g455 * temp_output_274_0_g455 ) , (( _EyeHiAndLimbusMirrorON )?( 1.0 ):( 0.0 )));
 				    float4 lerpResult830 = lerp( lerpResult833 , lerpResult681 , lerpResult829);
 				    float4 lerpResult847 = lerp( lerpResult842 , lerpResult830 , (( _BlendAddEyeBase )?( 1.0 ):( 0.0 )));
-#ifdef _EYEHIANDLIMBUS_ON
+
 				    float4 staticSwitch948 = (( _EyeHi2_Blend )?( lerpResult847 ):( (( _EyeHi_Toggle )?( lerpResult723 ):( lerpResult689 )) ));
 #else
 				    float4 staticSwitch948 = mainTex453;

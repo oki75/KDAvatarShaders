@@ -9,8 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Defotest
   m_Shader: {fileID: 4800000, guid: dad4bae970d86c944a2d9c7cac7e6d87, type: 3}
-  m_ShaderKeywords: _ _EYEHIANDLIMBUS_ON _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
-    _PARALLAX_ON
+  m_ShaderKeywords: _ _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -135,13 +134,13 @@ Material:
     - _CullMode: 2
     - _Cutoff: 0.5
     - _Decal_Toggle: 0
-    - _Decal_UVSet2_Toggle: 1
+    - _Decal_UVSet2_Toggle: 0
     - _DetailBlend: 0
     - _DetailNormalMapScale: 1
     - _Detail_Parallax: 0
     - _DstBlend: 0
     - _DubleHighColor_Toggle: 0
-    - _EyeHi2AdjustMirror: 0
+    - _EyeHi2AdjustMirror: 0.086
     - _EyeHi2OffsetX: 0
     - _EyeHi2OffsetY: 0
     - _EyeHi2_Blend: 0
@@ -149,7 +148,7 @@ Material:
     - _EyeHi2_BlurStep: 0.492
     - _EyeHi2_Scale: 1
     - _EyeHiAdjustMirror: 0
-    - _EyeHiAndLimbus: 1
+    - _EyeHiAndLimbus: 0
     - _EyeHiAndLimbusMirrorON: 0
     - _EyeHiOffsetX: 0
     - _EyeHiOffsetY: 0
@@ -196,7 +195,7 @@ Material:
     - _OutlineMode: 1
     - _OutlineTexToggle: 0
     - _Outline_Width: 1
-    - _Parallax: 1
+    - _Parallax: 0
     - _ParallaxScale: 0
     - _RenderMode: 0
     - _RimLightToggle: 1
