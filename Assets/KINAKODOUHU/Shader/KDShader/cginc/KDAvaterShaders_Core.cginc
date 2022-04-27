@@ -69,6 +69,8 @@
 			 fixed        _NormalMap2_UVSet2_Toggle;
 			 float        _BumpScale2;
 
+
+
              UNITY_DECLARE_TEX2D_NOSAMPLER(_ParallaxMap);
 			 SamplerState sampler_ParallaxMap;
 			 float4       _ParallaxMap_ST;
@@ -81,6 +83,8 @@
 		     fixed        _BaseParallax;
 			 fixed        _FixShadeParallax;
 
+           
+			 
 			 fixed        _Is_BLD;
 			 float        _Offset_X_Axis_BLD;
 			 float        _Offset_Y_Axis_BLD;
@@ -333,7 +337,8 @@
 				half3 Lighting28_g332 = clampResult27_g332;
 				float3 Lighting82 = Lighting28_g332;
 
-            //uv2
+            //uv
+                float2 texCoordDef = i.texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 
 				float2 uv_NormalMap = i.texcoord.xy * _NormalMap_ST.xy + _NormalMap_ST.zw;
 				float2 uv2_NormalMap = i.texcoord.zw * _NormalMap_ST.xy + _NormalMap_ST.zw;
@@ -341,7 +346,6 @@
                 float2 uv_NormalMap2 = i.texcoord.xy * _NormalMap2_ST.xy + _NormalMap2_ST.zw;
 				float2 uv2_NormalMap2 = i.texcoord.zw * _NormalMap2_ST.xy + _NormalMap2_ST.zw;
 
-				float2 uv_ParallaxMap = i.texcoord.xy * _ParallaxMap_ST.xy + _ParallaxMap_ST.zw;
             
 				float2 uv_DecalMap = i.texcoord.xy * _DecalMap_ST.xy + _DecalMap_ST.zw;
 				float2 uv2_DecalMap = i.texcoord.zw * _DecalMap_ST.xy + _DecalMap_ST.zw;
@@ -359,11 +363,7 @@
 
 				float2 uv_Emissive_Tex = i.texcoord.xy * _Emissive_Tex_ST.xy + _Emissive_Tex_ST.zw;
 							
-            //Parallax R=hight G=Mask
-				
-				float4 parallaxMap = SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, uv_ParallaxMap );
-				float HightMap = parallaxMap.r;
-
+            
 				float3 ase_worldTangent = i.ase_texcoord1.xyz;
 				float3 ase_worldNormal = i.ase_texcoord2.xyz;
 				float3 ase_worldBitangent = i.ase_texcoord3.xyz;
@@ -372,7 +372,11 @@
 				float3 tanToWorld1 = float3( ase_worldTangent.y, ase_worldBitangent.y, ase_worldNormal.y );
 				float3 tanToWorld2 = float3( ase_worldTangent.z, ase_worldBitangent.z, ase_worldNormal.z );
 
-				
+//Parallax R=hight G=Mask
+#ifdef _PARALLAX_ON
+                float2 uv_ParallaxMap = i.texcoord.xy * _ParallaxMap_ST.xy + _ParallaxMap_ST.zw;
+				float4 parallaxMap = SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, uv_ParallaxMap );
+				float HightMap = parallaxMap.r;
 
 				float3 ase_tanViewDir =  tanToWorld * ase_worldViewDir.x + tanToWorld1 * ase_worldViewDir.y  + tanToWorld2 * ase_worldViewDir.z;
 				ase_tanViewDir = normalize(ase_tanViewDir);
@@ -382,16 +386,16 @@
 				float2 Offset2335_g1 = ( ( SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, Offset2364_g1 ).r - 1 ) * ase_tanViewDir.xy * 0.0 ) + Offset2364_g1;
 				float2 Offset2358_g1 = ( ( SAMPLE_TEXTURE2D( _ParallaxMap, sampler_ParallaxMap, Offset2335_g1 ).r - 1 ) * ase_tanViewDir.xy * 0.0 ) + Offset2335_g1;
 
-#ifdef _PARALLAX_ON
-
 				float2 staticSwitch418 = Offset2358_g1;
+				float parallaxtogle281 = parallaxMap.g;
 #else
 
-				float2 staticSwitch418 = uv_ParallaxMap;
+				float2 staticSwitch418 = texCoordDef;
+				float parallaxtogle281 = 0.0;
 #endif
 
 				float2 Parallaxoffset275 = staticSwitch418;
-				float parallaxtogle281 = parallaxMap.g;
+				
 
 				 //MainTex
 			    float2 lerpResult378 = lerp( uv_MainTex , ( ( Parallaxoffset275 + uv_MainTex ) / 
