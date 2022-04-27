@@ -1,4 +1,4 @@
-﻿//KDAvaterShadersInspector.cs for KDAvaterShaders v.1.1.00
+﻿//KDAvaterShadersInspector.cs for KDAvaterShaders v.1.1.1
 //https://github.com/oki75/KDAvaterShaders          
          
 using System;
@@ -42,7 +42,7 @@ namespace KD
 
        static float _kdsVerX = 1;
        static float _kdsVerY = 1;
-       static float _kdsVerZ = 00;
+       static float _kdsVerZ = 1;
 
        //Outline
 
@@ -735,8 +735,8 @@ namespace KD
                
                 EditorGUILayout.Space();
             
-        }
-
+             }
+  
             EditorGUILayout.Space();
 
             _StepAndFeather_Foldout = Foldout(_StepAndFeather_Foldout, "Shading Step and Feather Settings");
@@ -751,7 +751,7 @@ namespace KD
             }
 
             EditorGUILayout.Space();
-//EyeLens
+             //EyeLens
              _EyeLens_Foldout = Foldout(_EyeLens_Foldout, "Limbus and EyeHi Settings");
             if (_EyeLens_Foldout)
             {
@@ -806,7 +806,7 @@ namespace KD
                 GUI_MatCap(material);
                 EditorGUI.indentLevel--;
             }
-            EditorGUILayout.Space();
+                EditorGUILayout.Space();
 
             _Emissive_Foldout = Foldout(_Emissive_Foldout, "Emissive Settings");
             if (_Emissive_Foldout)
@@ -819,64 +819,27 @@ namespace KD
 
             EditorGUILayout.Space();
 
-          
-            
-                _Outline_Foldout = Foldout(_Outline_Foldout, "Outline Settings");
-                if (_Outline_Foldout)
-                {
-                    EditorGUI.indentLevel++;
-                    EditorGUILayout.Space();
-                    GUI_Outline(material);
-                    EditorGUI.indentLevel--;
-                }
+            _Outline_Foldout = Foldout(_Outline_Foldout, "Outline Settings");
+            if (_Outline_Foldout)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.Space();
+                GUI_Outline(material);
+                EditorGUI.indentLevel--;
+            }
                 EditorGUILayout.Space();
             
-            // Advanced Settings
             _AdvancedSettings_Foldout = Foldout(_AdvancedSettings_Foldout, "Advanced Settings");
             if (_AdvancedSettings_Foldout)
             {
-                EditorGUILayout.BeginHorizontal();
-             
-                EditorGUI.indentLevel++;
-
-                EditorGUILayout.PrefixLabel("Built-in Light Direction");
-
-                if (material.GetFloat("_Is_BLD") == 0)
-                {
-                    if (GUILayout.Button("Off", middleButtonStyle))
-                    {
-                        material.SetFloat("_Is_BLD", 1);
-                    }
-                }
-                else
-                {
-                    if (GUILayout.Button("Active", middleButtonStyle))
-                    {
-                        material.SetFloat("_Is_BLD", 0);
-                    }
-                }
-                EditorGUILayout.EndHorizontal();
-              
-                if (material.GetFloat("_Is_BLD") == 1)
-                {
-                    GUILayout.Label("    Built-in Light Direction Settings");
                     EditorGUI.indentLevel++;
-                    m_MaterialEditor.RangeProperty(offset_X_Axis_BLD, " Offset X-Axis");
-                    m_MaterialEditor.RangeProperty(offset_Y_Axis_BLD, " Offset Y-Axis");
-                    m_MaterialEditor.RangeProperty(offset_Z_Axis_BLD, " Offset Z-Axis");
+                    EditorGUILayout.Space();
+                    GUI_AdvancedSettings(material);
                     EditorGUI.indentLevel--;
-                }
-                EditorGUILayout.Space();
-                m_MaterialEditor.ShaderProperty(unlit_Intensity, "Unlit_Intensity");
-                m_MaterialEditor.ShaderProperty(AmbientMax, "AmbientMix");
-                m_MaterialEditor.ShaderProperty(AmbientMinimum, "AmbientMinimum");
-                EditorGUILayout.Space();
-                m_MaterialEditor.ShaderProperty(CullMode, "CullMode");
-              
-
-                EditorGUI.indentLevel--;
-               
             }
+            
+            EditorGUILayout.Space();
+
             if (EditorGUI.EndChangeCheck())
             {
                 m_MaterialEditor.PropertiesChanged();
@@ -884,7 +847,7 @@ namespace KD
 
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-        //Var
+             //Var
         
             GUILayout.Label("KD AvaterShaders"+" v."+_kdsVerX +"." + _kdsVerY+"."+_kdsVerZ  , EditorStyles.boldLabel);
             EditorGUILayout.EndHorizontal();
@@ -1381,13 +1344,7 @@ namespace KD
                 m_MaterialEditor.RangeProperty(tweak_MatcapEmission_Level, "MatCap Emission Level");
 
                 EditorGUI.indentLevel++;
-            
-
-
-               
-           
-
-            
+             
         }
         void GUI_Emissive(Material material)
         {
@@ -1497,31 +1454,162 @@ namespace KD
             }
             
         }
+    }
+
+         void GUI_AdvancedSettings(Material material)
+        {
+            EditorGUILayout.BeginHorizontal();
+
+            
+            EditorGUILayout.PrefixLabel("Built-in Light Direction");
+
+            if (material.GetFloat("_Is_BLD") == 0)
+            {
+                if (GUILayout.Button("Off", middleButtonStyle))
+                {
+                    material.SetFloat("_Is_BLD", 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", middleButtonStyle))
+                {
+                    material.SetFloat("_Is_BLD", 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (material.GetFloat("_Is_BLD") == 1)
+            {
+                GUILayout.Label("                     Settings");
+                EditorGUI.indentLevel++;
+                m_MaterialEditor.RangeProperty(offset_X_Axis_BLD, " Offset X-Axis");
+                m_MaterialEditor.RangeProperty(offset_Y_Axis_BLD, " Offset Y-Axis");
+                m_MaterialEditor.RangeProperty(offset_Z_Axis_BLD, " Offset Z-Axis");
+                EditorGUI.indentLevel--;
+            }
+
+            EditorGUILayout.Space();
+            m_MaterialEditor.ShaderProperty(unlit_Intensity, "Unlit_Intensity");
+            m_MaterialEditor.ShaderProperty(AmbientMax, "AmbientMix");
+            m_MaterialEditor.ShaderProperty(AmbientMinimum, "AmbientMinimum");
+            EditorGUILayout.Space();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("DecalUV2");
+
+            if (material.GetFloat("_Decal_UVSet2_Toggle") == 0)
+            {
+                if (GUILayout.Button("Off", middleButtonStyle))
+                {
+                    material.SetFloat("_Decal_UVSet2_Toggle", 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", middleButtonStyle))
+                {
+                    material.SetFloat("_Decal_UVSet2_Toggle", 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("NormalMapUV2");
+
+            if (material.GetFloat("_NormalMap_UVSet2_Toggle") == 0)
+            {
+                if (GUILayout.Button("Off", middleButtonStyle))
+                {
+                    material.SetFloat("_NormalMap_UVSet2_Toggle", 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", middleButtonStyle))
+                {
+                    material.SetFloat("_NormalMap_UVSet2_Toggle", 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("DetailMap2UV2");
+
+            if (material.GetFloat("_NormalMap2_UVSet2_Toggle") == 0)
+            {
+                if (GUILayout.Button("Off", middleButtonStyle))
+                {
+                    material.SetFloat("_NormalMap2_UVSet2_Toggle", 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", middleButtonStyle))
+                {
+                    material.SetFloat("_NormalMap2_UVSet2_Toggle", 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("FixShadeMapUV2");
+
+            if (material.GetFloat("_Fix_ShadeMap_UVSet2_Toggle") == 0)
+            {
+                if (GUILayout.Button("Off", middleButtonStyle))
+                {
+                    material.SetFloat("_Fix_ShadeMap_UVSet2_Toggle", 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", middleButtonStyle))
+                {
+                    material.SetFloat("_Fix_ShadeMap_UVSet2_Toggle", 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+             EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("HighColorMaskUV2");
+
+            if (material.GetFloat("_HighColorMask_UVSet2_Toggle") == 0)
+            {
+                if (GUILayout.Button("Off", middleButtonStyle))
+                {
+                    material.SetFloat("_HighColorMask_UVSet2_Toggle", 1);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Active", middleButtonStyle))
+                {
+                    material.SetFloat("_HighColorMask_UVSet2_Toggle", 0);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
+           
+            EditorGUILayout.Space();
+            m_MaterialEditor.ShaderProperty(CullMode, "CullMode");
+
+
+            
 
         }
 
-    /// <summary>
-    /// Processes when switching shaders
-    /// </summary>
-    /// <param name="material"></param>
-    /// <param name="oldShader"></param>
-    /// <param name="newShader"></param>
+        /// <summary>
+        /// Processes when switching shaders
+        /// </summary>
+        /// <param name="material"></param>
+        /// <param name="oldShader"></param>
+        /// <param name="newShader"></param>
 
-         public override void AssignNewShaderToMaterial(Material material, Shader oldShader, Shader newShader)
+        public override void AssignNewShaderToMaterial(Material material, Shader oldShader, Shader newShader)
     {
        base.AssignNewShaderToMaterial(material, oldShader, newShader);
 
         if(oldShader != newShader)
         {
-      //      if (oldShader == null)
-      //      { 
-                // Material BlendMode resetting
+      
             SetBlendMode(material, (BlendMode) material.GetFloat("_RenderMode"));
-       //     return;}
-      //      }
-      //  if( oldShader.name == "KDShader/KDAvaterShaders" || oldShader.name == "KDShader/KDAvaterShaders_NoOutline" )
-      //      {
-      //       return;
+      
             }
     
     }

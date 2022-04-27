@@ -1,7 +1,7 @@
 //KDAvatarShaders_Core.cginc
 //KDShader
 //KDAvaterShaders ver.1.1
-//v.1.1.00
+//v.1.1.1
 //https://github.com/oki75/KDAvaterShaders 
  
 
@@ -171,8 +171,10 @@
 			 float        _Tweak_HighColorBlurShadowLevel;
 			 float        _Tweak_FixShadeMapLevel;
 //EyeLens 
+#ifdef _EYEHIANDLIMBUS_ON
+
 			 float _EyeHi2_Blend;
-			 float _EyeHi_Toggle;
+			 fixed _EyeHi_Toggle;
 			 half4 _LimbusColor;
 			 half _Limbus_Scale;
 			 half _LimbusAdjustMirror;
@@ -203,6 +205,8 @@
 			 half _EyeHi2OffsetY;
 			 half _EyeHi2_BlurStep;
 			 half _EyeHi2_BlurFeather;
+#else
+#endif			 
 //			 
 			UNITY_DECLARE_TEX2D_NOSAMPLER(_MatCap_Sampler);
 			SamplerState sampler_MatCap_Sampler;
@@ -450,6 +454,7 @@
 				float2 uv22 = 0;
 
             //Limbus
+#ifdef _EYEHIANDLIMBUS_ON
 
 				float clampResult56_g455 = clamp( _Limbus_Scale , 0.0 , ( 1.0 / _Limbus_Scale ) );
 				float2 temp_cast_1 = (clampResult56_g455).xx;
@@ -550,7 +555,7 @@
 				    float lerpResult829 = lerp( temp_output_271_0_g455 , ( temp_output_271_0_g455 * temp_output_274_0_g455 ) , (( _EyeHiAndLimbusMirrorON )?( 1.0 ):( 0.0 )));
 				    float4 lerpResult830 = lerp( lerpResult833 , lerpResult681 , lerpResult829);
 				    float4 lerpResult847 = lerp( lerpResult842 , lerpResult830 , (( _BlendAddEyeBase )?( 1.0 ):( 0.0 )));
-#ifdef _EYEHIANDLIMBUS_ON
+
 				    float4 staticSwitch948 = (( _EyeHi2_Blend )?( lerpResult847 ):( (( _EyeHi_Toggle )?( lerpResult723 ):( lerpResult689 )) ));
 #else
 				    float4 staticSwitch948 = mainTex453;

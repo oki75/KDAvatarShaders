@@ -1,7 +1,7 @@
 //KDAvaterShaders_Outline.cginc
 //KDShader
 //KDAvaterShaders ver.1.1
-//v.1.1.00
+//v.1.1.1
 //https://github.com/oki75/KDAvaterShaders           
 
 
@@ -185,7 +185,7 @@
 			 float        _Tweak_FixShadeMapLevel;
 //EyeLens 
 			 float _EyeHi2_Blend;
-			 float _EyeHi_Toggle;
+			 fixed _EyeHi_Toggle;
 			 half4 _LimbusColor;
 			 half _Limbus_Scale;
 			 half _LimbusAdjustMirror;

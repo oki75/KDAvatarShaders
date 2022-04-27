@@ -1,6 +1,6 @@
 //KDShader
 //KDAvaterShaders ver.1.0
-//v.1.1.00
+//v.1.1.1
 //https://github.com/oki75/KDAvaterShaders          
 
 Shader "Hidden/KDShader/KDAvaterShaders_NoOutline"
@@ -9,7 +9,7 @@ Shader "Hidden/KDShader/KDAvaterShaders_NoOutline"
 	{
 	    [HideInInspector]	_KdaVerX	                  ( "KdaVerX"	, Float ) = 1
 		[HideInInspector]	_KdaVerY	                  ( "KdaVerY"	, Float ) = 1
-		[HideInInspector]	_KdaVerZ	                  ( "KdaVerZ"	, Float ) = 00
+		[HideInInspector]	_KdaVerZ	                  ( "KdaVerZ"	, Float ) = 1
         [HideInInspector]   _KDASType                      ( "KDASType"	, Int ) = 0
 		[HideInInspector]   _OutlineMode                   ( "OutlineMode"	, Int ) = 0
 
