@@ -13,9 +13,6 @@ KINAKODOUHU avatar shader
 
 [ShaderUpdates](https://plucky-danger-07a.notion.site/Shader-Updates-d270ddd48582408791ac30c490c8e845)
 
-
-## License
-KDShader is available under the MIT License. Please refer to the LICENSE included in the package.
 　 
 ## Shader Downlaod
 ### legacy
