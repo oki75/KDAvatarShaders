@@ -1,19 +1,16 @@
 {
     "name": "KDAvatarShaders",
-    "author": "oki75",
+    "author": {
+        "name":"oki75",
+        "url": "https://github.com/oki75/KDAvatarShaders"
+    },
     "version": "1.1.1",
     "displayName": "KDAvatarShaders",
-    "description": "KINAKODOUHU avatar shader
-    Non-photorealistic rendering, NPR shader aimed at expressing brushed illustrations as lightly as possible
+    "description": "KINAKODOUHU avatar shader",
 
-    It is designed to blend in with the colors of the VRC world (under a light bake environment).
-    
-    The influence of ambient light can be adjusted.
-    
-    set to be unaffected by real-time lights.
-    
-    Built-in Render Pipeline (BRP)
-    
-    Node-based development with AmplifyShaderEditer",
-    "unity": "2020.3"
+    "keywords": [
+         "shader"
+     ],
+
+    "unity": "2019.4"
 }
