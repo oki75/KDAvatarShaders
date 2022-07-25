@@ -1,5 +1,5 @@
 {
-    "name": "KDAvatarShaders",
+    "name": "com.KD.KDAvatarShaders",
     "author": {
         "name":"oki75",
         "url": "https://github.com/oki75/KDAvatarShaders"
@@ -13,4 +13,5 @@
      ],
 
     "unity": "2019.4"
+    
 }
