@@ -6,7 +6,7 @@ ShaderVariantCollection:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KDAvaterShaders_ShaderVariants
+  m_Name: KDAvatarShaders_ShaderVariants
   m_Shaders:
   - first: {fileID: 4800000, guid: c45f26261c92bf948b4d1ee3397f450d, type: 3}
     second:

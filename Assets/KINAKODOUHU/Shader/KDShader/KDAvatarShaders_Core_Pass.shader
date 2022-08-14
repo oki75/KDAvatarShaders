@@ -1,9 +1,9 @@
 //KDShader
-//KDAvaterShaders ver.1.0
+//KDAvatarShaders ver.1.0
 //v.1.1.1
-//https://github.com/oki75/KDAvaterShaders          
+//https://github.com/oki75/KDAvatarShaders          
 
-Shader "Hidden/KDShader/KDAvaterShaders_Core_Pass"
+Shader "Hidden/KDShader/KDAvatarShaders_Core_Pass"
 {
 	
 	
@@ -53,7 +53,7 @@ Shader "Hidden/KDShader/KDAvaterShaders_Core_Pass"
 			 #pragma shader_feature_local _EYEHIANDLIMBUS_ON
 			
 			 
-			 #include "./cginc/KDAvaterShaders_Core.cginc"
+			 #include "./cginc/KDAvatarShaders_Core.cginc"
 			 
 			
 			

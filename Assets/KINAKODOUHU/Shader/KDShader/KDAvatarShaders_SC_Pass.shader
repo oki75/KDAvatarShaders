@@ -3,7 +3,7 @@
 //v.1.1.1
 //https://github.com/oki75/KDAvaterShaders          
 
-Shader "Hidden/KDShader/KDAvaterShaders_SC_Pass"
+Shader "Hidden/KDShader/KDAvatarShaders_SC_Pass"
 {
 	
 	
@@ -28,7 +28,7 @@ Shader "Hidden/KDShader/KDAvaterShaders_SC_Pass"
 			          #pragma multi_compile_shadowcaster
 			          #pragma target 4.0
 		              #include "UnityCG.cginc"
-		              #include "./cginc/KDAvaterShaders_ShadowCaster.cginc"
+		              #include "./cginc/KDAvatarShaders_ShadowCaster.cginc"
 			 
            
 			        ENDCG

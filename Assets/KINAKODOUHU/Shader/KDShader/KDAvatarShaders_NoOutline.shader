@@ -1,9 +1,10 @@
+//KDAvatarShaders_NoOutline.cginc
 //KDShader
-//KDAvaterShaders ver.1.0
+//KDAvatarShaders ver.1.1
 //v.1.1.1
-//https://github.com/oki75/KDAvaterShaders          
+//https://github.com/oki75/KDAvatarShaders          
 
-Shader "KDShader/KDAvaterShaders"
+Shader "Hidden/KDShader/KDAvatarShaders_NoOutline"
 {
 	Properties
 	{
@@ -11,7 +12,8 @@ Shader "KDShader/KDAvaterShaders"
 		[HideInInspector]	_KdaVerY	                  ( "KdaVerY"	, Float ) = 1
 		[HideInInspector]	_KdaVerZ	                  ( "KdaVerZ"	, Float ) = 1
         [HideInInspector]   _KDASType                      ( "KDASType"	, Int ) = 0
-        [HideInInspector]   _OutlineMode                   ( "OutlineMode"	, Int ) = 0
+		[HideInInspector]   _OutlineMode                   ( "OutlineMode"	, Int ) = 0
+
 	    
 		[HideInInspector] _Cutoff ("Alpha cutoff", Range(0,1)) = 0
 
@@ -90,7 +92,7 @@ Shader "KDShader/KDAvaterShaders"
 		_HighColorHue("HighColorHue", Range( 0 , 1)) = 0
 		_HighColorSaturation("HighColorSaturation", Range( -1 , 1)) = 0
 		
-		_Tweak_HighColorMaskLevel("tweak_HighColorMaskLevel", Range( 0 , 1)) = 1
+		_Tweak_HighColorMaskLevel("tweak_HighColorMaskLevel", Range( 0 , 1)) = 0
 		
 		_HighColor_Ratio("HighColor_Ratio", Range( 0 , 1)) = 0
 		_HighColor("HighColor", Color) = (1,1,1,1)
@@ -105,7 +107,7 @@ Shader "KDShader/KDAvaterShaders"
 
 		  [ToggleUI]_EyeHi_Toggle("EyeHi_Toggle", Float) = 0
 		     [ToggleUI]_EyeHi2_Blend("EyeHi2_Blend", Float) = 0
-		  [ToggleUI]_EyeHiAndLimbusMirrorON("EyeHiAndLimbusMirrorON", Float) = 0
+		  [ToggleUI]_EyeHiAndLimbusMirrorON("EyeHiAndLimbusMirrorON", Float) = 1
 
 		_LimbusColor("LimbusColor", Color) = (1,1,1,1)
 		_EyeHiColor("EyeHiColor", Color) = (1,1,1,1)
@@ -205,17 +207,17 @@ Shader "KDShader/KDAvaterShaders"
 		   
 
 				   
-				  UsePass "Hidden/KDShader/KDAvaterShaders_Core_Pass/FORWARD"
+				  UsePass "Hidden/KDShader/KDAvatarShaders_Core_Pass/FORWARD"
 
-				  UsePass "Hidden/KDShader/KDAvaterShaders_Outline_Pass/OUTLINE"
+				  
 
-				  UsePass "Hidden/KDShader/KDAvaterShaders_SC_Pass/SHADOWCASTER"
+				  UsePass "Hidden/KDShader/KDAvatarShaders_SC_Pass/SHADOWCASTER"
 
 			      				   
         }	
 		      
 	 FallBack "Legacy Shaders/VertexLit"
 	
-	CustomEditor "KD.KDAvaterShadersInspector"
+	CustomEditor "KD.KDAvatarShadersInspector"
 	
   }
