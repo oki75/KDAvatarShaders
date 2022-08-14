@@ -1,8 +1,8 @@
-//KDAvaterShaders_ShadowCaster.cginc
+//KDAvatarShaders_ShadowCaster.cginc
 //KDShader
-//KDAvaterShaders ver.1.0
+//KDAvatarShaders ver.1.0
 //v.1.1.1
-//https://github.com/oki75/KDShader           
+//https://github.com/oki75/KDAvatarShaders            
 
 
 

@@ -1,8 +1,8 @@
-//KDAvaterShaders_Outline.cginc
+//KDAvatarShaders_Outline.cginc
 //KDShader
-//KDAvaterShaders ver.1.1
+//KDAvatarShaders ver.1.1
 //v.1.1.1
-//https://github.com/oki75/KDAvaterShaders           
+//https://github.com/oki75/KDAvatarShaders           
 
 
              //#pragma multi_compile_fog

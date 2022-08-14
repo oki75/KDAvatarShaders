@@ -1,5 +1,5 @@
-﻿//KDAvaterShadersInspector.cs for KDAvaterShaders v.1.1.1
-//https://github.com/oki75/KDAvaterShaders          
+﻿//KDAvaterShadersInspector.cs for KDAvatarShaders v.1.1.1
+//https://github.com/oki75/KDAvatarShaders          
          
 using System;
 using UnityEditor;
@@ -11,7 +11,7 @@ using System.Linq;
 namespace KD
 {
     
-    public class KDAvaterShadersInspector : ShaderGUI
+    public class KDAvatarShadersInspector : ShaderGUI
     {
 
         public enum _CullMode
@@ -67,9 +67,9 @@ namespace KD
 
         // -----------------------------------------------------
         //Change Shader
-         static Shader KDAvaterShaders = Shader.Find("KDShader/KDAvaterShaders");
+         static Shader KDAvatarShaders = Shader.Find("KDShader/KDAvatarShaders");
       
-         static Shader KDAvaterShaders_NoOutline = Shader.Find("Hidden/KDShader/KDAvaterShaders_NoOutline");
+         static Shader KDAvatarShaders_NoOutline = Shader.Find("Hidden/KDShader/KDAvatarShaders_NoOutline");
 
         // -----------------------------------------------------
         //USE_UI
@@ -1368,7 +1368,7 @@ namespace KD
                 if (GUILayout.Button("Off", shortButtonStyle))
                 {
                     material.SetInt("_OutlineMode", 1); 
-                    m_MaterialEditor.SetShader(KDAvaterShaders);
+                    m_MaterialEditor.SetShader(KDAvatarShaders);
                     
 
                 }
@@ -1378,7 +1378,7 @@ namespace KD
                 if (GUILayout.Button("Active", shortButtonStyle))
                 {
                     material.SetInt("_OutlineMode", 0);
-                    m_MaterialEditor.SetShader(KDAvaterShaders_NoOutline);
+                    m_MaterialEditor.SetShader(KDAvatarShaders_NoOutline);
                     
                     
                 }

@@ -3,7 +3,7 @@
 //v.1.1.1
 //https://github.com/oki75/KDAvaterShaders          
 
-Shader "Hidden/KDShader/KDAvaterShaders_Outline_Pass"
+Shader "Hidden/KDShader/KDAvatarShaders_Outline_Pass"
 {
 		SubShader
 		
@@ -39,7 +39,7 @@ Shader "Hidden/KDShader/KDAvaterShaders_Outline_Pass"
                  #pragma multi_compile_fog
 				 #pragma multi_compile _IS_OUTLINE_CLIPPING_YES _IS_OUTLINE_CLIPPING_NO
 		         
-		         #include "./cginc/KDAvaterShaders_Outline.cginc"
+		         #include "./cginc/KDAvatarShaders_Outline.cginc"
 
 
 			     
